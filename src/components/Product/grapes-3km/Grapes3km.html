@@ -1,0 +1,104 @@
+<main id="Grapes3km"
+      class="weather-product-window"
+      v-drag="">
+  <header>
+    <span>Grapes3km</span>
+    <aside>
+      <button :style="{backgroundPositionX: minify ? '-44px' : '0'}"
+              v-on:click="minify = !minify"
+              class="mini"></button>
+      <button class="close"
+              v-on:click="toggleProductView_global({id: productId, action: false})"></button>
+    </aside>
+  </header>
+  <main class="cf content-wrapper">
+    <figure v-loading="loading"
+            element-loading-text="正在加载图片">
+      <img :src="imgUrl"
+           height="100%"
+           width="100%"
+           alt="" />
+    </figure>
+    <menu>
+      <section class="option-wrapper">
+        <header class="multiple-header">要素选择</header>
+        <ul class="multiple-item">
+          <li v-for="(item, index) in optionData"
+              @click.stop="item.isSelected = !item.isSelected"
+              :state="item.isSelected ? 'true' : 'false'">
+            <div>
+              <em :state="item.isSelected ? 'true' : 'false'"></em>
+              <span class="hori-dash-line"></span>
+              <span class="vert-dash-line top"
+                    v-show="index !== 0"></span>
+              <span class="vert-dash-line bottom"
+                    v-show="index &lt; optionData.length-1 || item.isSelected"></span>
+              <a>{{item.name}}</a>
+            </div>
+            <ul class="subItem"
+                v-show="item.isSelected">
+              <li v-for="subItem in item.sub"
+                  v-on:click.stop="toggleOpt(subItem.value, subItem.name)"
+                  :state="subItem.isSelected ? 'true' : 'false'">
+                <div>
+                  <span class="vert-dash-line"></span>
+                  <span class="hori-dash-line"></span>
+                  <em></em>
+                  <a>{{subItem.name}}</a>
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section class="date-time-forsee-wrapper">
+        <ul>
+          <li style="height: 30px">
+            <aside class="left-label-wrapper">选择区域</aside>
+            <aside class="right-btn-wrapper radio-wrapper"
+                   style="height: auto">
+              <div v-on:click="regionSelected = item.value"
+                   v-for="item in regionData"
+                   style="width: 50%; float: left">
+                <em :state="regionSelected === item.value ? 'true' : 'false'"></em>
+                <a>{{item.name}}</a>
+              </div>
+            </aside>
+          </li>
+          <li>
+            <aside class="left-label-wrapper">起报日期</aside>
+            <aside class="right-btn-wrapper">
+              <div class="datetime-wrapper">
+                <el-date-picker v-model="date"
+                                format="yyyy-MM-dd"
+                                type="date"></el-date-picker>
+              </div>
+            </aside>
+          </li>
+          <li>
+            <aside class="left-label-wrapper">起报时</aside>
+            <aside class="right-btn-wrapper">
+                <select-toggle :optionData="hourData" :selectionChange="hourSelectedChange"></select-toggle>
+              <!-- <select id="forsee-time"
+                      v-model="hourSelected">
+                <option v-for="item in hourData"
+                        :value="item">{{item}}</option>
+              </select> -->
+            </aside>
+          </li>
+          <li>
+            <aside class="left-label-wrapper">时效</aside>
+            <aside class="right-btn-wrapper">
+              <select-toggle :optionData="forecastHourData" :selectionChange="forecastHourChange"></select-toggle>
+              <!-- <select id="forsee-time"
+                      v-model="forecastHour">
+                <option v-for="item in forecastHourData"
+                        :value="item">{{item }}</option>
+              </select> -->
+            </aside>
+          </li>
+        </ul>
+      </section>
+    </menu>
+  </main>
+</main>

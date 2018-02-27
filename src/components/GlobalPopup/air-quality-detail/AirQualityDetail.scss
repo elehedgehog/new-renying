@@ -1,0 +1,23 @@
+#AirQualityDetail {
+  z-index: 1001;
+  position: absolute;
+  width: 120px;
+  height: 40px;
+  background: #fff;
+  padding: 5px;
+  box-shadow: rgba(31, 43, 61, .4) 0 0 7px 1px;
+  .name {
+    height: 20px;
+    line-height: 20px;
+    font-size: 13px;
+    color: #575757;
+  }
+  .val {
+    font-size: 12px;
+    color: #575757;
+    span{
+      margin-left: 20px;
+      
+    }
+  }
+}

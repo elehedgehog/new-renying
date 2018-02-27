@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "*": ["src/*"]
+    },
+    "sourceMap": true,
+    "experimentalDecorators": true,
+    "target": "es6",
+    "module": "es2015",
+    "moduleResolution": "node",
+    "noImplicitThis": true,
+    "types": [
+      "vue"
+    ],
+    "typeRoots": [
+      "node_modules/@types"
+    ]
+  }
+}

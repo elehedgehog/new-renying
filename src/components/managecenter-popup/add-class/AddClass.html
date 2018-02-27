@@ -1,0 +1,86 @@
+<main id="AddClass" v-drag  class="weather-product-window" >
+      <header>
+        <span>新增分类</span>
+        <aside>
+          <button class="close" @click="closeFn"></button>
+        </aside>
+      </header>
+      <!-- <div class="add_class_left">
+        <p class="add_class_search">
+          <span>搜索</span>
+          <i class="left_search_icon"></i>
+          <input type="text">
+        </p>
+        <ul class="add_class_list scrollbar">
+          <li>人工防雹</li>
+          <li>人工影响降水落区</li>
+          <li>森林城市防灭火、降温</li>
+          <li>改善空气质量</li>
+          <li>短临降雨</li>
+          <li class="in">人工防雹</li>
+          <li class="in">人工影响降水落区</li>
+          <li class="on">森林城市防灭火、降温</li>
+          <li>改善空气质量</li>
+          <li>短临降雨</li>
+          <li>人工防雹</li>
+          <li>人工影响降水落区</li>
+          <li>森林城市防灭火、降温</li>
+          <li>改善空气质量</li>
+          <li>短临降雨</li>
+        </ul>
+      </div>
+      <div class="add_class_center">
+        <button class="for_add">添加>></button>
+        <button class="for_remove"><<移除</button>
+      </div>
+      <div class="add_class_right">
+        <p class="add_class_new">
+          <i class="add_class_newIcon"></i>
+          <span class="">新建类别</span>
+        </p>
+        <ul class="add_class_listIn scrollbar">
+          <li v-for="(item, index) in classOpt"
+              v-on:click.stop="toggleOpt(item)"
+              :state="item.isSelected ? 'true' : 'false'">
+            <div>
+              <em :state="item.isSelected ? 'true' : 'false'"></em>
+              <span class="hori-dash-line"></span>
+              <span class="vert-dash-line top"
+                    v-show="index !== 0"></span>
+              <span class="vert-dash-line bottom"
+                    v-show="index &lt; classOpt.length-1 || item.isSelected"></span>
+              <a>{{item.name}}</a>
+            </div>
+            <ul class="subItem"
+                v-show="item.isSelected">
+              <li v-for="subItem in item.sub"
+                  :state="subItem.isSelected ? 'true' : 'false'"
+                  v-on:click.stop="toggleOpt(subItem, subItem.name)">
+                <div>
+                  <span class="vert-dash-line"></span>
+                  <span class="hori-dash-line"></span>
+                  <em></em>
+                  <a>{{subItem.name}}</a>
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div> -->
+
+    <el-transfer
+      filterable
+      :filter-method="filterMethod"
+      filter-placeholder="请输入搜索内容"
+      :button-texts="['移除', '添加']"
+      :titles="['产品列表', '已添加产品']"
+      v-model="productSelected"
+      :data="productList">
+    </el-transfer>
+    <div class="add_class_name">
+      <span>名称</span>
+      <input type="text" v-model="firstMenu">
+      <button @click="addFirstMenu">确定</button>            
+    </div>
+
+</main>

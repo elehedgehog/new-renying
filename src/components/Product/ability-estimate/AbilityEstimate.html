@@ -1,0 +1,230 @@
+<main id="AbilityEstimate"
+      class="weather-product-window" 
+      v-drag=''>
+  <header>
+    <span>能力评估</span>
+    <aside>
+      <!-- <button class="mini"
+              v-on:click="minify = !minify"
+              :style="{backgroundPositionX: minify ? '-44px' : '0'}"></button> -->
+      <button class="close"
+              v-on:click="toggleProductView_global({id: productId, action: false})"></button>
+    </aside>
+  </header>
+  <section v-if="createExamPoppup" class=""></section>
+  <section class="ability_con">
+    <p class="ability_con_top">
+      <span class="select">
+        <!-- <p>选择题型</p> -->
+        <select name="" id="" v-model="questionTypeSelected">
+          <option value="">全部题型</option>
+          <option :value="key" v-for="(item, key) in questionType">{{ item.text }}</option>
+        </select>
+      </span>
+      <span class="question">题库</span>
+      <span class="answer">答案</span>
+    </p>
+    <ul class="scrollbar">
+      <li :class="{'on': item.questionSelected}"
+          v-for="(item, key) in questionList">
+        <span class="question_types">{{ questionType[item.questionType].text }}</span>
+        <span class="question_con">{{ item.questionContent ? item.questionContent.replace(/\$/g, '____') : '' }}</span>
+        <span class="answer_con">{{ item.questionKey ? item.questionKey.replace(/\$/g, ', ') : ''  }}</span>
+        <!-- <span class="operate">
+          <i class="editor"></i>
+          <i class="delete"></i>
+        </span> -->
+      </li>
+    </ul>
+    <section class="product_page cf">
+        <div class="product_pageIn">
+            <el-pagination
+            small
+            :page-size="pageSize"
+            layout="prev, pager, next"
+            @current-change="currentChange"
+            :current-page="currentPage"
+            :total="listNumber">
+          </el-pagination>
+        </div>
+      </section>
+  </section>
+  <section class="ability_bot">
+    <span>
+      <template v-if="Object.keys(questionSelectedList[key]).length"
+                v-for="(item, key) in questionType">
+        已选{{ item.text }}
+        <span class="number">{{ Object.keys(questionSelectedList[key]).length }}</span>
+      </template>
+     
+      <!-- <template v-if="allScores">总分值<span class="number">{{ allScores }}</span></template> -->
+    </span>
+    <span class="btn">
+
+      <button class="create" @click="creatExams">生成试卷</button>
+      <!-- <button class="create" @click="creatExams" v-if="!btnPoppup">生成试卷</button> -->
+      <!-- <button class="create download" @click="creatExam" v-if="btnPoppup">下载试卷</button> -->
+      <button class="upload" @click="uploadExam">上传试题</button>
+      <!-- <button class="upload" @click="uploadExam" v-if="!btnPoppup">上传试题</button>
+      <button class="upload cancel" @click="cancelBtn" v-if="btnPoppup">取消</button> -->
+    </span>
+    
+  </section>
+
+  <div class="upload_exam" 
+       v-if="uploadExamPoppup" 
+       v-drag=''>
+      <header>
+        <span>上传试题</span>
+        <aside>
+          <button class="close"
+                  v-on:click="uploadExamPoppup=false"></button>
+        </aside>
+      </header>
+      <dl class="cf questionType">
+        <dt>选择题型</dt>
+        <dd>
+          <select v-model="selectQue">
+            <option :value="key" v-for="(item, key) in questionType">{{ item.text }}</option>
+          </select>
+        </dd>
+      </dl>
+      <dl class="cf questions">
+        <dt>题目</dt>
+        <dd>
+          <textarea name="" id="" cols="30" rows="10" v-model="textarea">
+          </textarea>
+        </dd>
+      </dl>
+        <dl class="cf option" v-if="selectQue == 0">          <!--填空-->
+          <dt>选项</dt>
+          <dd class="dd_completion">
+            <ul class="cf scrollbar">
+              <li v-for="(el, index) in answers">
+                <span class="completion_boder">
+                  <input type="text" v-model="el.val">
+                  <i class="delIcon" @click="deleteAnswerBorder(index)" v-if="index !== 0 || answers.length > 1"></i>
+                </span>
+              </li>
+            </ul>
+            <button class="addAnswerBorder border" @click="addAnswerBorder">添加框</button>
+          </dd>
+        </dl>
+        <dl class="cf option" v-else-if="selectQue == 1">      <!--判断-->
+          <dt>选项</dt>
+          <dd class="dd_judge">
+            <el-radio class="radio" v-model="judge" label="y">对</el-radio>
+            <el-radio class="radio" v-model="judge" label="n">错</el-radio>
+          </dd>
+        </dl>
+        <dl class="cf option"  v-else-if="selectQue == 4">   <!--简答-->
+          <dt>答案</dt>
+          <dd>
+            <textarea cols="30" rows="10" v-model="textareaAnswer" class="textarea_answer" style="height: 130px">
+
+            </textarea>
+          </dd>
+        </dl>
+        <template  v-else="!selectQue == 2">
+          <dl class="cf option">                                              <!--单选 多选-->
+            <dt>选项</dt>
+            <dd>
+              <ul>
+                <li><span class="select_in">A</span><input type="text" v-model="answerA"></li>
+                <li><span class="select_in">B</span><input type="text" v-model="answerB"></li>
+                <li><span class="select_in">C</span><input type="text" v-model="answerC"></li>
+                <li><span class="select_in">D</span><input type="text" v-model="answerD"></li>
+              </ul>
+            </dd>
+          </dl>
+          <dl class="cf answers">
+            <dt>答案</dt>
+            <dd v-if="selectQue == 3">
+              <el-checkbox-group 
+                  v-model="checkedOpt"
+                  :min="1"
+                  :max="4">
+              <el-checkbox v-for="opt in selectOptions" :label="opt" :key="opt">{{opt}}</el-checkbox>
+            </el-checkbox-group>
+            </dd>
+            <dd v-if="selectQue == 2">
+                <el-radio class="radio" v-model="selectOpt" label="A">A</el-radio>
+                <el-radio class="radio" v-model="selectOpt" label="B">B</el-radio>
+                <el-radio class="radio" v-model="selectOpt" label="C">C</el-radio>
+                <el-radio class="radio" v-model="selectOpt" label="D">D</el-radio>
+            </dd>
+          </dl>
+        </template>
+      <div class="upload_btn cf">
+        <button class="upload_exams cf" @click="uploadQuestion">上传</button>
+      </div>
+  </div>
+
+  <div class="create_exam" 
+       v-if="createExamPoppup" 
+       v-drag=''>
+    <header>
+    <span>生成试卷</span>
+    <aside>
+      <button class="close"
+              v-on:click="clearScore"></button>
+    </aside>
+  </header>
+  <section class="create_exam_con scrollbar">
+    <dl>
+      <dt>试卷名</dt>
+      <dd>
+        <input type="text" v-model="examName">
+      </dd>
+    </dl>
+    <dl v-for="item in questionType" class="cf">
+      <dt>{{ item.text }}</dt>
+      <dd>
+        <input type="text" v-model="item.value" class="score_border"><span class="score_unit">分/题</span>
+        <input type="text" class="score_border" v-model="item.number">题
+      </dd>
+    </dl>
+    
+  </section>
+  <p class="all_score">总分值 <span class="number">{{ allScores }}</span></p>
+  <button class="create_btn" @click="confirmScore">下载</button>
+  </div>
+
+  <!--下载试卷-->
+  <div class="download_exam"
+       v-if="downloadPoppup" 
+       v-drag=''>
+    <header>
+      <span>下载试卷</span>
+      <aside>
+        <button class="close"
+                v-on:click="closeDownloadPoppup"></button>
+      </aside>
+    </header>  
+    <section class="download_exam_con scrollbar">
+      <p class="exam_title" >{{ examName }}</p>
+      <template v-for="(el, index) in downloadSelectedList">
+        <p class="question_type">{{ numList[index] }}、{{ questionType[el].text }}（每题{{ questionType[el].value }}分，共{{ questionType[el].value * Object.keys(questionSelectedList[el]).length }}分）</p>
+        <div v-for="item in questionSelectedList[el]" class="question_content">
+          <template v-if="el === '2' || el === '3'">
+            {{ item.questionContent ? item.questionContent.replace(/\$/, 'A ').replace(/\$/, 'B ').replace(/\$/, 'C ').replace(/\$/, 'D ') : '' }}
+          </template>
+          <template v-else>
+            {{ item.questionContent ? item.questionContent.replace(/\$/g, '____') : '' }}
+          </template>
+        </div>
+      </template>
+    </section>
+    <button class="down_btn" @click="dowloadQuestionBtn">下载</button>
+    <section class="ability_bot ability_down">
+        <template v-if="Object.keys(questionSelectedList[key]).length"
+            v-for="(item, key) in questionType">已选{{ item.text }}
+          <span class="number">{{ Object.keys(questionSelectedList[key]).length }}</span>
+        </template>
+        <!-- <template v-if="allScores">总分值<span class="number">{{ allScores }}</span></template> -->
+    </section>
+      
+  </div>
+
+  
+</main>

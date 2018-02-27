@@ -1,0 +1,27 @@
+#MicroRadiation {
+  .img_type{
+    width: 170px;
+    height: 550px;
+    border: 1px solid #D5D7DD;
+    overflow: auto;
+    &::-webkit-scrollbar { 
+      width: 8px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: #b4b6bf;
+      border-radius: 3px;
+    }
+    ul{
+      
+      li{
+        height: 30px;
+        line-height: 30px;
+        margin-bottom: 0!important;
+        text-indent: 8px;
+        font-size: 12px;
+        color: #989898;
+        
+      }
+    } 
+  }
+}

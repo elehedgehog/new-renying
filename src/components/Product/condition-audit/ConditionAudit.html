@@ -1,0 +1,114 @@
+<main id="ConditionAudit"
+      class="weather-product-window"
+      v-drag=''>
+  <header>
+    <span>地面作业资格审核</span>
+    <aside>
+    <button class="close"
+            v-on:click="toggleProductView_global({id: productId, action: false})"></button>
+    </aside>
+  </header>
+  <section class="job_management">
+    <div class="groups_top">
+      <span>请选择</span>
+      <select v-model="city">
+        <option value="all">市</option>
+        <option :value="key"
+                v-for="(opt, key) in cityList">{{ key }}</option>
+      </select>
+      <!-- <select v-model="county">
+        <option value="all">区/县</option>
+        <option :value="county"
+                v-for="county of allCounty">{{ county }}</option>
+      </select> -->
+      <p class="groups_top_search">
+        <span>搜索</span>
+        <i></i>
+        <input type="text"
+               v-model="keyString">
+      </p>
+    </div>
+    <div class="groups_bottom">
+      <div class="groups_left">
+        <ul class="head_list">
+            <li>地名</li>
+            <li>类型</li>
+            <li>所属城市</li>
+            <li>区县</li>
+            <li>编号</li>
+            <li>状态</li>
+          </ul>
+          <ul class="person_list">
+            <li v-for="(item, key) in currentPageList"
+                :class="['person_list_list',{'on': operationSeleted === item.opId}]"
+                @click="toggleFileList(item.opId)">
+              <span class="address wid"
+                    :title="item.address">{{ item.address }}</span>
+              <span class="wid">{{ item.isFlow ? '固定' : '流动' }}</span>
+              <span class="city wid">{{ item.city }}</span>
+              <span class="county wid">{{ item.county }}</span>
+              <span class="id wid">{{ item.opId }}</span>
+
+              <span class="appusers wid">
+                  <div class="appusers">
+                      <p :class="[{'on': item.popup},{'in': item.isTarget }]"
+                         @click.stop="togglePass(item)" >{{ item.isTarget ? '通过' : '不通过' }}</p>
+                        <ul class="scrollbar appuserPop" v-if="item.popup">
+                          <li class="pass" @click.stop="toggleIsPass(item, '1')">通过</li>
+                          <li class="unpass" @click.stop="toggleIsPass(item, '0')">不通过</li>
+                        </ul>
+                    </div>
+              </span>
+              <span></span>
+            </li>
+          </ul>
+      </div>
+      <div class="groups_right">
+        <ul class="groups_files scrollbar">
+          <li v-for="item of fileList">
+            <i :class="['check_icon',{'on': checkSelected.indexOf(item) !== -1}]" @click="toggleCheck(item)"></i>
+            <span class="file_name" :title="item">{{ item }}</span>
+            <i class="update_icon" @click="download(item)"></i>
+            <i class="delete_icon" @click="deleteFile(item)"></i>
+          </li>
+        </ul>
+        <span class="groups_btn">
+            <button class="update_btn" @click="uploadBtn">上传</button>
+            <button class="download_btn" @click="batchDownload(item)">批量下载</button>
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <section class="product_page cf">
+    <div class="product_pageIn">
+      <el-pagination small
+                     :page-size="pageSize"
+                     layout="prev, pager, next"
+                     @current-change="currentChange"
+                     :total="jobPointLists.length">
+      </el-pagination>
+    </div>
+  </section>
+
+  <div v-if="uploadPop" 
+      class="upload_file"
+      v-drag=''>
+    <header>
+    <span>上传文件</span>
+    <aside>
+    <button class="close"
+          v-on:click="uploadPop=false"></button>
+    </aside>
+    </header>
+    <section class="upload_file_con">
+      <dl class="cf">
+        <dt>上传文件</dt>
+        <dd>
+          <input type="file" @change="fileChanged">
+        </dd>
+      </dl>
+      <button class="upload_file_btn" @click="uploadFile">上传</button>
+    </section>
+</div>
+</main>

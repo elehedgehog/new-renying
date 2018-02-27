@@ -1,0 +1,126 @@
+<main id="ShortRadar"
+      class="weather-product-window"
+      v-drag=''
+      :style="{width: !minify ? '440px' : '365px', height: !minify ? '600px' : '190px'}">
+  <header>
+    <span>短临预报和雷达综合分析</span>
+    <aside>
+      <button class="mini"
+              :style="{backgroundPositionX: minify ? '-44px' : '0'}"
+              @click="toggleDate"></button>
+      <button class="close"
+              v-on:click="toggleProductView_global({id: productId, action: false})"></button>
+    </aside>
+  </header>
+  <div class="short_radar" v-if="minify">
+    <div>
+      <p class="short_radar_title">雷达产品</p>
+      <div class="date datetime">
+        <el-date-picker v-model="radarDate"
+                        type="date"
+                        :clearable="false"
+                        placeholder="选择日期">
+        </el-date-picker>
+        <span>日</span>
+        <select-toggle :optionData="hourData"
+                        :selectionChange="radarHourSelectedChange"
+                        class="select-toggle"
+                        :preSelectedOption="radarHour"></select-toggle>
+        <span>时</span>
+        <select-toggle :optionData="minuteData"
+                        :selectionChange="radarMinuteSelectedChange"
+                        class="select-toggle"
+                        :preSelectedOption="radarMinute"></select-toggle>
+        <span>分</span>
+        </div>
+    </div>
+    <div>
+      <p class="short_radar_title">QPEQPF产品</p>
+      <div class="date datetime">
+          <el-date-picker
+            v-model="qpeqpfDate"
+            type="date"
+            :clearable="false"
+            placeholder="选择日期">
+          </el-date-picker>
+          <span>日</span>
+          <select-toggle :optionData="hourData" :selectionChange="qpeqpfHourSelectedChange" class="select-toggle" :preSelectedOption="qpeqpfHour"></select-toggle>
+          
+          <span>时</span>
+          <select-toggle :optionData="minuteData" :selectionChange="qpeqpfMinuteSelectedChange" class="select-toggle" :preSelectedOption="qpeqpfMinute"></select-toggle>
+          
+          <span>分</span>
+        </div>
+    </div>
+      
+      
+
+  </div>
+  <div class="nowActual_con"  v-else>
+    <div class="nowActual_con_top">
+      <div class="nowActual_con_topleft">
+        <p>雷达产品</p>
+      </div>
+      <div class="nowActual_con_topright">
+        <div class="date">
+          <el-date-picker v-model="radarDate"
+                          type="date"
+                          :clearable="false"
+                          placeholder="选择日期">
+          </el-date-picker>
+          <span>日</span>
+          <select-toggle :optionData="hourData"
+                         :selectionChange="radarHourSelectedChange"
+                         class="select-toggle"
+                         :preSelectedOption="radarHour"></select-toggle>
+          <!-- <select v-model="radarHour" class="hour-min">
+                  <option value="0">00</option>
+                  <option v-for="i in 23" :value="i">{{ i >= 10 ? i : '0' + i }}</option>
+                </select> -->
+          <span>时</span>
+          <select-toggle :optionData="minuteData"
+                         :selectionChange="radarMinuteSelectedChange"
+                         class="select-toggle"
+                         :preSelectedOption="radarMinute"></select-toggle>
+
+          <!-- <select v-model="radarMinute" class="hour-min">
+                  <option v-for="min of minutesArr" :value="min">{{ min >= 10 ? min : '0' + min }}</option>
+                </select> -->
+          <span>分</span>
+        </div>
+        <ul class="radar_products nowActual_top_products">
+          <li :class="['iconProductO',{'on': item.show}]"
+              v-for="(item, key) in radarProduct">
+            <i @click="toggleRadarProduct(key)"></i>{{ item.text }}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="cf nowActual_con_bottom">
+      <div class="cf nowActual_con_bottomleft">
+        <span>QPEQPF</span><span>产品</span>
+      </div>
+      <div class="nowActual_con_bottomright">
+        <div class="date">
+          <el-date-picker
+            v-model="qpeqpfDate"
+            type="date"
+            :clearable="false"
+            placeholder="选择日期">
+          </el-date-picker>
+          <span>日</span>
+          <select-toggle :optionData="hourData" :selectionChange="qpeqpfHourSelectedChange" class="select-toggle" :preSelectedOption="qpeqpfHour"></select-toggle>
+          
+          <span>时</span>
+          <select-toggle :optionData="minuteData" :selectionChange="qpeqpfMinuteSelectedChange" class="select-toggle" :preSelectedOption="qpeqpfMinute"></select-toggle>
+          
+          <span>分</span>
+        </div>
+        <ul class="qpef_products nowActual_bottom_products">
+          <li :class="['iconProductT',{'on': item.show}]" 
+              v-for="(item, key) in qpeqpfProduct">
+              <i @click="toggleQpeqpfProduct(key)"></i>{{ item.text }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</main>

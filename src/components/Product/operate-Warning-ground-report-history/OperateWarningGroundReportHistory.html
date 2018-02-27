@@ -1,0 +1,19 @@
+<main id="OperateWarningGroundReportHistory"
+      class="weather-product-window"
+      v-drag=""
+      :style="{width: minify ? '330px' : '1100px', height: minify ? '40px' : '740px'}">
+  <header>
+    <span>火箭作业预警与发布-历史文档</span>
+    <aside>
+      <!-- <button class="mini"
+              v-on:click="minify = !minify"
+              :style="{backgroundPositionX: minify ? '-44px' : '0'}"></button> -->
+      <button class="close"
+              @click="changeArticleViewHolder_global({id: productId, action: 'history'})"></button>
+    </aside>
+  </header>
+
+  <div>
+    <components :is="OperateHistory" :word="word"></components>
+  </div>
+</main>

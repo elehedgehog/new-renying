@@ -1,0 +1,41 @@
+<main id="DisasterManage"
+      class="weather-product-window"
+      v-drag=''>
+  <header>
+    <span>灾情管理</span>
+    <aside>
+      <button class="mini"
+              v-on:click="minify = !minify"
+              :style="{backgroundPositionX: minify ? '-44px' : '0'}"></button>
+      <button class="close"
+              v-on:click="toggleProductView_global({id: productId, action: false})"></button>
+    </aside>
+  </header>
+  <section class="disaster_header">
+    <span class="datetime">日期</span>
+    <span class="right-btn-wrapper">
+      <el-date-picker v-model="disasterDate"
+                      format="yyyy-MM-dd"
+                      type="date"
+                      :clearable="false"
+                      placeholder="选择日期">
+      </el-date-picker>
+    </span>
+  </section>
+  <ul class="disaster_con scrollbar">
+    <li v-for="item in disasterMsg"
+        @click="toggleImgDetails(item)">
+      <img :src="url + item.image1"
+           alt="">
+      <div class="disaster_content">
+        <p class="content_top">
+          <span class="disasterName">{{ item.disasterName }}</span>
+          <span class="uploadTime">{{ moment(item.uploadTime).format("HH:mm") }}</span>
+        </p>
+        <p class="content_bottom">{{ item.content }}</p>
+      </div>
+    </li>
+  </ul>
+
+
+</main>

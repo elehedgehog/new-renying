@@ -1,0 +1,18 @@
+<main id="DatePickerToggle"
+      :style="{backgroundColor: backgroundColor, width: width + 'px', height: height + 'px'}"
+      class="cf">
+  <div class="text-wrapper">
+    <el-date-picker v-model="dateSelected"
+                    type="date"
+                    :clearable="false"
+                    placeholder="选择日期"></el-date-picker>
+  </div>
+  <aside class="btn-wrapper">
+    <span @click="upward">
+      <i></i>
+    </span>
+    <span @click="downward">
+      <i></i>
+    </span>
+  </aside>
+</main>

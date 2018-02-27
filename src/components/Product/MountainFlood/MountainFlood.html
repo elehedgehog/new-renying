@@ -1,0 +1,38 @@
+<main id="MountainFlood"
+      class="weather-product-window"
+      v-loading="loading"
+      v-drag>
+  <header>
+    <span>山洪风险</span>
+    <aside>
+      <button class="close"
+              v-on:click="toggleProductView_global({id: productId, action: false})"></button>
+    </aside>
+  </header>
+  <main class="cf content-wrapper">
+    <figure v-loading="loading"
+            element-loading-text="正在加载图片">
+      <img :src="imgError ? imgErrorSrc : imgUrl"
+           height="100%"
+           width="100%"
+           alt="" />
+    </figure>
+    <menu>
+      <section class="date-time-forsee-wrapper">
+        <ul>
+          <li>
+            <aside class="left-label-wrapper">起报日期</aside>
+            <aside class="right-btn-wrapper">
+              <div class="datetime-wrapper">
+                <el-date-picker v-model="date"
+                                :picker-options="option"
+                                format="yyyy-MM-dd"
+                                type="date"></el-date-picker>
+              </div>
+            </aside>
+          </li>
+        </ul>
+      </section>
+    </menu>
+  </main>
+</main>

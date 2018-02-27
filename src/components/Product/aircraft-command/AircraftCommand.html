@@ -1,0 +1,18 @@
+<main id="AircraftCommand"
+      class="weather-product-window"
+      v-drag=''>
+  <header>
+  <span>飞机作业跟踪指挥</span>
+  <aside>
+  <button class="close"
+    v-on:click="toggleProductView_global({id: productId, action: false})"></button>
+  </aside>
+  </header>
+  <section class="airspace_con">
+    <div class="airspace_head">
+      <span>是否开启空域申报</span>
+      <i :class="['switch_btn',{'on':switchSelected}]" @click="toggleSwitch"></i>
+    </div>
+  </section>
+  
+</main>

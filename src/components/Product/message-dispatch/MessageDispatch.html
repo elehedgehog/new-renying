@@ -1,0 +1,22 @@
+<main id="MessageDispatch"
+      class="weather-product-window"
+      v-drag="">
+  <header>
+    <span>短信调度</span>
+    <aside>
+      <button class="close"
+              v-on:click="toggleProductView_global({id: productId, action: false})"></button>
+    </aside>
+  </header>
+  <section class="msg_top">
+    <ul class="nav_msg">
+      <li :class="[{'on': msgSelected === 'new'},'new_msg']"
+          @click="toggleMsg('new')">发送短信</li>
+      <li :class="[{'on': msgSelected === 'history'},'history_msg']"
+          @click="toggleMsg('history')">历史短信</li>
+    </ul>
+  </section>
+  <section class="msg_con">
+    <component :is="currentView"></component>
+  </section>
+</main>

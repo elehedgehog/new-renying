@@ -1,0 +1,412 @@
+.weather-product-window {
+    z-index: 1002 !important;
+    box-shadow: rgba(31, 43, 61, .4) 0 0 7px 1px !important;
+    top: 90px;
+    left: 330px;
+    >header {
+        width: 100%;
+        cursor: move;
+        background-color: #f0f1f4;
+        height: 40px;
+        line-height: 40px;
+        color: #1c1c1c;
+        box-sizing: border-box;
+        font-size: 14px;
+        padding: 0 30px 0 30px;
+        span {
+            line-height: 40px;
+            height: 400px;
+        }
+        aside {
+            float: right;
+        }
+        button {
+            width: 22px;
+            height: 22px;
+            margin: 9px 0;
+            background-color: #f0f1f4;
+            float: left;
+            background-position-y: 0;
+            box-sizing: content-box;
+            background-repeat: no-repeat;
+            background-image: url(~Img/home_close.png);
+            cursor: pointer;
+            &:hover {
+                background-position-y: -22px;
+            }
+            &.close {
+                background-position-x: -22px;
+                margin-left: 26px;
+            }
+            &.mini {
+                background-position-x: 0;
+            }
+        }
+    }
+}
+
+.weather-product-window .content-wrapper {
+    padding: 20px;
+    padding-top: 15px;
+    box-sizing: border-box;
+    figure {
+        border: solid 1px #d2d4db;
+        display: inline-block;
+        width: 900px;
+        margin-right: 20px;
+        height: 695px;
+        vertical-align: top;
+    }
+    menu {
+        display: inline-block;
+        vertical-align: top;
+        width: 250px;
+        box-sizing: border-box; // padding-iight: 36px;
+        section {
+            margin-bottom: 20px;
+            border-bottom: solid 1px #d2d4db;
+            padding-bottom: 20px;
+            width: 100%;
+            &:last-of-type {
+                margin-bottom: 0;
+                padding-bottom: 0;
+                border-bottom: 0
+            }
+            button.control-btn {
+                width: 100px;
+                height: 30px;
+                text-align: center;
+                color: white;
+                cursor: pointer;
+                font-size: 14px;
+                background-color: #649ae6;
+                &:hover {
+                    box-shadow: 0 0 2px 0px rgba(50, 50, 50, .3);
+                }
+            }
+        }
+    }
+}
+
+.weather-product-window select {
+    padding-left: 15px;
+    width: 168px;
+    height: 30px;
+    border: none;
+    background-color: #f0f1f4;
+    cursor: pointer;
+    &:focus {
+        outline: none;
+    }
+}
+
+.weather-product-window section.date-time-forsee-wrapper,
+.weather-product-windo section.play-controle-wrapper {
+    >ul {
+        width: 100%;
+        >li {
+            height: 30px;
+            line-height: 30px;
+            margin-bottom: 10px;
+            &:last-of-type {
+                margin-bottom: 0;
+            }
+            >aside {
+                float: left;
+                height: 30px;
+                &.left-label-wrapper {
+                    width: 76px;
+                    display: block;
+                    color: #575757;
+                }
+                &.right-btn-wrapper {
+                    width: 168px;
+                    text-align: center;
+                }
+                .datetime-wrapper {
+                    width: 100%;
+                    height: 30px;
+                    background-color: #f0f1f4;
+                }
+            }
+        }
+    }
+}
+
+.weather-product-window .radio-wrapper {
+    width: 100%;
+    div {
+        width: 100%;
+        cursor: pointer;
+        float: left;
+        text-align: left;
+        &:hover {
+            a {
+                font-weight: bold;
+            }
+        }
+        em {
+            float: left;
+            display: block;
+            height: 20px;
+            width: 20px;
+            transform: translateY(5px);
+            background-image: url(~Img/home_radio.png);
+            background-position: 0, 0;
+            &[state=true] {
+                background-position-x: -20px;
+            }
+        }
+        a {
+            margin-left: 10px;
+        }
+        /* &:first-of-type {
+            float: left;
+            text-align: left;
+            em {
+                float: left;
+                margin-right: 10px;
+            }
+        }
+        &:last-of-type {
+            float: right;
+            em {
+                float: left;
+                margin-right: 10px;
+            }
+            a {
+                float: left;
+                &[state=true] {
+                    font-weight: bold;
+                }
+            }
+        }
+ */
+    }
+}
+
+.weather-product-wind .oplay-btn-wrapper {
+    margin-left: 50px;
+    margin-top: 20px;
+    button {
+        margin-right: 8px;
+        height: 30px;
+        width: 40px;
+        font-size: 14px;
+        cursor: pointer;
+        text-align: center;
+        box-sizing: border-box;
+        border: solid 1px #4787e1;
+        color: #4484de;
+        background-color: white;
+        &:last-of-type {
+            margin-right: 0;
+        }
+        &:hover {
+            background-color: #4787e1;
+            color: white;
+        }
+    }
+}
+
+.weather-product-window .date-time-select-wrapper {
+    aside {
+        text-align: left;
+    }
+    select {
+        width: 68px;
+    }
+}
+
+.html-wrapper {
+    div {
+        max-width: 1500px !important;
+        white-space: pre-wrap;
+    }
+    table {
+        width: auto !important;
+        margin: 0 !important;
+    }
+}
+
+.weather-product-window .time-wrapper {
+    width: 100%;
+    div {
+        width: 50%;
+        cursor: pointer;
+        &:hover {
+            a {
+                font-weight: bold;
+            }
+        }
+        em {
+            display: block;
+            height: 20px;
+            width: 20px;
+            transform: translateY(5px);
+            background-image: url(~Img/home_radio.png);
+            background-position: 0, 0;
+            &[state=true] {
+                background-position-x: -20px;
+            }
+        }
+        &:first-of-type {
+            float: left;
+            text-align: left;
+            em {
+                float: left;
+                margin-right: 10px;
+            }
+        }
+        &:last-of-type {
+            float: right;
+            em {
+                float: right;
+                margin-right: 10px;
+            }
+            a {
+                float: right;
+                width: 28px;
+                &[state=true] {
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}
+
+.html-wrapper {
+    width: 1060px;
+    height: 680px;
+    box-sizing: border-box;
+    border: solid 1px #d1d4db;
+    overflow: auto;
+    display: inline-block;
+    p {
+        white-space: normal;
+    }
+}
+
+header.multiple-header {
+    color: #575757;
+    font-size: 14px;
+    line-height: 32px;
+    height: 32px;
+    width: 100%;
+}
+
+ul.multiple-item {
+    display: block;
+    height: 210px;
+    width: 244px;
+    box-sizing: border-box;
+    border: solid 1px #d2d4db;
+    overflow-y: auto;
+    >li {
+        min-height: 16px;
+        line-height: 16px;
+        padding: 8px 0;
+        cursor: pointer;
+        position: relative;
+        &[state=true] {
+            padding-bottom: 0;
+        }
+        >div {
+            padding-left: 30px;
+            em {
+                background-image: url(~Img/cloude_option_icon.png);
+                background-repeat: no-repeat;
+                width: 16px;
+                height: 16px;
+                display: block;
+                float: left;
+                background-position: 0, 0;
+                &[state=true] {
+                    background-position: -16px;
+                }
+            }
+            span {
+                display: block;
+                float: left;
+            }
+            span.hori-dash-line {
+                height: 0;
+                width: 13px;
+                border-top: dashed 1px #4484de;
+                transform: translateY(7px);
+                margin-right: 9px;
+            }
+            span.vert-dash-line {
+                height: 8px;
+                width: 0;
+                border-right: dashed 1px #649ae6;
+                position: absolute;
+                transform: translateX(37px);
+                left: 0;
+                &.bottom {
+                    top: 24px;
+                }
+                &.top {
+                    top: 0;
+                }
+            }
+        }
+        >ul {
+            padding-top: 8px;
+            >li {
+                height: 30px;
+                cursor: pointer;
+                box-sizing: border-box;
+                padding-left: 37px;
+                width: 100%;
+                &:hover,
+                &[state=true] {
+                    background-color: #4787e1;
+                    a {
+                        color: white;
+                    }
+                    em {
+                        background-color: whtie !important;
+                    }
+                    span {
+                        border-color: white !important;
+                    }
+                }
+                div {
+                    height: 100%;
+                    span.vert-dash-line {
+                        height: 30px;
+                        width: 0;
+                        border-right: dashed 1px #4787e1;
+                        display: block;
+                        float: left;
+                    }
+                    span.hori-dash-line {
+                        margin-left: 7px;
+                        width: 16px;
+                        height: 0;
+                        border-top: dashed 1px #4787e1;
+                        transform: translateY(15px);
+                        float: left;
+                    }
+                    em {
+                        margin-left: 7px;
+                        transform: translateY(11px);
+                        width: 8px;
+                        height: 8px;
+                        border-radius: 50%;
+                        background-color: #d2d4db;
+                        line-height: 40px;
+                        float: left;
+                    }
+                    a {
+                        margin-left: 5px;
+                        float: left;
+                        line-height: 30px;
+                        color: #989898
+                    }
+                }
+            }
+        }
+    }
+}

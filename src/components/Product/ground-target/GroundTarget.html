@@ -1,0 +1,23 @@
+<main id="GroundTarget" 
+      class="weather-product-window" 
+      v-drag="">
+  <header>
+  <span>地面作业指标</span>
+  <aside>
+  <!-- <button class="mini"></button> -->
+  <button class="close"
+        v-on:click="toggleProductView_global({id: productId, action: false})"></button>
+  </aside>
+  </header>
+  <section class="ground_target_content">
+    <dl class="cf" v-for="(item, key) in itemList">
+      <dt>{{item.name}}</dt>
+      <dd>
+        <input type="text" v-model="item.value" v-if="item.borderPop">
+        <span v-else>{{ item.value }}</span>
+        <i @click="item.borderPop = !item.borderPop"></i>
+      </dd>
+    </dl>
+  </section>
+  <button class="confirm" @click="confirmModify">保存</button>
+</main>

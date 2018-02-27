@@ -1,0 +1,29 @@
+<main id="ManagecenterPopup" 
+      v-drag="" 
+      class="weather-product-window">
+  <header>
+      <span>管理中心</span>
+      <aside>
+        <button class="close" @click="closeFn"></button>
+      </aside>
+  </header>
+  <div class="top_class">
+    <ul>
+      <li :class="[{'on': classSelected === 'product'},'product_class']" @click="toggleClass('product')">产品分类</li>
+      <li  :class="[{'on':  classSelected === 'business'},'business_class']" @click="toggleClass('business')">业务产品</li>
+    </ul>
+    <span class="add_class" v-if="classSelected === 'product'" @click="toggleClassPopup">新增分类</span>
+    <span class="add_class" v-if="classSelected === 'business'" @click="toggleIncreasePopup">新增产品</span>
+  </div>
+  <div>
+    
+  </div>
+  <div class="managecenter_con scrollbar">
+    <component :is="currentView" :productLi="productLi" :getProductList="getProductList" />
+  </div>
+
+  <component :is="addClassView" :closeFn="toggleClassPopup" :productLi="productLi"></component>
+  <component :is="increaseProductView" :closeFn="toggleIncreasePopup" :getProductList="getProductList"></component>
+ 
+
+</main>

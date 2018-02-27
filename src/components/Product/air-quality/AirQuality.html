@@ -1,0 +1,38 @@
+<main id="AirQuality" class="weather-product-window" v-drag="">
+  <header>
+    <span>空气质量3天预报</span>
+    <aside>
+      <button class="close" v-on:click="toggleProductView_global({id: productId, action: false})"></button>
+    </aside>
+  </header>
+  <section class="air-quality">
+    <div class="cf">
+      <dl>
+        <dt>类型</dt>
+        <dd>
+          <select v-model="typeSelected">
+            <option  v-for="item of typeList" :value="'val_' + item">{{ item }}</option>
+          </select>
+        </dd>
+      </dl>
+      <dl>
+        <dt>时效</dt>
+        <dd>
+          <select v-model="timeSelected">
+            <option  v-for="item in 3" :value="item">{{ item*24 }}h</option>
+          </select>
+        </dd>
+      </dl>
+    </div>
+    <ul class="color_code">
+      <li class="color_code_list"v-for="i in 11"></li>
+      <ul class="color_num">
+        <li class="color_num_list" v-for="(item,index) of colorNumber" v-if="!(index === colorNumber.length - 1)"> {{ item }}</li>
+        <li class="color_num_list" v-for="(item,index) of colorNumber" v-if="index === colorNumber.length - 1"> >{{ item }}</li>
+        <li class="color_unit">μg/m³</li>
+      </ul>
+    </ul>
+    
+  </section>
+ 
+</main>

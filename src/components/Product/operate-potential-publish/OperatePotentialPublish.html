@@ -1,0 +1,154 @@
+<main id="OperatePotentialPublish"
+      class="weather-product-window"
+      v-drag="">
+    <header>
+        <components :is="publishDocumentView"
+                    :close="close"
+                    :stage="2"
+                    :rkOperateData="rkOperateData"
+                    :plOperateData="plOperateData"
+                    :publishFunction="publishDocument"></components>
+        <span>作业潜力-生成文档</span>
+        <aside>
+            <!--             <button class="mini"
+                    v-on:click="minify = !minify"
+                    :style="{backgroundPositionX: minify ? '-44px' : '0'}"></button> -->
+            <button class="close"
+                    v-on:click="changeArticleViewHolder_global({id: 'nsm1', action: 'create'})"></button>
+        </aside>
+    </header>
+    <div class="create_left popup_aricle">
+        <div id="editor">
+        </div>
+    </div>
+    <div class="create_right">
+        <section class="date-time-forsee-wrapper">
+            <ul style="top: 15px; left: 0;height: 300px; overflow-y: auto"
+                class="scrollbar">
+                <li>
+                    <aside class="left-label-wrapper"
+                           style="font-size: 14px">起报日期</aside>
+                    <aside style="margin-bottom: 10px"
+                           class="right-btn-wrapper">
+                        <el-date-picker v-model="datetime"
+                                        type="date"
+                                        :clearable="false"
+                                        placeholder="选择日期">
+                        </el-date-picker>
+                    </aside>
+                </li>
+                <li>
+                    <aside class="left-label-wrapper"
+                           style="font-size: 14px; width: 100%;">起报小时</aside>
+                    <aside style="margin-bottom: 10px"
+                           class="right-btn-wrapper">
+                        <select-toggle :optionData="hourOptionData"
+                                       :selectionChange="hourChange"></select-toggle>
+                    </aside>
+                </li>
+                <li>
+                    <aside class="left-label-wrapper">纬度</aside>
+                    <aside style="margin-bottom: 10px"
+                           class="right-btn-wrapper">
+                        <select-toggle :optionData="latOptionData"
+                                       :selectionChange="latChange"></select-toggle>
+                    </aside>
+                </li>
+                <li>
+                    <aside class="left-label-wrapper"
+                           style="font-size: 14px; width: 100%;">云带</aside>
+                    <aside style="margin-bottom: 10px"
+                           class="right-btn-wrapper">
+                        <select-toggle :optionData="getPrescription()"
+                                       :selectionChange="png1CBandChange"></select-toggle>
+                    </aside>
+                </li>
+                <li>
+                    <aside class="left-label-wrapper"
+                           style="font-size: 14px; width: 100%;">垂直累积过冷水含量</aside>
+                    <aside style="margin-bottom: 10px"
+                           class="right-btn-wrapper">
+                        <select-toggle :optionData="getPrescription()"
+                                       :selectionChange="png2VislChange"></select-toggle>
+                    </aside>
+                </li>
+                <li>
+                    <aside class="left-label-wrapper"
+                           style="font-size: 14px; width: 100%;">Qc,Ni,T垂直剖面</aside>
+                    <aside style="margin-bottom: 10px"
+                           class="right-btn-wrapper">
+                        <select-toggle :optionData="getPrescription()"
+                                       :selectionChange="png3QvtcChange"></select-toggle>
+                    </aside>
+                </li>
+                <li>
+                    <aside class="left-label-wrapper"
+                           style="font-size: 14px; width: 100%;">Qs+Qg,Qr,H垂直剖面</aside>
+                    <aside style="margin-bottom: 10px"
+                           class="right-btn-wrapper">
+                        <select-toggle :optionData="getPrescription('rain')"
+                                       :selectionChange="png4QvtrChange"></select-toggle>
+                    </aside>
+                </li>
+                <li>
+                    <aside class="left-label-wrapper"
+                           style="font-size: 14px; width: 100%;">6小时降雨预报</aside>
+                    <aside style="margin-bottom: 10px"
+                           class="right-btn-wrapper">
+                        <select-toggle :optionData="getPrescription(6)"
+                                       :selectionChange="png5Rain3_6Change"></select-toggle>
+                    </aside>
+                </li>
+                <li>
+                    <aside class="left-label-wrapper"
+                           style="font-size: 14px; width: 100%;">12小时降雨预报
+                    </aside>
+                    <aside style="margin-bottom: 10px"
+                           class="right-btn-wrapper">
+                        <select-toggle :optionData="getPrescription(12)"
+                                       :selectionChange="png6Rain3_12Change"></select-toggle>
+                    </aside>
+                </li>
+                <li>
+                    <aside class="left-label-wrapper"
+                           style="font-size: 14px; width: 100%;">24小时降雨预报</aside>
+                    <aside style="margin-bottom: 10px"
+                           class="right-btn-wrapper">
+                        <select-toggle :optionData="getPrescription(24)"
+                                       :selectionChange="png6Rain3_24Change"></select-toggle>
+                    </aside>
+                </li>
+                <li>
+                    <aside class="left-label-wrapper"
+                           style="font-size: 14px; width: 100%;">48小时降雨预报</aside>
+                    <aside style="margin-bottom: 10px"
+                           class="right-btn-wrapper">
+                        <select-toggle :optionData="getPrescription(48)"
+                                       :selectionChange="png6Rain3_48Change"></select-toggle>
+                    </aside>
+                </li>
+            </ul>
+        </section>
+        <ul>
+            <li class="create_downLoad"
+                @click="getHtmlString"
+                :title="'下载修改'">
+                <i></i>
+            </li>
+            <li class="create_update"
+                :title="'上传保存'"
+                @click="pickFile">
+                <input type="file"
+                       @change="uploadFileChange"
+                       id="uploadFile"
+                       class="upload-file">
+                <i></i>
+            </li>
+            <li class="create_editor"
+                :title="'发布'"
+                @click="openPublishDocumentPopup">
+                <i></i>
+            </li>
+        </ul>
+    </div>
+</main>

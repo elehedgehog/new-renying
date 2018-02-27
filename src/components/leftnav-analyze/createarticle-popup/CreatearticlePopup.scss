@@ -1,0 +1,52 @@
+#CreatearticlePopup {
+  .create_con{
+    width: 880px;
+    height: 740px;
+    .popup_title{
+      width: 880px;
+    }
+    .popup_aricleIn{
+      margin: 20px 0 0 50px;
+    }
+    .create_right{
+      position: absolute;
+      right: 30px;
+      bottom: 100px;
+      ul li{
+        i{
+          display: inline-block;
+          width: 84px;
+          height: 84px;
+          cursor: pointer;
+        }
+      &.create_downLoad{
+        i{
+          background: url(/static/img/home_download.png)no-repeat 0 0 / 200% 300%;
+          &:hover{
+            background: url(/static/img/home_download.png)no-repeat -84px 0 / 200% 300%;
+          }
+        }
+      }
+      &.create_update{
+        i{
+          background: url(/static/img/home_download.png)no-repeat 0 -84px / 200% 300%;
+          &:hover{
+            background: url(/static/img/home_download.png)no-repeat -84px -84px / 200% 300%;
+          }
+        }
+      }
+      &.create_editor{
+        i{
+          background: url(/static/img/home_download.png)no-repeat 0 -168px / 200% 300%;
+          &:hover{
+            background: url(/static/img/home_download.png)no-repeat -84px -168px / 200% 300%;
+          }
+        }
+      }
+      }
+      
+    }
+    
+  }
+  
+}

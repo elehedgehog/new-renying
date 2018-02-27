@@ -1,0 +1,15 @@
+<main id="LoginPage" >
+  <div class="login_page">
+    <p class="login_page_title"><i></i></p>
+    <div class="login_page_con">
+      <div class="login_page_left">
+        <p class="login_page_username"><input type="text" :placeholder="placeholderUser" v-model="username" @focus="placeholderUser = null" @blur="placeholderUser = '账号'"></p>
+        <p class="login_page_password"><input type="password" :placeholder="placeholderPwd" v-model="password" @focus="placeholderPwd = null" @blur="placeholderPwd='密码'" @keyup.13="login"></p>
+      </div>
+      <div class="login_page_right">
+        <i @click="login"></i>
+      </div>
+      <div class="error_msg" v-show="displayMsg"><p>账号密码错误</p></div>
+    </div>
+  </div>
+</main>

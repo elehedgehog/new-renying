@@ -1,0 +1,18 @@
+<div id="app">
+  <components :closeLoginPage="closeLoginPage" :is="loginPageView"></components>
+  <zmap />
+  <!-- <zmap-tool /> -->
+  <header-title :viewLoginPage="viewLoginPage" />     <!-- 头部标题部分 -->
+  <!-- <top-nav />  一级导航 -->
+  <leftnav-analyze />   <!-- 二级导航栏 -->
+  <product-entry></product-entry>
+  <global-message></global-message>
+  <tool-bar />  <!-- 右下角工具栏 -->
+  <demand-warning ></demand-warning>
+  <component :is="CappiProfileView"></component>   <!-- 雷达剖面 -->
+  <component :is="OrderDispatchView"></component>  <!--指令调度-->
+  <component :is="transportView"></component>  <!--自动设备运输状态-->
+  <assignment-track></assignment-track>   <!--警报 任务追踪-->
+  <component :is="AQIDetailView"></component>   <!-- 空气质量三天预报 -->
+  <component :is="colorbarView"></component>    <!-- 雷达产品颜色条 -->
+</div>

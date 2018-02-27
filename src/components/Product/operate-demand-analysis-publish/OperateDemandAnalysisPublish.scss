@@ -1,0 +1,66 @@
+#OperateDemandAnalysisPublish {
+    position: absolute;
+    width: 1190px;
+    height: 760px;
+    z-index: 1001;
+    .create_left {
+        height: 680px;
+        width: 930px;
+        margin: 20px 30px;
+        float: left;
+        #editor {
+            height: 100%;
+            width: 100%;
+        }
+    }
+    .create_right {
+        float: right;
+        width: 200px;
+        height: 720px;
+        position: relative;
+        ul {
+          position: absolute;
+          bottom: 70px;
+          left: 55px;
+        }
+        li {
+            i {
+                display: inline-block;
+                width: 84px;
+                height: 84px;
+                cursor: pointer;
+            }
+            &.create_downLoad {
+                i {
+                    background: url(/static/img/home_download.png)no-repeat 0 0 / 200% 300%;
+                    &:hover {
+                        background: url(/static/img/home_download.png)no-repeat -84px 0 / 200% 300%;
+                    }
+                }
+            }
+            &.create_update {
+                i {
+                    background: url(/static/img/home_download.png)no-repeat 0 -84px / 200% 300%;
+                    &:hover {
+                        background: url(/static/img/home_download.png)no-repeat -84px -84px / 200% 300%;
+                    }
+                }
+            }
+            &.create_editor {
+                i {
+                    background: url(/static/img/home_download.png)no-repeat 0 -168px / 200% 300%;
+                    &:hover {
+                        background: url(/static/img/home_download.png)no-repeat -84px -168px / 200% 300%;
+                    }
+                }
+            }
+        }
+    }
+
+    .upload-file{
+        background: transparent;
+        color: transparent;
+        position: absolute;
+        opacity: 0;
+    }
+}

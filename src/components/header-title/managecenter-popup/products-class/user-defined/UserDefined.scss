@@ -1,0 +1,73 @@
+#UserDefined{
+  position: absolute!important;
+  top: 230px;
+  left: 280px;
+  width: 500px;
+  height: 250px;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px #dde;
+  .add_class_title{
+    background-color: #F0F4FB;
+    height: 40px;
+    line-height: 40px;
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  .userDefinded{
+    margin-left: 125px;
+    margin-top: 30px;
+    dl{
+      width: 100%;
+      height: 35px;
+      line-height: 35px;
+      margin-bottom: 20px;
+      dt{
+        float: left;
+        color: #000;
+        font-size: 16px;
+        width: 50px;
+
+      }
+      dd{
+        float: left;
+        color: #575757;
+        font-size: 16px;
+      }
+      &.userDefinded_name{
+        span{
+          display: inline-block;
+          width: 110px;
+          width: 195px;
+          height: 35px;
+          text-align: right;
+        }
+      }
+      &.userDefinded_revise{
+        input{
+          border:1px solid #E1E3E7;
+          width: 175px;
+          height: 35px;
+          padding: 0 10px;
+          text-align: right;
+          color: #575757;
+        }
+      }
+    }
+    
+  }
+  .userDefinded_button{
+    button{
+      margin:10px 0 0 217px;
+      width: 110px;
+      height: 35px;
+      line-height: 35px;
+      color: #fff;
+      background-color: #4484DE;
+      text-align: center;
+      cursor: pointer;
+      &:hover{
+        background-color: #3679D6;
+      }
+    }
+  }
+}

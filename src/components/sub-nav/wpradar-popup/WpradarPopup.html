@@ -1,0 +1,44 @@
+<main id="WpradarPopup" class="popup_content">
+  <div class="wprader_title">
+    <p class="popup_title"><span class="popup_titleIn">风廓线雷达</span><i class="wprader_icon_hide hide_btn"></i><i class="wprader_icon_close close_btn"></i></p>
+  </div>
+  <div class="wprader_con popup_con">
+    <div class="wprader_con_left popup_con_left">
+      
+    </div>
+    
+    <div class="wprader_con_right popup_con_right">
+      <ul>
+        <li class="cf">
+          <dl>
+            <dt>数据类型</dt>
+            <dd>
+              <p @click="toggleDataType('OOBS')" :class="{'on' : 'OOBS' === dataType}">OOBS</p>
+              <p @click="toggleDataType('HOBS')" :class="{'on' : 'HOBS' === dataType}">HOBS</p>
+              <p @click="toggleDataType('ROBS')" :class="{'on' : 'ROBS' === dataType}">ROBS</p>
+            </dd>
+          </dl>
+        </li>
+        <li class="cf">
+          <dl>
+            <dt>图片类型</dt>
+            <dd>
+              <p @click="toggleImgType('fengyu')" :class="{'on' : 'fengyu' === imgType}">凤羽</p>
+              <p @click="toggleImgType('fySpeed')" :class="{'on' : 'fySpeed' === imgType}">凤羽 + 垂直速度</p>
+            </dd>
+          </dl>
+        </li>
+        <li class="cf">
+          <dl>
+          <dt>时间轴</dt>
+          <dd>
+            <p @click="toggleTime('hour')" :class="{'on' : 'hour' === time}">小时</p>
+            <p @click="toggleTime('day')"  :class="{'on' : 'day' === time}">天</p>
+            <p class="time_axis"></p>
+          </dd>
+          </dl>
+        </li>
+      </ul>
+    </div>
+  </div>
+</main>

@@ -1,0 +1,36 @@
+<main id="DemandWarning">
+  <section v-on:mouseout="displayPopup = false"
+           v-on:mouseover="mouseOver(0)"
+           @click="toggleProductView_global({id: dryProductId, action: true})"
+           class="warning-item">
+    <a>干旱</a>
+    <span :class="[dryData.length &gt; 0 ? 'warning' : '']">{{dryData.length}}</span>
+  </section>
+  <section v-on:mouseout="displayPopup = false"
+           v-on:mouseover="mouseOver(1)"
+           @click="toggleProductView_global({id: reservoirProductId, action: true})"
+           class="warning-item">
+    <a>增蓄</a>
+    <span :class="[reservoirData.length &gt; 0 ? 'warning' : '']">{{reservoirData.length}}</span>
+  </section>
+  <section v-on:mouseout="displayPopup = false"
+           v-on:mouseover="mouseOver(2)"
+           class="warning-item">
+    <a>高温</a>
+   <span :class="[tempData.length &gt; 0 ? 'warning' : '']">{{tempData.length}}</span>
+  </section>
+  <section v-on:mouseout="displayPopup = false"
+           @click="toggleProductView_global({id:forestProductId, action: true})"
+           v-on:mouseover="mouseOver(3)"y
+           class="warning-item">
+    <a>森林火险</a>
+    <span :class="[forestData.length &gt; 0 ? 'warning' : '']">{{forestData.length}}</span>
+  </section>
+  <section class="popup"
+           v-if="displayPopup && warnItem.length > 0"
+           :style="{top: panelNum * 70 + 'px'}">
+    <span class="pointer"></span>
+    <div v-for="item in warnItem"
+         class="popup-item">{{item}}</div>
+  </section>
+</main>

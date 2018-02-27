@@ -1,0 +1,105 @@
+#TopNav {
+    position: absolute;
+    top: 32px;
+    left: 0;
+    width: 100%;
+    width: 100%;
+    box-shadow: rgba(31, 43, 61, .4) 0 0 7px 1px;
+    background-color: #fff;
+    z-index: 1001;
+    ul {
+        width: calc(100% - 100px);
+        height: 70px;
+        margin: 0 50px;
+        list-style: none;
+        font-family: "Microsoft YaHei";
+        li {
+            position: relative;
+            height: 70px;
+            float: left;
+            text-align: center;
+            line-height: 23px;
+            font-size: 16px;
+            color: #1c1c1c;
+            cursor: pointer;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            background-color: #fff;
+            i {
+                background: url(~Img/nav_custom.png)no-repeat 0 0/100% 200%;
+            }
+            &:nth-child(1) {
+                i {
+                    background: url(~Img/nav_classify.png)no-repeat 0 0/800% 200%;
+                }
+            }
+            &:nth-child(2) {
+                i {
+                    background: url(~Img/nav_classify.png)no-repeat -24px 0/800% 200%;
+                }
+            }
+            &:nth-child(3) {
+                i {
+                    background: url(~Img/nav_classify.png)no-repeat -48px 0/800% 200%;
+                }
+            }
+            &:nth-child(4) {
+                i {
+                    background: url(~Img/nav_classify.png)no-repeat -72px 0/800% 200%;
+                }
+            }
+            &:nth-child(5) {
+                i {
+                    background: url(~Img/nav_classify.png)no-repeat -96px 0/800% 200%;
+                }
+            }
+            &:nth-child(6) {
+                i {
+                    background: url(~Img/nav_classify.png)no-repeat -118px 0/800% 200%;
+                }
+            }
+            &:nth-child(7) {
+                i {
+                    background: url(~Img/nav_classify.png)no-repeat -142px 0/800% 200%;
+                }
+            }
+            &:nth-child(8) {
+                i {
+                    background: url(~Img/nav_classify.png)no-repeat -166px 0/800% 200%;
+                }
+            }
+            i {
+                display: block;
+                width: 24px;
+                height: 24px;
+                margin: 10px auto 0;
+            }
+            &.on {
+                color: #4787e1; // font-weight: 700;
+                background-color: #F0F1F4;
+                i {
+                    background-position-y: -24px;
+                }
+                em {
+                    display: inline-block;
+                    position: absolute;
+                    bottom: 0;
+                    height: 3px;
+                    width: 50%;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background-color: #4787e1;
+                }
+            }
+        }
+        .menuSwiper {
+            position: absolute;
+            bottom: 0;
+            left: 50px;
+            height: 4px;
+            width: 100px;
+            background-color: #4787e1;
+        }
+    }
+}

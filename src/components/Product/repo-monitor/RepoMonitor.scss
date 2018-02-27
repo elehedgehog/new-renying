@@ -1,0 +1,33 @@
+#RepoMonitor{
+  top: 130px;
+  left: 324px;
+  z-index: 1000;
+  width: 250px;
+  background-color: #fff;
+  .airspace_con{
+    padding: 20px;
+    font-size: 14px;
+    .airspace_head{
+      position: relative;
+      span,i{
+        display: inline-block;
+      }
+      span{
+        height: 30px;
+        line-height: 30px;
+        margin-right: 30px;
+      }
+      i.switch_btn{
+        position: absolute;
+        top: 3px;
+        width: 40px;
+        height: 24px;
+        background: url(~Img/home_switch.png)no-repeat -40px 0/200% 100%;
+        cursor: pointer;
+        &.on{
+         background-position-x: 0px;
+        }
+      }
+    }
+  }
+}

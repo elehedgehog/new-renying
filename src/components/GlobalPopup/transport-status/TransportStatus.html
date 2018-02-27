@@ -1,0 +1,27 @@
+<main id="TransportStatus"
+      class="weather-product-window"
+      v-drag="">
+  <header>
+    <span>自动设备运输状态</span>
+    <aside>
+      <button class="close"
+              v-on:click="storeisTransportOpened_global(false)"></button>
+    </aside>
+  </header>
+  <section class="transport_con">
+    <ul class="transport_con_title">
+      <li>开始时间</li>
+      <li>运输位置</li>
+      <li>操作</li>
+    </ul>
+    <ul class="transport_con_detail scrollbar">
+      <li v-for="item in transportList">
+        <span>{{ moment(item.startTime).format('YYYY-MM-DD HH:mm')}}</span>
+        <span>{{ item.pos[item.pos.length - 1].lon}} {{item.pos[item.pos.length - 1].lat}}</span>
+        <span>
+          <p @click="arriveDevice(item)">结束运输</p>
+        </span>
+      </li>
+    </ul>
+  </section>
+</main>

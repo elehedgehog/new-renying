@@ -1,0 +1,15 @@
+<main id="HumanComfort"
+      class="weather-product-window"
+      v-drag="">
+  <header>
+    <span>人体舒适度</span>
+    <aside>
+      <button class="close"
+              v-on:click="toggleProductView_global({id: productId, action: false})"></button>
+    </aside>
+  </header>
+  <main class="cf content-wrapper">
+    <iframe class="html-wrapper"
+            :src="url"></iframe>
+  </main>
+</main>

@@ -1,0 +1,16 @@
+<main id="SearchJobpoint">
+    <!-- <span class="search_jobtitle">搜索作业点</span> -->
+    <div class="result-wrapper">
+        <a v-for="(item, index) of operateStationData"
+           v-bind:class="{ selected: isSelected(item.id) }"
+           @click="selectStation(item.id,index)">{{item.id}} {{item.city}} {{item.address}}</a>
+    </div>
+    <span class="search_jobcon">
+        <input type="text"
+               class="search_jobinput"
+               v-model="value"
+               placeholder="搜索作业点" />
+        <i class="search_icon"
+           @click="search"></i>
+    </span>
+</main>

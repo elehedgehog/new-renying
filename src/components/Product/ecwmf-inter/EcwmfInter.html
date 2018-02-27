@@ -1,0 +1,204 @@
+<main id="EcwmfInter"
+      class="weather-product-window"
+      v-drag=''
+      :style="{width: minify ? '330px' : '1220px', height: minify ? '440px' : '770px'}">
+  <header>
+    <span>ECWMF-细网络</span>
+    <aside>
+      <!--       <button class="mini"
+              v-on:click="minify = !minify"
+              :style="{backgroundPositionX: minify ? '-44px' : '0'}"></button> -->
+      <button class="close"
+              v-on:click="toggleProductView_global({id: productId, action: false})"></button>
+    </aside>
+  </header>
+
+  <main class="content-wrapper">
+    <figure v-loading="loading"
+            element-loading-text="正在载入图片">
+      <img :src="imgUrl"
+           height="672px"
+           width="790px"
+           alt="" />
+    </figure>
+    <menu>
+      <section class="option-wrapper">
+        <header class="multiple-header">要素选择</header>
+        <ul class="multiple-item">
+          <li v-for="(item, index) in optionData"
+              @click.stop="item.isSelected = !item.isSelected"
+              :state="item.isSelected ? 'true' : 'false'">
+            <div>
+              <em :state="item.isSelected ? 'true' : 'false'"></em>
+              <span class="hori-dash-line"></span>
+              <span class="vert-dash-line top"
+                    v-show="index !== 0"></span>
+              <span class="vert-dash-line bottom"
+                    v-show="index &lt; optionData.length-1 || item.isSelected"></span>
+              <a>{{item.name}}</a>
+            </div>
+            <ul class="subItem"
+                v-show="item.isSelected">
+              <li v-for="subItem in item.sub"
+                  v-on:click.stop="toggleOpt(subItem.value, subItem.name)"
+                  :state="subItem.isSelected ? 'true' : 'false'">
+                <div>
+                  <span class="vert-dash-line"></span>
+                  <span class="hori-dash-line"></span>
+                  <em></em>
+                  <a>{{subItem.name}}</a>
+                </div>
+              </li>
+            </ul>
+          </li>
+
+        </ul>
+      </section>
+      <section class="date-time-forsee-wrapper">
+        <ul>
+          <li>
+            <aside class="left-label-wrapper">日期</aside>
+            <aside class="right-btn-wrapper">
+              <el-date-picker v-model="ecwmfDate"
+                              type="date"
+                              :clearable="false"
+                              placeholder="选择日期">
+              </el-date-picker>
+            </aside>
+          </li>
+          <li>
+            <aside class="left-label-wrapper">UTC</aside>
+            <aside class="right-btn-wrapper">
+              <div style="float: left; width: 50%">
+                <span class="utc_zero ecwmf_check"
+                      @click="toggleUtcTime(0)"
+                      :class="{'on' : 0 === utcSelected}">
+                  <i></i>
+                  <span>00时</span>
+                </span>
+                <!-- <span class="utc_twelve ecwmf_check"
+                      @click="toggleUtcTime(6)"
+                      :class="{'on' : 6 === utcSelected}">
+                  <i></i>
+                  <span>06时</span>
+                </span> -->
+              </div>
+              <div style="float: left; width: 50%">
+                <span class="utc_twelve ecwmf_check"
+                      @click="toggleUtcTime(12)"
+                      :class="{'on' : 12 === utcSelected}">
+                  <i></i>
+                  <span>12时</span>
+                </span>
+                <!-- <span class="utc_twelve ecwmf_check"
+                      @click="toggleUtcTime(18)"
+                      :class="{'on' : 18 === utcSelected}">
+                  <i></i>
+                  <span>18时</span>
+                </span> -->
+              </div>
+            </aside>
+          </li>
+          <li style="height: 60px">
+            <aside class="left-label-wrapper">范围</aside>
+            <aside class="right-btn-wrapper">
+              <div>
+                <span class="ecwmf_check"
+                      style="margin-right: 20px"
+                      @click="toggleScope( 'SouthChina')"
+                      :class="{'on' : 'SouthChina' === scopeSelected}">
+                  <i></i>
+                  <span>华南</span>
+                </span>
+                <span class="ecwmf_check"
+                      @click="toggleScope('GuangDong')"
+                      :class="{'on' : 'GuangDong' === scopeSelected}">
+                  <i></i>
+                  <span>广东</span>
+                </span>
+              </div>
+              <div>
+                <span class="ecwmf_check"
+                      style="margin-right: 20px"
+                      @click="toggleScope('SingleStation')"
+                      :class="{'on' : 'SingleStation' === scopeSelected}">
+                  <i></i>
+                  <span>单站</span>
+                </span>
+                <span class="ecwmf_check"
+                      @click="toggleScope('Rainnest')"
+                      :class="{'on' : 'Rainnest' === scopeSelected}">
+                  <i></i>
+                  <span>雨窝</span>
+                </span>
+              </div>
+            </aside>
+          </li>
+          <li class="cf country pre_li"
+              v-if="'SingleStation' === scopeSelected">
+            <aside class="left-label-wrapper">城市</aside>
+            <aside class="right-btn-wrapper">
+              <select v-model="citySelected"
+                      class="select_one">
+                <option v-for="(item, key) in country"
+                        :value="key">
+                  {{key}}
+                </option>
+              </select>
+            </aside>
+          </li>
+          <li v-if="'SingleStation' === scopeSelected">
+            <aside class="left-label-wrapper">站点</aside>
+            <aside class="right-btn-wrapper">
+              <select v-model="stationSelected"
+                      class="select_two">
+                <option v-for="(opt, key) in country[citySelected]"
+                        :value="key">
+                  {{opt}}
+                </option>
+              </select>
+            </aside>
+          </li>
+          <li class="cf country pre_li"
+              v-if="'Rainnest' === scopeSelected">
+            <aside class="left-label-wrapper">城市</aside>
+            <aside class="right-btn-wrapper">
+              <select v-model="cityRainSelected"
+                      class="select_one">
+                <option v-for="(item, key) in countryRain"
+                        :value="key">
+                  {{key}}
+                </option>
+              </select>
+            </aside>
+          </li>
+          <li v-if="'Rainnest' === scopeSelected">
+            <aside class="left-label-wrapper">位置</aside>
+            <aside class="right-btn-wrapper">
+              <select v-model="stationRainSelected"
+                      class="select_two">
+                <option v-for="(opt, key) in countryRain[cityRainSelected]"
+                        :value="key">
+                  {{opt}}
+                </option>
+              </select>
+            </aside>
+          </li>
+          <li>
+            <aside class="left-label-wrapper">时效</aside>
+            <aside class="right-btn-wrapper">
+              <select-toggle :optionData="forecastOptionData" :selectionChange="forecastChange"></select-toggle>
+              <!-- <select class="time_effect"
+                      v-model="forecast">
+                <option :value="item"
+                        v-for="item in forecastOptionData">
+                  {{item}}
+                </option>
+              </select> -->
+            </aside>
+          </li>
+        </ul>
+      </section>
+    </menu>
+  </main>
+</main>

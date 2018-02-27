@@ -1,0 +1,37 @@
+<main id="SateliteCloud"  
+      class="weather-product-window" 
+      v-drag=''>
+      <header>
+          <span>卫星云图</span>
+          <aside>
+            <button class="close"
+                    v-on:click="toggleProductView_global({id: productId, action: false})"></button>
+          </aside>          
+      </header>
+      <figure v-loading="loadingloading" element-loading-text="正在加载图片">
+        <div class="satelite_date">
+          <span>日期</span>
+          <span >
+            <el-date-picker
+              v-model="sateliteDate"
+              type="datetime"
+              format="yyyy-MM-dd HH:mm"
+              align="center"
+              :clearable="false"
+              placeholder="选择日期"
+              :picker-options="pickerOptions0">
+            </el-date-picker>
+          </span>
+        </div>
+        <div class="satelite_select">
+          <span>选择云图</span>
+          <select class="satelite_selectIn"
+                  v-model="typeSelected">
+            <option value="default" disabled>请选择</option>
+            <option :value="key" 
+                    v-for="(item, key) in urlCloud"
+                    @click="">{{item}}</option>
+          </select>
+        </div>
+      </figure> 
+</main>

@@ -1,0 +1,42 @@
+<main id="MicradiationPopup" class="popup_content"  v-drag>
+<div class="micro_title">
+  <header>
+      <p class="popup_title">
+        <span class="popup_titleIn">微波辐射计</span><i class="micro_icon_hide hide_btn"></i><i class="micro_icon_close close_btn"></i>
+      </p>
+  </header>
+  
+</div>
+  <div class="micro_con popup_con">
+    <div class="popup_con_left">
+
+    </div>
+    <div class="popup_con_right" >
+      <ul>
+        <li class="cf">
+          <dl>
+            <dt>数据类型</dt>
+            <dd>
+              <p @click="toggleDataType('temperature')" :class="{'on' : 'temperature' === dataType}"><i></i><span>温度廓线</span></p>
+              <p @click="toggleDataType('waterprofile')" :class="{'on' : 'waterprofile' === dataType}"><i></i><span>液态水廓线</span></p>
+              <p @click="toggleDataType('humidity')" :class="{'on' : 'humidity' === dataType}"><i></i><span>相对湿度</span></p>
+            </dd>
+          </dl>
+        </li>
+        <li class="cf">
+          <dl>
+            <dt>图片类型</dt>
+            <dd>
+              <div class="img_type">
+                <ul>
+                  <li v-for="imgType of imgTypeCon" @click="toggleImgType(imgType)">{{ imgType }}</li>
+                </ul>
+              </div>
+            </dd>
+          </dl>
+        </li>
+        
+      </ul>
+    </div>
+  </div>
+</main>

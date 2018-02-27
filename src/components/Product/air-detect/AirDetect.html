@@ -1,0 +1,49 @@
+<main id="AirDetect" class="weather-product-window" v-drag="">
+  <header>
+    <span>探空云分析</span>
+    <aside>
+      <button class="close" v-on:click="toggleProductView_global({id: productId, action: false})"></button>
+    </aside>
+  </header>
+  <main class="cf content-wrapper">
+    <figure style="border: none; height: 532px; width: 502px">
+      <canvas id="airDetect1" width="502px" height="530px" class="canvas"></canvas>
+    </figure>
+    <menu>
+      <section class="date-time-forsee-wrapper">
+        <ul>
+          <li>
+            <aside class="left-label-wrapper">起报日期</aside>
+            <aside class="right-btn-wrapper">
+              <div class="datetime-wrapper">
+                <el-date-picker v-model="date" format="yyyy-MM-dd" type="date"></el-date-picker>
+              </div>
+            </aside>
+          </li>
+          <li>
+            <aside class="left-label-wrapper"></aside>
+            <aside class="right-btn-wrapper time-wrapper">
+              <div v-on:click="time = '08'">
+                <em :state="time === '08' ? 'true' : 'false'"></em>
+                <a>08时</a>
+              </div>
+              <div v-on:click="time = '20'">
+                <a>20时</a>
+                <em :state="time === '20' ? 'true' : 'false'"></em>
+              </div>
+            </aside>
+          </li>
+          <li>
+            <aside class="left-label-wrapper">探空站</aside>
+            <aside class="right-btn-wrapper">
+              <!-- <select-toggle :optionData="stationData" :selectionChange="obtSelectedChange"></select-toggle> -->
+              <select v-model="obtSelected">
+                <option v-for="(item, index) in stationData" :key="index" :value="item.index">{{item.staName}}</option>
+              </select>
+            </aside>
+          </li>
+        </ul>
+      </section>
+    </menu>
+  </main>
+</main>

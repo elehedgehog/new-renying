@@ -1,0 +1,130 @@
+<main id="OrderDispatch"
+      class="weather-product-window"
+      v-drag="">
+  <header>
+    <span>指令调度</span>
+    <aside>
+      <button class="close"
+              v-on:click="toggleProductView_global({id: productId, action: false})"></button>
+    </aside>
+  </header>
+  <!-- <section class="msg_top">
+    <ul class="nav_msg">
+      <li :class="[{'on': msgSelected === 'new'},'new_msg']"
+          @click="toggleMsg('new')">发送指令</li>
+      <li :class="[{'on': msgSelected === 'history'},'history_msg']"
+          @click="toggleMsg('history')">历史指令</li>
+    </ul>
+  </section> -->
+  <section class="msg_con">
+    <!-- <component :is="currentView"></component> -->
+    <section class="new_title">
+      <ul>
+        <li :class="{on: listType === 'group'}"
+            @click="listType = 'group'">
+          <p>分组</p>
+        </li>
+        <li :class="{on: listType === 'station'}"
+            @click="listType = 'station'">
+          <p>作业点</p>
+        </li>
+      </ul>
+    </section>
+    <section class="new_search">
+      <div class="search_top">
+        <p class="groups_top_search">
+          <span>搜索</span>
+          <i></i>
+          <input type="text"
+                 v-model="keyString">
+        </p>
+      </div>
+      <div class="search_bottom"
+           style="height: 520px; overflow-y: auto">
+        <ul class="multiple-item"
+            v-if="listType === 'group'"
+            style="height: 100%;">
+          <li class=""
+              v-for="(item, index) in groupOptionData"
+              :state="item.isToggle ? 'true' : 'false'">
+            <div style="white-space: nowrap; text-overflow: ellipsis;">
+              <em @click.stop="toggleItem(item)"
+                  :state="item.isToggle ? 'true' : 'false'"></em>
+              <p style="transform: translateY(-2px)"
+                 @click="selectSendTarget(item)"
+                 :class="[item.isSelected ? 'on': '']"
+                 class="check-box"></p>
+              <span class="hori-dash-line"></span>
+              <span class="vert-dash-line top"
+                    v-show="index !== 0"></span>
+              <span class="vert-dash-line bottom"
+                    v-show="index !== groupOptionData.length-1 || item.isToggle"></span>
+              <a>{{ item.groupname }}</a>
+            </div>
+            <ul class="subItem"
+                v-show="item.isToggle">
+              <li class="forecase_subItem_li"
+                  v-for="(subItem,key) in item.appUsers"
+                  @click.stop="selectSendTarget(subItem, item)">
+                <div>
+                  <p style="transform: translateY(-2px);margin-left: 7px"
+                     :class="[subItem.isSelected ? 'on': '']"
+                     class="check-box"></p>
+                  <span class="vert-dash-line"></span>
+                  <span class="hori-dash-line"></span>
+                  <a style="margin-left: 0;float: none">{{ subItem.name }}</a>
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul v-else
+            style="padding: 10px">
+          <li v-for="item in stationOptionData"
+              @click.stop="toggleItem(item)"
+              style="display: block; width: 100%; text-overflow: ellipsis; white-space: nowrap;">
+            <p style="transform: translateY(2px);margin-left: 7px; margin-bottom: 6px"
+               :class="[item.isToggle ? 'on': '']"
+               class="check-box"></p>
+            <a>{{ item.name }}</a>
+          </li>
+        </ul>
+      </div>
+    </section>
+    <section class="new_message">
+      <ul class="new_message_border scrollbar">
+        <li v-for="el of sendInfo">
+          <div class="addressee_con">
+            <span class="addressee">
+              <template v-for="el of el.sendTarget">{{ el.name }}、</template>
+            </span>
+          </div>
+          <div class="message_con">
+            {{ el.message }}
+          </div>
+        </li>
+      </ul>
+      <!-- <dl class="cf dl_man">
+        <dt>主题</dt>
+        <dd>
+          <input type="text"
+                 v-model="subject">
+        </dd>
+      </dl> -->
+     
+      <!-- <dl class="cf dl_con">
+        <dt>内容</dt>
+        <dd>
+          <textarea v-model="msgContent"
+                    cols="30"
+                    rows="10"></textarea>
+        </dd>
+      </dl> -->
+      <dl class="send_border">
+        <input type="text" v-model="msgContent">
+      </dl>
+      <button class="sent_msg"
+              @click="sendMsg">发送指令</button>
+    </section>
+  </section>
+</main>

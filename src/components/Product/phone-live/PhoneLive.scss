@@ -1,0 +1,14 @@
+#PhoneLive{
+  width: 1015px;
+  main{
+    width: calc(100% - 40px);
+    height: calc(100% - 80px);
+    padding: 20px;
+    
+    embed{
+      background-color: lightgrey;
+      width: 975px;
+      height: 540px;
+    }
+  }
+}

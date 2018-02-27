@@ -1,0 +1,135 @@
+<main id="SunflowerInfrared"
+      class="weather-product-window"
+      v-drag
+      :style="{width: minify ? '320px' : '1240px', height: minify ? '730px' : '770px'}">
+  <header>
+    <span>葵花 8 红外灰度图</span>
+    <aside>
+      <!--           <button class="mini"
+                  v-on:click="minify = !minify"
+                  :style="{backgroundPositionX: minify ? '-44px' : '0'}"></button> -->
+      <button class="close"
+              v-on:click="toggleProductView_global({id: productId, action: false})"></button>
+    </aside>
+  </header>
+  <div class="popup_con">
+    <div class="popup_con_left"
+         v-if="!minify">
+      <figure v-loading="loading"
+              element-loading-text="正在载入图片">
+        <img :src="imgUrl" />
+      </figure>
+    </div>
+    <div class="popup_con_right">
+      <ul>
+        <li class="cf">
+          <dl>
+            <dt>区域</dt>
+            <dd>
+                <select class="infrared_img"
+                        v-model="areaSelected">
+                  <option v-for="(item, key) in areaList"
+                          :value=key>{{ item }}</option>
+                </select>
+            </dd>
+          </dl>
+        </li>
+        <li class="cf">
+          <dl>
+            <dt>葵花8</dt>
+            <dd>
+              <select class="infrared_img"
+                      v-model="productSelected">
+                <option v-for="(item, key) in productOpt"
+                        :value=key>{{item}}</option>
+              </select>
+            </dd>
+          </dl>
+        </li>
+        <li class="cf">
+          <dl>
+            <dt>选择时间</dt>
+            <dd>
+              <select-toggle :optionData="unitData" :selectionChange="unitSelectedChange" style="width:140px;"></select-toggle>
+              <!-- <select class="time_selected"
+                      v-model="unitSelected">
+                <option :value="i"
+                        v-for="i in 5">{{i}}</option>
+              </select> -->
+              <span class="time_unit">帧/每秒</span>
+            </dd>
+
+          </dl>
+          <!-- <div class="time_range">
+                    <el-date-picker
+                      v-model="timeRange"
+                      type="datetimerange"
+                      @change="timeChanged"
+                      placeholder="选择时间范围">
+                    </el-date-picker>
+                  </div> -->
+          <div class="time_progressBar">
+            <div class="time_progressBar_left">
+              <div class="progressBar_header">
+                <p class="progressBar_date">{{moment(timeRange[0]).format('MM-DD HH:mm')}}</p>
+                <p class="progressBar_sign">-</p>
+                <p class="progressBar_number">{{moment(timeRange[1]).format('MM-DD HH:mm')}}</p>
+              </div>
+              <div class="progressBar_cons">
+                <i class="back_icon"
+                   @click="goNextDate"></i>
+                <div class="progressBar_pro">
+                  <div class="list-date list-date-six">{{moment(firstDate).add(5, 'days').format('MM-DD')}}</div>
+                  <div class="list-date list-date-five">{{moment(firstDate).add(4, 'days').format('MM-DD')}}</div>
+                  <div class="list-date list-date-four">{{moment(firstDate).add(3, 'days').format('MM-DD')}}</div>
+                  <div class="list-date list-date-three">{{moment(firstDate).add(2, 'days').format('MM-DD')}}</div>
+                  <div class="list-date list-date-two">{{moment(firstDate).add(1, 'days').format('MM-DD')}}</div>
+                  <div class="list-date list-date-one">{{moment(firstDate).format('MM-DD')}}</div>
+                  <el-slider v-model="dateRange"
+                             range
+                             vertical
+                             show-stops
+                             show-tooltip
+                             :format-tooltip="formatTooltip"
+                             @change="dateChanged"
+                             :max="120">
+                  </el-slider>
+                </div>
+                <i class="next_icon"
+                   @click="goPrevDate"></i>
+              </div>
+
+            </div>
+            <div class="time_progressBar_right">
+              <div class="progressBar_header">
+                <p class="progressBar_date">{{moment(productTime).format('MM-DD HH:mm')}}</p>
+                <p class="progressBar_sign">-</p>
+                <p class="progressBar_number">{{timeIndexSelected}}/{{totalRangeNum}}</p>
+              </div>
+              <div class="progressBar_con">
+                <i class="back"
+                   @click="goBack"></i>
+                <i :class="['suspend',{'on': intervalHolder}]"
+                   @click="play"></i>
+                <i class="next"
+                   @click="goNext"></i>
+              </div>
+              <div class="progress_bar scrollbar"
+                   ref="progress">
+                <ul class="progress_bar_ul"
+                    ref="progressInner">
+                  <li v-for="i in totalRangeNum"
+                      :title="moment(new Date(timeRange[0] - timeRange[0]%(10*60*1000))).add((i-1)*10, 'minutes').format('YYYY-MM-DD HH:mm:00')"
+                
+                      :class="{'on': timeIndexSelected === i}"
+                      @click="toggleProTime(i)">
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</main>

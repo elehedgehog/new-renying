@@ -1,0 +1,11 @@
+<main id="ActualPopup" class="popup_content">
+  <div class="actual_con">
+    <p class="actual_title"><span class="actual_title popup_titleIn">实况监测</span><span class="actualTitle_icon"></span></p>  
+    <ul>
+      <li v-for="(actual,actualKey) in actualCon">
+        <i :class="['actualSubtitle_icon', {'on': actual.selected}]" @click="toggleActual(actualKey)"></i>
+        <span class="actual_subtitle">{{ actual.text }}</span>
+      </li>
+    </ul>
+  </div>
+</main>

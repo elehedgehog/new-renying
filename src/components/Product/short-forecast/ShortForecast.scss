@@ -1,0 +1,26 @@
+#ShortForecast {
+    z-index: 1001;
+    background-color: white;
+    position: absolute;
+    left: 340px;
+    white-space: nowrap;
+    top: 120px;
+    main {
+        padding: 20px;
+        white-space: nowrap;
+        span {
+            font-size: 16px;
+            padding-right: 15px;
+        }
+    }
+}
+
+aside.html-wrapper {
+    min-width: 830px;
+    max-width: 1050px;
+    height: 680px;
+    box-sizing: border-box;
+    border: solid 1px #d1d4db;
+    overflow: auto;
+    display: inline-block;
+}

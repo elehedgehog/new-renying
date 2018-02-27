@@ -1,0 +1,12 @@
+#ZmapTool {
+  z-index: 1001;
+  position: absolute;
+  left: 70px;
+  bottom: 10px;
+  .latlng {
+    font-size: 14px;
+    span:nth-child(2){
+      margin-left: 10px;
+    }
+  }
+}

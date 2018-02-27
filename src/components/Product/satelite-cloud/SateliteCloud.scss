@@ -1,0 +1,39 @@
+#SateliteCloud{
+    position: absolute!important;
+    width:306px!important;
+    height: 170px!important;
+    z-index: 1002;
+    top: 130px;
+    left: 324px;
+    box-shadow: 0px 0px 10px #eee;
+    background-color: #fff;
+  .satelite_title{
+    width:306px!important;
+    height: 40px;
+    line-height: 40px;
+    font-size: 16px;
+    background-color: #F0F4FB;
+  }
+  .satelite_date,.satelite_select{
+    margin: 20px 0 0 30px;
+    font-size: 14px;
+    color: #575757;
+    span{
+      display: inline-block;
+      width: 70px;
+    }
+    select{
+      width: 168px;
+      height: 36px;
+      line-height: 36px;
+      outline: none;
+      border: 0;
+      background-color: #F0F1F4;
+      font-size: 12px;
+      &.satelite_selectIn{
+        padding-left: 60px;
+      }
+    }
+  }
+ 
+}

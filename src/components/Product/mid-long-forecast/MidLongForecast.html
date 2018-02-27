@@ -1,0 +1,18 @@
+<main id="MidLongForecast"
+      class="weather-product-window"
+      v-drag="">
+  <header>
+    <span>中长期预报</span>
+    <aside>
+      <button class="close"
+              v-on:click="toggleProductView_global({id: productId, action: false})"></button>
+    </aside>
+  </header>
+  <main class="cf content-wrapper"
+        v-loading="loading"
+        element-loading-text="正在载入数据">
+    <iframe :src="url"
+            class="html-wrapper"
+            frameborder="0"></iframe>
+  </main>
+</main>

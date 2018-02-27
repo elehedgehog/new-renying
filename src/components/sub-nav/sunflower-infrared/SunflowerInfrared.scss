@@ -1,0 +1,40 @@
+#SunflowerInfrared {
+  .popup_con_right{
+    ul li{
+      &:nth-child(2){
+        position: relative;
+      }
+      dl{
+        dd{
+          .infrared_img,.time_selected{
+            position: relative;
+            width: 140px;
+            height: 30px;
+            line-height: 30px;
+            background-color: #F0F1F4;
+            text-align: center;
+            i{
+              position: absolute;
+              right: 20px;
+              top: 12px;
+              display: inline-block;
+              width: 8px;
+              height: 6px;
+              background: url('/static/img/home_dropdown.png')no-repeat 0 0/ 200% 100%;
+              }
+            &.on{
+              i{
+                background: url('/static/img/home_dropdown.png')no-repeat -8px 0/ 200% 100%;
+              }
+            }
+        }
+        .time_unit{
+          position: absolute;
+          right: 0;
+          top: 5px;
+        }
+      }
+     }
+    } 
+  }
+}

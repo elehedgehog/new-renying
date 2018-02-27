@@ -1,0 +1,20 @@
+#AirDetect {
+    position: absolute;
+    top: 120px;
+    left: 330px;
+    z-index: 1000;
+    background-color: #ffffff;
+    height: 601px;
+    white-space: nowrap;
+}
+
+.canvas{
+    // width: 502px;
+    // height: 532px;
+    box-sizing: border-box;
+    border: solid 1px #d2d4db;
+    margin-right: 2.5px;
+    &:last-of-type{
+        margin-right: 0;
+    }
+}

@@ -1,0 +1,38 @@
+<main id="CreateGroup"
+      class="weather-product-window"
+      v-drag=''>
+  <header>
+    <span>管理分组</span>
+    <aside>
+      <button class="close" @click="closeFn"></button>
+    </aside>
+  </header>
+  <section class="group_list scrollbar">
+    <ul class="group_list_ul">
+      <li v-for="(item, index) in modifyGroupSelected" v-if="item.id!=-1" @click="toggleGroupCheck(item)">
+        <span v-if="!item.inputPopup" :title="item.groupname">{{item.groupname}}</span>
+        <input v-if="item.inputPopup" v-model="item.groupname">
+        <i class="group_check" v-show="item.checked"></i>
+        <em @mouseenter="item.isPopupOn = true"
+            @mouseleave="item.isPopupOn = false"
+            @click.stop=""
+            :class="{on: item.isPopupOn}"
+            v-if="!item.inputPopup">
+          <ul class="rename_delete"
+              v-if="item.isPopupOn">
+            <li class="rename_delete_li" @click.stop="toggleRename(item)">改名</li>
+            <li class="rename_delete_li" @click.stop="deleteGroup(item)">删除</li>
+          </ul>
+        </em>
+        <span class="rename_btn"  v-if="item.inputPopup" @click.stop="renameBtn(item)">改名</span>
+      </li>
+    </ul>
+  </section>
+  <section class="group_name">
+    <span class="createGroup">创建分组</span>
+    <input type="text" v-model="groupingName " placeholder="输入分组名">
+    <span class="create" @click="createGroup">创建</span>
+  </section>
+  <button class="confirm" @click="finish">添加用户到分组</button>
+
+</main>

@@ -1,0 +1,159 @@
+<main id="LocalCloude"
+      class="weather-product-window"
+      v-drag=""
+      :style="{width: minify ? '290px' : '', height: minify ? '530px' : '770px'}">
+  <header>
+    <span>CPEFS模式产品</span>
+    <aside>
+      <button class="close"
+              v-on:click="toggleProductView_global({id: productId, action: false})"></button>
+    </aside>
+  </header>
+  <main class="content-wrapper">
+    <figure v-if="!minify">
+      <img :src="imgUrl"
+           height="672px"
+           width="790px"
+           alt="" />
+    </figure>
+    <menu>
+      <section class="option-wrapper">
+        <header class="multiple-header">要素选择</header>
+        <ul class="multiple-item">
+          <li v-for="(item, index) in optionData"
+              v-on:click.stop="item.isSelected = !item.isSelected"
+              :state="item.isSelected ? 'true' : 'false'">
+            <div>
+              <em :state="item.isSelected ? 'true' : 'false'"></em>
+              <span class="hori-dash-line"></span>
+              <span class="vert-dash-line top"
+                    v-show="index !== 0"></span>
+              <span class="vert-dash-line bottom"
+                    v-show="index &lt; optionData.length-1 || item.isSelected"></span>
+              <a>{{item.name}}</a>
+            </div>
+            <ul class="subItem"
+                v-show="item.isSelected">
+              <li v-for="subItem in item.sub"
+                  :state="subItem.isSelected ? 'true' : 'false'"
+                  v-on:click.stop="selectOption(subItem, subItem.name)">
+                <div>
+                  <span class="vert-dash-line"></span>
+                  <span class="hori-dash-line"></span>
+                  <em></em>
+                  <a>{{subItem.name}}</a>
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section class="date-time-forsee-wrapper">
+        <ul>
+          <li>
+            <aside class="left-label-wrapper">起报时间</aside>
+            <aside class="right-btn-wrapper">
+              <div class="datetime-wrapper">
+                <el-date-picker v-model="startDate"
+                                format="yyyy-MM-dd"
+                                type="date"></el-date-picker>
+              </div>
+            </aside>
+          </li>
+          <li>
+            <aside class="left-label-wrapper"></aside>
+            <aside class="right-btn-wrapper time-wrapper">
+              <div v-on:click="startTime = '08'">
+                <em :state="startTime === '08' ? 'true' : 'false'"></em>
+                <a>08时</a>
+              </div>
+              <div v-on:click="startTime = '20'">
+                <a>20时</a>
+                <em :state="startTime === '20' ? 'true' : 'false'"></em>
+              </div>
+            </aside>
+          </li>
+          <li>
+            <aside class="left-label-wrapper">时效</aside>
+            <aside class="right-btn-wrapper">
+              <select-toggle :optionData="forecastHourData"
+                             :selectionChange="forseeTimeChange"></select-toggle>
+              <!-- <select v-model="forseeTime"
+                      id="forsee-time">
+                <option v-for="item in 48"
+                        :key="item"
+                        :value="item">{{item}}</option>
+              </select> -->
+            </aside>
+          </li>
+          <li v-if="intLevelElement.indexOf(elementSelected) !== -1">
+            <aside class="left-label-wrapper">纬度位置</aside>
+            <aside class="right-btn-wrapper">
+              <select v-model="intLevelSelected"
+                      id="forsee-time">
+                <option v-for="(item, index) in intLevelData"
+                        :key="index"
+                        :value="item">{{item}}</option>
+              </select>
+            </aside>
+          </li>
+          <li v-if="noLevelElement.indexOf(elementSelected) === -1 && intLevelElement.indexOf(elementSelected) === -1">
+            <aside class="left-label-wrapper">层次(hpa)</aside>
+            <aside class="right-btn-wrapper">
+              <select v-model="levelSelected"
+                      id="forsee-time">
+                <option v-for="(item, index) in levelData"
+                        :key="index"
+                        :value="item">{{item + 'hPa'}}</option>
+              </select>
+            </aside>
+          </li>
+          <!--           <li>
+            <aside class="left-label-wrapper"></aside>
+            <aside class="right-btn-wrapper">
+              <button v-on:click="submit"
+                      class="control-btn">查询</button>
+            </aside>
+          </li> -->
+        </ul>
+      </section>
+      <section class="play-controle-wrapper"
+               v-if="false">
+        <ul>
+          <li>
+            <aside class="left-label-wrapper">播放</aside>
+            <aside class="right-btn-wrapper">
+              <select name=""
+                      id=""></select>
+            </aside>
+          </li>
+          <li style="height: 16px; line-height: 16px; margin-bottom: 10px">
+            <aside class="left-label-wrapper"
+                   style="height:16px"></aside>
+            <aside class="right-btn-wrapper"
+                   style="height:16px">至</aside>
+          </li>
+          <li>
+            <aside class="left-label-wrapper"></aside>
+            <aside class="right-btn-wrapper">
+              <select name=""
+                      id=""></select>
+            </aside>
+          </li>
+          <li>
+            <aside class="left-label-wrapper"></aside>
+            <aside class="right-btn-wrapper">
+              <button class="controle-btn">播放</button>
+            </aside>
+          </li>
+        </ul>
+        <div class="play-btn-wrapper">
+          <button class="play-controle-btn">首帧</button>
+          <button class="play-controle-btn">向前</button>
+          <button class="play-controle-btn">向后</button>
+          <button class="play-controle-btn">尾帧</button>
+        </div>
+      </section>
+    </menu>
+  </main>
+</main>

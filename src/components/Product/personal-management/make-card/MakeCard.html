@@ -1,0 +1,77 @@
+<main id="MakeCard"
+      class="weather-product-window"
+      v-drag=''>
+  <header>
+    <span>制作工作证</span>
+    <aside>
+      <button class="close" @click="closeFn"></button>
+    </aside>
+  </header>
+
+  <section class="card_left cf scrollbar">
+    <dl class="cf">
+      <dt>证件号码</dt>
+      <dd class="name">
+        <input v-model="userInfo.workCredential">
+      </dd>
+    </dl>
+    <dl class="cf">
+      <dt>发证时间</dt>
+      <dd class="name">
+        <input v-model="userInfo.date" placeholder="年/月/日">
+      </dd>
+    </dl>
+    <dl class="cf">
+      <dt>有效期</dt>
+      <dd class="name">
+        <input v-model="userInfo.period">
+      </dd>
+    </dl>
+    <dl class="cf">
+      <dt>单位</dt>
+      <dd class="name">
+        <input v-model="userInfo.department">
+      </dd>
+    </dl>
+    <dl class="cf">
+      <dt>姓名</dt>
+      <dd class="name">
+        <input v-model="userInfo.name">
+      </dd>
+    </dl>
+    <dl class="cf">
+      <dt>职务</dt>
+      <dd class="name">
+        <input v-model="userInfo.position">
+      </dd>
+    </dl>
+    <dl class="cf">
+      <dt>从事岗位</dt>
+      <dd class="name">
+        <input v-model="userInfo.post">
+      </dd>
+    </dl>
+    <dl class="cf">
+      <dt>作业区域</dt>
+      <dd class="name">
+        <input v-model="userInfo.area">
+      </dd>
+    </dl>
+
+    <dl class="cf">
+      <dt>上传照片</dt>
+      <dd class="upload">
+        <input id="file" type="file" @change="changePhoto"/><span id="path" :title="path">{{path}}</span><button id="upload" @click="upload">浏览...</button>
+      </dd>
+    </dl>
+  </section>
+
+  <section class="card_right cf">
+    <img id="card" @load="imgLoad"/>
+  </section>
+
+  <section class="card_btn cf">
+    <button class="btn_one" @click="makeCard()" src="">制作</button>
+    <a id="download" class="btn_two" v-show="showdownload">下载</a>
+  </section>
+</main>

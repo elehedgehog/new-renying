@@ -1,0 +1,6 @@
+<main id="ColorBar">
+  <div class="wrapper" v-for="(item, key) in colorbarElements_global">
+    <span>{{ key }}</span>
+    <img :src="url.replace('{name}', key)">
+  </div>
+</main>

@@ -1,0 +1,49 @@
+#ActualPopup {
+  .actual_con{
+    
+    p{
+      width: 180px!important;
+      height: 40px;
+      line-height: 40px;
+      font-size: 16px;
+      background-color: #F0F4FB;
+      .popup_titleIn{
+        margin-left: 30px;
+        color: #000;
+      }
+    }
+    ul{
+      height: 332px;
+      padding-top: 10px;
+      li{
+        position: relative;
+        height: 46px;
+        line-height: 46px;
+        margin-left: 30px;
+        font-size: 16px;
+        color: #575757;
+        background-color: #fff;
+        .actualSubtitle_icon{
+          position: absolute;
+          top: 14px;
+          display: inline-block;
+          width: 18px;
+          height: 18px;
+          background: url(/static/img/home_check.png) no-repeat 0 0 / 100% 800%;
+          cursor: pointer;
+        }
+        .actual_subtitle{
+          position: absolute;
+          left: 28px;
+        }
+        &:first-child .actualSubtitle_icon.on { background: url(/static/img/home_check.png) no-repeat 0 -18px / 100% 800%; }
+        &:nth-child(2) .actualSubtitle_icon.on { background: url(/static/img/home_check.png) no-repeat 0 -36px / 100% 800%; }
+        &:nth-child(3) .actualSubtitle_icon.on { background: url(/static/img/home_check.png) no-repeat 0 -54px / 100% 800%; }
+        &:nth-child(4) .actualSubtitle_icon.on { background: url(/static/img/home_check.png) no-repeat 0 -72px / 100% 800%; }
+        &:nth-child(5) .actualSubtitle_icon.on { background: url(/static/img/home_check.png) no-repeat 0 -90px / 100% 800%; }
+        &:nth-child(6) .actualSubtitle_icon.on { background: url(/static/img/home_check.png) no-repeat 0 -108px / 100% 800%; }
+        &:last-child .actualSubtitle_icon.on { background: url(/static/img/home_check.png) no-repeat 0 -126px / 100% 800%; }
+      }
+    }
+  }
+}

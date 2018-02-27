@@ -1,0 +1,29 @@
+#ColorBar {
+  z-index: 1001;
+  position: absolute;
+  bottom: 10px;
+  left: 334px;
+  background: rgba(172, 175, 177, 0.34);
+  border-radius: 2px;  
+  .wrapper {
+    position: relative;
+    width: 470px;
+    height: 30px;
+    line-height: 30px;
+    span {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 50px;
+      display: inline-block;
+      text-align: center;
+    }
+    img {
+      position: absolute;
+      top: 0;
+      left: 50px;
+      width: 420px;
+      height: 30px;
+    }
+  }
+}

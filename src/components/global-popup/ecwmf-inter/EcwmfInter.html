@@ -1,0 +1,68 @@
+<!-- ECWMF 细网络模式产品 -->
+<main id="EcwmfInter" class="popup_content">
+  <div class="Ecwmf_title">
+    <p class="popup_title"><span class="popup_titleIn">ECWMF 细网络模式产品</span><i class="Ecwmf_icon_hide hide_btn"></i><i class="Ecwmf_icon_close close_btn"></i></p>
+  </div>
+  <div class="popup_con">
+    <div class="popup_con_left">
+
+    </div>
+    <div class="popup_con_right">
+      <ul>
+        <li class="cf">
+          <dl>
+            <dt>日期</dt>
+            <dd>
+              
+            </dd>
+          </dl>
+        </li>
+        <li class="cf">
+          <dl>
+            <dt>UTC</dt>
+            <dd>
+              <span class="utc_zero ecwmf_check" @click="toggleUtcTime(0)" :class="{'on' : 0 === utcSelected}"><i></i><span>00时</span></span>
+              <span class="utc_twelve ecwmf_check" @click="toggleUtcTime(12)" :class="{'on' : 12 === utcSelected}"><i></i><span>12时</span></span>
+            </dd>
+          </dl>
+        </li>
+        <li class="cf">
+          <dl>
+            <dt>范围</dt>
+            <dd>
+              <div>
+                <span class="ecwmf_check" @click="toggleScope('eurasian')" :class="{'on' : 'eurasian' === scopeSelected}"><i></i><span>欧亚</span></span>
+                <span class="ecwmf_check" @click="toggleScope('china')" :class="{'on' : 'china' === scopeSelected}"><i></i><span>中国</span></span>
+              </div>
+              <div>
+                <span class="ecwmf_check" @click="toggleScope( 'southchina')" :class="{'on' : 'southchina' === scopeSelected}"><i></i><span>华南</span></span>
+                <span class="ecwmf_check" @click="toggleScope('ocean')" :class="{'on' : 'ocean' === scopeSelected}"><i></i><span>海洋</span></span>
+              </div>
+              <div>
+                <span class="ecwmf_check" @click="toggleScope('guangdong')" :class="{'on' : 'guangdong' === scopeSelected}"><i></i><span>广东</span></span>
+                <span class="ecwmf_check" @click="toggleScope('monostatic')" :class="{'on' : 'monostatic' === scopeSelected}"><i></i><span>单站</span></span>
+              </div>
+            </dd>
+          </dl>
+        </li>
+        <li class="cf">
+          <dl>
+            <dt>预报产品</dt>
+            <dd>
+              <div class="forecase_product"><span>海平面气压</span><i></i></div>
+            </dd>
+          </dl>
+        </li>
+        <li class="cf">
+          <dl>
+            <dt>时效</dt>
+            <dd>
+                <div class="time_effect"><span>048</span><i></i></div>
+            </dd>
+          </dl>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</main>

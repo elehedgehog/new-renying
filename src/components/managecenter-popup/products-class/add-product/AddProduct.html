@@ -1,0 +1,20 @@
+<main id="AddProduct"  v-drag  class="weather-product-window">
+  <header>
+    <span>添加产品</span>
+    <aside>
+      <button class="close" @click="closeFn"></button>
+    </aside>
+  </header>
+
+  <el-transfer
+    filterable
+    :filter-method="filterMethod"
+    filter-placeholder="请输入搜索内容"
+    :button-texts="['移除', '添加']"
+    :titles="['产品列表', '已添加产品']"
+    v-model="productSelected"
+    :data="productList">
+  </el-transfer>
+
+  <button class="confirm" @click="addProduct">确定</button>
+</main>

@@ -1,0 +1,184 @@
+#ProductsClass {
+  .require_analyze{
+    padding-top: 20px!important;
+  }
+  .require_analyze,.operation_condition,.operation_process{
+    height: 200px;
+    width: calc(100% - 40px);
+    padding: 5px 0 5px 40px;
+  }
+  .operation_earlyWarning,.realtime-commanding{
+    height: 200px;
+    width: calc(100% - 40px);
+    padding: 5px 0 5px 40px;
+  }
+  .require_analyze .require_analyze_left{ background-color: #79AAEE; }
+  .require_analyze{
+    &:nth-child(1) .require_analyze_left{ background-color: #f8cb00; }
+    &:nth-child(2) .require_analyze_left{ background-color: #45B7AF; }
+    &:nth-child(3) .require_analyze_left{ background-color: #5D9BDD; }
+    &:nth-child(4) .require_analyze_left{ background-color: #8061EF; }
+    &:nth-child(5) .require_analyze_left{ background-color: #E38A6C; }
+    &:nth-child(6) .require_analyze_left{ background-color: #79AAEE; }
+    &:nth-child(7) .require_analyze_left{ background-color: #f8cb00; }
+    &:nth-child(8) .require_analyze_left{ background-color: #45B7AF; }
+  }
+  
+  .require_analyze_left{
+    height: 200px;
+    writing-mode: vertical-rl;
+    -ms-writing-mode: lr-tb;
+    letter-spacing: 7px;
+    p{
+      position: absolute;
+      top: 54px;
+      left: 50px;
+    }
+
+  }
+ 
+  
+  .managecenter_left{
+    position: relative;
+    float: left;
+    width: 120px;
+    color: #fff;
+    font-size: 16px;
+    overflow: auto;
+  }
+  
+  .operation_earlyWarning_right,.realtime-commanding_right{
+    float: left;
+    width: 849px;
+    height:58px;
+    padding: 20px 30px;
+    border-top: 1px solid #DEE0E5;
+    border-bottom: 1px solid #DEE0E5;
+    border-right: 1px solid #DEE0E5;
+    color: #575757;
+    font-size: 14px;
+    overflow: auto;
+  }
+  
+  .editor_delete{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 80px;
+    height: 40px;
+    i{
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      float: left;
+      &.editor{
+        background: url(~Img/home_edit.png)no-repeat 0 0/200% 200%;
+        &:hover{background: url(~Img/home_edit.png)no-repeat -40px 0/200% 200%;}
+      }
+      &.delete{
+        background: url(~Img/home_edit.png)no-repeat 0 -40px/200% 200%;
+        &:hover{background: url(~Img/home_edit.png)no-repeat -40px -40px/200% 200%;}
+      }
+    }
+  }
+
+  p.require_analyze_leftTitle{
+    position: absolute;
+    top: 49px;
+    left: 50px;
+  }
+  .require_analyze_right,.operation_process_right,.operation_condition_right,.operation_earlyWarning_right,.realtime-commanding_right{
+    position: relative;
+    float: left;
+    width: 849px;
+    height: 158px;
+    padding: 20px 30px;
+    border-top: 1px solid #DEE0E5;
+    border-bottom: 1px solid #DEE0E5;
+    border-right: 1px solid #DEE0E5;
+    color: #575757;
+    font-size: 14px;
+    overflow: auto;
+    .add_rain_ul{
+      margin-left: 80px;
+    }
+    .require_analyze_li{
+      display: block;
+    }
+    p{
+      float: left;
+      width: 70px;
+      margin-right: 10px;
+      height: 30px;
+      &.hail_suppression_title{
+        line-height: 30px;
+      }
+      &.add_rain_title{ line-height: 20px; }
+      &.artificial_influence_title{
+        margin-top: -4px;
+      }
+    }
+  }
+  li.add_list{
+    position: relative;
+    float: left;
+    display: inline-block;
+    width: 140px;
+    height: 30px;
+    line-height: 30px;
+    background-color: #F0F1F4;
+    margin-right:15px;
+    margin-bottom: 12px;
+  &:hover{
+    background-color: #E2E3E6;
+  }
+  &.add_list:nth-child(5n){
+    margin-right:0!important;
+  }
+  span{
+    &.on{ 
+      cursor: pointer;
+    }
+  }
+  i{
+    position: absolute;
+    content: '';
+    width: 30px;
+    height: 30px;
+    top: 0;
+    right: 0;
+    background: url(~Img/home_del.png)no-repeat 0 0/200% 100%;
+    &.on{
+      background: url(~Img/home_del.png)no-repeat -30px 0/200% 100%;
+      cursor: pointer;
+    }
+  }
+ 
+
+  }
+  li.add_btn{
+    display: inline-block;
+    width: 140px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    color: #4786E1;
+    margin-bottom: 12px;
+    background-color: #F0F1F4;
+    cursor: pointer;
+    &:hover{
+      background-color: #E2E3E6;
+    }
+  }
+  .add_list_span{
+    display: inline-block;
+    width: 98px;
+    height: 30px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;  
+    padding: 0 6px;
+  }
+  
+}

@@ -1,0 +1,50 @@
+<main id="DryCondition"
+      class="weather-product-window"
+      v-drag=""
+      v-loading="loading"
+      element-loading-text="正在加载干旱数据"
+      :style="{width: minify ? '' : '1120px'}">
+  <header>
+    <span>干旱条件</span>
+    <aside>
+      <button v-on:click="minify = !minify"
+              class="mini"
+              :style="{backgroundPositionX: minify ? '-44px' : '0'}"></button>
+      <button class="close"
+              v-on:click="toggleProductView_global({id: productId, action: false})"></button>
+    </aside>
+  </header>
+  <main class="content-wrapper" :style="{height: minify ? '' : '720px'}">
+    <figure v-if="!minify">
+      <img :src="imgUrl"
+           height="672px"
+           width="790px"
+           alt="" />
+    </figure>
+    <menu v-if="!minify">
+      <section class="date-time-forsee-wrapper">
+        <ul>
+          <li>
+            <aside class="left-label-wrapper">选择日期</aside>
+            <br />
+            <aside class="right-btn-wrapper">
+              <select v-model="imgSelected"
+                      id="forsee-time"
+                      style="padding-left: 15px">
+                <option v-for="(item, index) in imgData"
+                        :key="index"
+                        :value="item.value">{{item.datetime}}</option>
+              </select>
+            </aside>
+          </li>
+        </ul>
+      </section>
+    </menu>
+    <div v-if="minify">
+      <span>日期</span>
+      <el-date-picker v-model="datetime"
+                      format="yyyy-MM-dd HH:mm"
+                      type="datetime"></el-date-picker>
+    </div>
+  </main>
+</main>

@@ -1,0 +1,39 @@
+<main id="CityShortForecast"
+      class="weather-product-window"
+      v-drag="">
+  <header>
+    <span>市局短时预报</span>
+    <aside>
+      <button class="close"
+              v-on:click="toggleProductView_global({id: productId, action: false})"></button>
+    </aside>
+  </header>
+  <main class="cf content-wrapper">
+    <menu>
+      <section class="date-time-forsee-wrapper"
+               style="padding-bottom: 10px">
+        <ul>
+          <li class="cf">
+            <aside class="left-label-wrapper">选择市局</aside>
+            <aside class="right-btn-wrapper radio-wrapper">
+              <select-toggle :optionData="forecastTypeData"
+                             :selectionChange="forecastTypeSelectedChange"></select-toggle>
+              <!-- <select name=""
+                      id=""
+                      v-model="forecastTypeSelected">
+                <option v-for="(item, index) in forecastTypeData"
+                        :value="item">{{item}}</option>
+              </select> -->
+            </aside>
+          </li>
+        </ul>
+      </section>
+    </menu>
+    <aside class="html-wrapper">
+      <h1>短时天气预报</h1>
+      <p v-html="content"></p>
+      <h3 v-html="forecaster"></h3>
+      <h3 v-html="publishTime"></h3>
+    </aside>
+  </main>
+</main>

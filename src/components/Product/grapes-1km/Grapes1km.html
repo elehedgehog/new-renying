@@ -1,0 +1,83 @@
+<main id="Grapes1km"
+      class="weather-product-window"
+      v-drag="">
+  <header>
+    <span>Grapes1km</span>
+    <aside>
+      <button class="close"
+              v-on:click="toggleProductView_global({id: productId, action: false})"></button>
+    </aside>
+  </header>
+  <main class="cf content-wrapper">
+    <figure v-loading="loading"
+            element-loading-text="正在加载图片">
+      <img :src="imgUrl"
+           height="100%"
+           width="100%"
+           alt="" />
+    </figure>
+    <menu>
+      <section class="date-time-forsee-wrapper">
+        <ul>
+          <li>
+            <aside class="left-label-wrapper">起报日期</aside>
+            <aside class="right-btn-wrapper">
+              <div class="datetime-wrapper">
+                <el-date-picker v-model="date"
+                                format="yyyy-MM-dd"
+                                type="date"></el-date-picker>
+              </div>
+            </aside>
+          </li>
+          <li class="date-time-select-wrapper">
+            <aside class="left-label-wrapper">选择时分</aside>
+            <aside class="right-btn-wrapper">
+              <select-toggle :optionData="hourData"
+                             :selectionChange="hourSelectedChange"
+                             style="width:68px;float:left"></select-toggle>
+              <!-- <select id="forsee-time"
+                      v-model="hourSelected">
+                <option v-for="item in hourData"
+                        :value="item">{{item}}</option>
+              </select> -->
+              <span class="hour_min">时</span>
+              <select-toggle :optionData="minuteData"
+                             :selectionChange="minuteSelectedChange"
+                             style="width:68px;float:left"></select-toggle>
+              <!-- <select id="forsee-time"
+                      v-model="minuteSelected">
+                <option v-for="item in minuteData"
+                        :value="item">{{item}}</option>
+              </select> -->
+              <span class="hour_min">分</span>
+            </aside>
+          </li>
+          <li :style="{height: elementData.length * 30 + 'px'}">
+            <aside class="left-label-wrapper">地面要素</aside>
+            <aside class="right-btn-wrapper radio-wrapper"
+                   style="height: auto">
+              <div v-on:click="elementSelected = item.value"
+                   v-for="item in elementData">
+                <em :state="elementSelected === item.value ? 'true' : 'false'"></em>
+                <a>{{item.name}}</a>
+              </div>
+            </aside>
+          </li>
+          <li>
+            <aside class="left-label-wrapper">选择预报分钟</aside>
+            <aside class="right-btn-wrapper">
+              <select-toggle :optionData="forecastHourData"
+                             :selectionChange="forecastHourChange"></select-toggle>
+
+              <!-- <select id="forsee-time"
+                      v-model="forecastHour">
+                <option v-for="item in forecastHourData"
+                        :value="item">{{item }}</option>
+              </select> -->
+            </aside>
+          </li>
+        </ul>
+      </section>
+    </menu>
+  </main>
+</main>

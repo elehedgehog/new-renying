@@ -1,0 +1,143 @@
+<main id="HistoryReturn"
+      class="weather-product-window"
+      v-drag="">
+  <header>
+  <span>历史回归</span>
+  <aside>
+  <button class="close"
+          v-on:click="toggleProductView_global({id: productId, action: false})"></button>
+  </aside>
+  </header>
+  <section class="msg_top">
+    <ul class="nav_msg">
+      <li :class="[{'on': msgSelected === 'airplane'},'airplane']"
+          @click="toggleMsg('airplane')">飞机</li>
+      <li :class="[{'on': msgSelected === 'rocket'},'rocket']"
+          @click="toggleMsg('rocket')">火箭</li>
+    </ul>
+  </section>
+  <section>
+    <ul class="airplane_content">
+      <li class="cf">
+        <aside class="left-label-wrapper">作业时间</aside>
+        <aside class="right-btn-wrapper">
+          <el-date-picker v-model="airplaneDate"
+                          type="date"
+                          :clearable="false"
+                          placeholder="选择日期">
+          </el-date-picker>
+          <select v-model="airplaneHour" class="airplane_time">
+            <option v-for="i in 23" :value="i > 9 ? i : '0' + i">{{ i > 9 ? i : '0' + i }}</option>
+          </select>
+          时
+        </aside>
+      </li>
+      <li class="cf history_line">
+        <aside class="left-label-wrapper">影响时间</aside>
+        <aside class="right-btn-wrapper">
+          <select v-model="effectTime">
+            <option :value="item" v-for="item of effectList">{{ item }}</option>
+          </select>
+        </aside>
+      </li>
+      <li class="cf history_line" v-if="msgSelected === 'airplane'">
+        <aside class="left-label-wrapper">历史航迹</aside>
+        <aside class="right-btn-wrapper">
+					<select class="airplane_id" v-model="lineTimeSelected">
+						<option :value="key" v-for="(item, key) in planeLine">{{ item.fTime }}</option>
+					</select>
+				</aside>
+			</li>
+    </ul>
+    <div class="airplane_btn">
+      <button class="effeciton" 
+              @click="drawAffectArea">绘制影响区</button>
+      <button class="contrast" 
+              @click="drawCompareArea">绘制对比区</button>
+      <button class="calculate" 
+              @click="evaluate">计算</button>
+    </div>
+  </section>
+ 
+  <section class="calculate_result"
+					 v-drag=''
+					 v-if="calPopup">
+		<header>
+		<span>人工增雨工作效果评估预报</span>
+		<aside>
+			<button class="close"
+							@click="calPopup = false"></button>
+		</aside>
+		</header>
+    <section v-if="calPopup">
+			<table class="msg_body" cellspacing="0">
+					<tr>
+						<td>作业日期:</td>
+						<td>{{  moment(this.workDate).format('YYYY-MM-DD') }}</td>
+						<td>影响区面积:</td>
+						<td>{{ result.areaEffect }}</td>
+					</tr>
+					<tr>
+						<td>对比区面积(平方公里):</td>
+						<td>{{ result.areaCompare }}</td>
+						<td>影响区雨量站数:</td>
+						<td>{{ result.numStationEffect }}</td>
+					</tr>
+					<tr>
+						<td>对比区雨量站数</td>
+						<td>{{result.numStationCompare }}</td>
+						<td>影响区雨量(毫米):</td>
+						<td>{{ result.rainEffect }}</td>
+					</tr>
+					<tr>
+						<td>对比区雨量(毫米):</td>
+						<td>{{ result.rainCompare }}</td>
+						<td>样本容量:</td>
+						<td>{{ result.sampleSize }}</td>
+					</tr>
+					<tr>
+						<td>样本协方差:</td>
+						<td>{{ result.sampleCovariance }}</td>
+						<td>影响区样本标准差:</td>
+						<td>{{ result.standardDeviationEffect }}</td>
+					</tr>
+					<tr>
+						<td>对比区样本标准差:</td>
+						<td>{{ result.standardDeviationCompare  }}</td>
+						<td>相关系数:</td>
+						<td>{{ result.correlationCoefficient }}</td>
+					</tr>
+					<tr>
+						<td>相关系数显著统计量t:</td>
+						<td>{{ result.t }}</td>
+						<td>斜率:</td>
+						<td>{{ result.slope }}</td>
+					</tr>
+					<tr>
+						<td>截距:</td>
+						<td>{{ result.intercept }}</td>
+						<td>历史回归方程:</td>
+						<td>{{ result.regressionEquation }}</td>
+					</tr>
+					<tr>
+						<td>效果显著度统计量t(单边检验)</td>
+						<td>{{ result.tEffect }}</td>
+						<td>影响区期待雨量(毫米):</td>
+						<td>{{ result.rainEffectExpection }}</td>
+					</tr>
+					<tr>
+						<td>绝对增雨量(毫米):</td>
+						<td>{{ result.rainAbsolutely }}</td>
+						<td>相对增雨量(%):</td>
+						<td>{{ result.rainRelative }}</td>
+					</tr>
+					<tr>
+						<td>总增雨量(立方米):</td>
+						<td>{{ result.rainTotal }}</td>
+						<td>经济效益(元,1元/立方米):</td>
+						<td>{{ result.money }}</td>
+					</tr>
+			</table>
+		</section>
+  </section>
+</main>

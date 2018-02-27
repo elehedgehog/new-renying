@@ -1,0 +1,45 @@
+<main id="WeatherForecast"
+      class="weather-product-window"
+      v-drag="">
+  <header>
+    <span>气候预测</span>
+    <aside>
+      <button class="close"
+              v-on:click="toggleProductView_global({id: productId, action: false})"></button>
+    </aside>
+  </header>
+  <main class="cf content-wrapper">
+    <menu>
+      <section class="date-time-forsee-wrapper"
+               style="padding-bottom: 10px">
+        <ul>
+          <li class="cf">
+            <aside class="left-label-wrapper">预报类型</aside>
+            <aside class="right-btn-wrapper">
+              <select id="forsee-time"
+                      v-model="forecastTypeSelected">
+                <option v-for="item in forecastTypeData"
+                        :value="item.value">{{item.name}}</option>
+              </select>
+            </aside>
+          </li>
+        </ul>
+      </section>
+      <ul class="item-list-wrapper">
+        <li v-for="item in listData"
+            v-on:click="fileName = item.fileName"
+            :state="fileName === item.fileName ? 'true' : 'false'">
+          <span>
+            <div>{{item.year}}年</div>
+            <div class="bold">{{item.month}}月</div>
+          </span>
+          <aside>
+            <div>{{item.name}}</div>
+            <div></div>
+          </aside>
+        </li>
+      </ul>
+    </menu>
+    <aside class="html-wrapper" v-html="htmlString"></aside>
+  </main>
+</main>

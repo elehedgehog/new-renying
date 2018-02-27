@@ -1,0 +1,17 @@
+<main id="WorkStationSelecting">
+  <div class="appuserPop"
+       v-if="appUserPopup">
+    <span class="">
+      <i></i>
+      <input type="text"
+             class="search"
+             placeholder="搜索"
+             v-model="seachAppUser">
+    </span>
+    <ul class="scrollbar">
+      <li :class="{'on': popupInfo.appUser.value.id === el.id, 'disabled': el.id in appUserListSelected}"
+          v-for="el of AppUserList"
+          @click="selectAppUser(el)">{{ el.username }}</li>
+    </ul>
+  </div>
+</main>

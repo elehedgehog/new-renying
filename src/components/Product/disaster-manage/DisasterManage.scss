@@ -1,0 +1,78 @@
+#DisasterManage{
+  width: 440px;
+  top: 130px;
+  .disaster_header{
+    margin-bottom: 5px;
+  }
+  .datetime{
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    margin: 15px 15px 0 30px;
+    color: #575757;
+    font-size: 14px;
+  }
+  ul.disaster_con{
+    max-height: 480px;
+    min-height: 100px;
+    overflow: auto;
+    padding: 15px 30px;
+    li{
+      float: left;
+      height: 160px;
+      width: 184px;
+      cursor: pointer;
+      margin-top: 10px;
+      background-color: #ccc;
+      &:nth-child(2n+1){
+        margin-right: 10px;
+      }
+      img{
+        width: 184px;
+        height: 124px;
+        display: inline-block;
+        margin-bottom:-3px
+      }
+      .disaster_content{
+        font-size: 12px;
+        background-color: #DBDAE0;
+        padding: 0 10px;
+        p.content_top{
+          height: 18px;
+          line-height: 18px;
+          span{
+            display: inline-block;
+            width: 80px;
+            &.disasterName{
+              float: left;
+              color: #1c1c1c;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap;
+            }
+           &.uploadTime{
+              float: left;
+              font-family:simsun;
+              color: #989898;
+              text-align: right;
+            }
+          }
+          
+        }
+        p.content_bottom{
+          height: 18px;
+          line-height: 18px;
+          font-family:simsun;
+          color: #989898;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+
+      }
+    }
+  }
+  .el-date-editor.el-input {
+    width: 123px !important;
+  }
+}

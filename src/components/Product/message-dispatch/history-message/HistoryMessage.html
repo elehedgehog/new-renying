@@ -1,0 +1,32 @@
+<main id="HistoryMessage">
+  <section class="history_left">
+    <ul class="scrollbar">
+      <li v-for="item in msgData"
+          @click="msgSelected = item.msgId"
+          :class="[msgSelected === item.msgId ? 'on' : '']">
+        <p class="history_title">
+          <span class="title">{{ item.subject }}</span>
+          <!-- <span class="date">{{ item.msgContent }}</span> -->
+        </p>
+        <p class="history_content">
+          <span class="content">{{ item.msgContent }}</span>
+        </p>
+      </li>
+    </ul>
+  </section>
+  <section class="history_right">
+    <ul class="scrollbar">
+      <li v-for="item in subRes">
+        <p class="msg_top">
+          <em></em>
+          <span class="addressee">{{ getUser(item.phone) }}</span>
+          <span class="tel">{{ item.phone }}</span>
+          <!-- <button class="urge">催促</button> -->
+        </p>
+        <p class="msg_bottom">
+          <span>{{ item.replyContent }}</span>
+        </p>
+      </li>
+    </ul>
+  </section>
+</main>

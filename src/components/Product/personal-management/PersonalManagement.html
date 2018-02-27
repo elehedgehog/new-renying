@@ -1,0 +1,169 @@
+<main id="PersonalManagement"
+      class="weather-product-window"
+      v-drag="">
+
+  <header>
+    <span>人员管理</span>
+    <aside>
+      <button class="close"
+              @click="toggleProductView_global({id: productId, action: false})">
+      </button>
+    </aside>
+  </header>
+
+  <section class="personal_left">
+
+    <div class="groups_top">
+      <span>请选择</span>
+      <p class="groups_top_new"
+         @mouseenter="groupsListPopup=true"
+         @mouseleave="groupsListPopup=false">
+        <span id="cur_group" :title="groupSelected==null?'全部':group[groupSelected].groupname">{{groupSelected==null?"工作人员":group[groupSelected].groupname}}</span>
+        <i></i>
+      <ul class="groups_list scrollbar" v-if="groupsListPopup">
+        <li @click.stop="toggleAll()" v-show="groupSelected!=null" class="highlight">工作人员</li>
+        <li v-for="(item, index) of group"
+            v-show="groupSelected != index"
+            @click.stop="toggleGroup(index)"
+            :title="item.groupname"
+            :class="{highlight:item.id==-1}"
+        >{{item.groupname}}
+        </li>
+      </ul>
+      </p>
+      <p class="groups_top_search">
+        <span>搜索</span>
+        <i></i>
+        <input v-model="keyword" placeholder="请输入要搜索的内容">
+      </p>
+      <p id="grade">
+        <span id="upxls" @click="selectFile">上传成绩
+          <input id="xlsfile" type="file" accept=".xlsx" @change="upxls"/>
+        </span><span id="downxls">
+        <a href="http://10.148.16.217:11160/renyin5/exam/scoreTemplate"></a>
+      </span>
+      </p>
+      <p class="groups_top_add" @click="toggleCreateGroup" v-if="itemSelected==null||itemSelected.id!=-1">管理分组</p>
+    </div>
+
+    <div class="groups_bottom">
+      <ul class="head_list">
+        <li>
+          <i class="name_check" :class="{on:selectall}" @click="selectAll()"></i>
+          姓名
+        </li>
+        <li>证件</li>
+        <li>手机</li>
+        <li>部门</li>
+        <li>职务</li>
+        <li>年审</li>
+        <li>操作</li>
+      </ul>
+      <ul class="person_list">
+        <li v-for="(item, index) in currentPageList" :class="{'on': item.selected}">
+          <span class="name">
+            <i class="name_check"
+               @click="toggleCheckPerson(item)">
+            </i>
+            <p :title="item.name || '未知'">{{ item.name || '未知' }}</p>
+          </span>
+          <span class="workCredential" :title="item.workCredential || ''">{{ item.workCredential || '-' }}</span>
+          <span class="tel" :title="item.phone || ''">{{ item.phone || '-' }}</span>
+          <span class="department" :title="item.department || ''">{{ item.department || '-' }}</span>
+          <span class="position" :title="item.position || ''">{{ item.position || '-' }}</span>
+          <span class="verification" :class="{on:item.assessmentInfo!='已年审'}">{{ item.assessmentInfo==="已年审"?"已年审":"未年审"}}</span>
+          <span class="icon">
+              <i class="card" @click="toggleMakeCard(item)" v-show="groupSelected==null||itemSelected.id!=-1"></i>
+              <i class="editor" @click="toggleEditor(item)"></i>
+              <i class="delete" @click="deleteItem(index)" v-show="groupSelected!=null&&itemSelected.id!=-1"></i>
+          </span>
+        </li>
+      </ul>
+    </div>
+
+  </section>
+
+  <section class="personal_right">
+
+    <div class="check_number">
+      <p>{{ Object.keys(notPassedList).length }}</p>
+      <p>待审核</p>
+    </div>
+    <div class="check_list">
+      <span class="update" @click="updateNotPassed()">刷新</span>
+      <p class="check_list_title">待审核列表</p>
+      <ul class="check_list_ul scrollbar">
+        <li v-for="(item, key) in notPassedList">
+          <p class="cf check_areaTop">
+            <span class="checking_name" :title="item.name">{{item.name || '---' }}</span>
+            <span @click="pass(key)">通过</span>
+            <span @click="refuse(key)">拒绝</span>
+          </p>
+          <p class="cf check_areaBot">
+            <span>{{item.department || '未知'}}</span>
+            <span>{{item.position || '未知'}}</span>
+            <span>{{item.phone || '未知'}}</span>
+          </p>
+          <div class="detail_info">
+            <dl>
+              <dt>性别</dt><dd>{{item.sex}}</dd>
+            </dl>
+            <dl>
+              <dt>生日</dt><dd>{{item.birthday}}</dd>
+            </dl>
+            <dl>
+              <dt>专业</dt><dd>{{item.major}}</dd>
+            </dl>
+            <dl>
+              <dt>受教育水平</dt><dd>{{item.education}}</dd>
+            </dl>
+            <dl>
+              <dt>政治面貌</dt><dd>{{item.political}}</dd>
+            </dl>
+            <dl>
+              <dt>身体状况</dt><dd>{{item.physicalstatus}}</dd>
+            </dl>
+            <dl>
+              <dt>岗位</dt><dd>{{item.post}}</dd>
+            </dl>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+  </section>
+
+  <section class="product_page cf">
+    <div class="product_pageIn">
+      <el-pagination
+        small
+        :page-size="pageSize"
+        layout="prev, pager, next"
+        @current-change="pageSelect"
+        :total="personList.length">
+      </el-pagination>
+    </div>
+
+  </section>
+
+  <component :is="createGroupView"
+             :closeFn="toggleCreateGroup"
+             :group="group"
+             :curPageList="currentPageList"
+             :itemSelected="itemSelected"
+             :updateGroup="updateGroup"
+             :toggleAll="toggleAll">
+  </component>
+
+  <component :is="editorMessageView"
+             :closeFn="toggleEditor"
+             :userMsg="userMsg"
+             :modifyItem="modifyItem">
+  </component>
+
+  <component :is="makeCardView"
+             :closeFn="toggleMakeCard"
+             :userMsg="userMsg"
+             :saveCard="saveCard">
+  </component>
+</main>

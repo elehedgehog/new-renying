@@ -1,0 +1,90 @@
+#SubNav {
+  height: calc(100% - 115px);
+  background-color: #F0F1F4;
+  position: absolute;
+  z-index: 999;
+  top: 115px;
+  left: 0;
+  ul{
+    width: 304px;
+    list-style: none;
+    li{
+      height: 70px;
+      line-height: 70px;
+      font-size: 14px;
+      color: #1c1c1c;
+      background-color: #F0F1F4;
+      cursor: pointer;
+      &:nth-child(1){
+        position: relative;
+        .subNaveTitle:after{
+          position: absolute;
+          right: 40px;
+          top: 27px;
+          content: '';
+          width: 13px;
+          height: 16px;
+          background: url('/static/img/home_close.png')no-repeat -29px 0/ 300% 200%;
+        }
+      }
+      i{
+         margin: 10px;
+         display: inline-block;
+         width: 50px;
+         height: 50px;
+      }
+      &:nth-child(1) i{
+        width: 20px!important;
+        height: 20px!important;
+        margin: 25px !important;
+         background: url("/static/img/home_tag.png") no-repeat 0 0/ 100% 100%;
+         
+      }
+      &:nth-child(2) i{
+       background: url("/static/img/home_product.png") no-repeat 0 0/ 200% 800%;
+      }
+      &:nth-child(3) i{
+       background: url("/static/img/home_product.png") no-repeat 100% 0/ 200% 800%;
+      }
+      &:nth-child(4) i{
+       background: url("/static/img/home_product.png") no-repeat 0 -50px/ 200% 800%;
+      }
+      &:nth-child(5) i{
+       background: url("/static/img/home_product.png") no-repeat 100% -50px/ 200% 800%;
+      }
+      &:nth-child(6) i{
+       background: url("/static/img/home_product.png") no-repeat 0 -100px/ 200% 800%;
+      }
+      &:nth-child(7) i{
+       background: url("/static/img/home_product.png") no-repeat 100% -100px/ 200% 800%;
+      }
+      &:nth-child(8) i{
+       background: url("/static/img/home_product.png") no-repeat 0 -150px/ 200% 800%;
+      }
+      &:nth-child(9) i{
+       background: url("/static/img/home_product.png") no-repeat 100% -150px/ 200% 800%;
+      }
+      &:nth-child(10) i{
+       background: url("/static/img/home_product.png") no-repeat 0 -200px/ 200% 800%;
+      }
+      &:nth-child(11) i{
+       background: url("/static/img/home_product.png") no-repeat 100% -200px/ 200% 800%;
+      }
+      &.on{
+        color: #000;
+        font-weight: bold;
+        background-color: #E2E3E6;
+      }
+      .subNaveIcon{
+        width: 70px;
+        height: 70px;
+        float: left;
+      }
+      .subNaveTitle{
+        float: left;
+        width: 180px;
+        
+      }
+    }
+  }
+}

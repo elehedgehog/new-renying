@@ -1,0 +1,213 @@
+#AccountManagement{
+  position: absolute!important;
+  top: 130px;
+  left: 324px;
+  z-index: 1010;
+  width: 758px;
+  background-color: #fff;
+  box-shadow: rgba(31, 43, 61, .4) 0 0 7px 1px;
+  padding-bottom: 10px;
+  .account_management_con{
+    float: left;
+    width: 698px;
+    margin: 10px 30px 0 30px;
+    color: #1c1c1c;
+    font-size: 15px;
+  }
+  .account_management_top{
+    p{
+      display: inline-block;
+      &.groups_top_search{
+        position: relative;
+        span{
+          display: inline-block;
+          width:40px;
+        }
+        i{  
+          position: absolute;
+          top: 17px;
+          left: 60px;
+          display: inline-block;
+          width: 18px;
+          height: 18px;
+          background: url(~Img/toolbar_search.png)no-repeat 0 0/100% 100%;
+          cursor: pointer;
+        }
+        input{
+          width: 200px;
+          height: 28px;
+          padding:0 10px 0 40px;
+          border: 1px solid #D8DAE0;
+        }
+      }
+      &.groups_top_add{
+        float: right;
+        width: 100px;
+        height: 30px;
+        margin-top: 10px;
+        background-color: #4787E1;
+        line-height: 30px;
+        text-align: center;
+        color: #fff;
+        font-size: 14px;
+        cursor: pointer;
+        &:hover{
+          background-color: #3679D6;
+        }
+      }
+    }
+    
+    
+  }
+  .account_management_bottom{
+    border: 1px solid #E2E3E8;
+    ul.head_list{
+      width: 100%;
+      height: 45px;
+      background-color: #F0F1F4;
+      li{
+        float: left;
+        width: calc(100%/4);
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+        
+      }
+    }
+    ul.person_list{
+      width: 100%;
+      height: 450px;
+      li.person_list_list{
+        width: 100%;
+        height: 40px;
+        &:hover{
+          background-color: #F0F1F4;
+        }
+        span{
+          float: left;
+          display: inline-block;
+          width: calc(100%/4);
+          height: 40px;
+          line-height: 40px;
+          text-align: center;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;  
+          
+        }
+        &.on{
+          background-color: #F0F1F4;
+          
+        } 
+      }
+      
+      .icon{
+        float: left;
+        position: relative;
+        i{
+          position: absolute;
+          top: 6px;
+          display: inline-block;
+          width: 28px;
+          height: 28px;
+          cursor: pointer;
+          
+          &.editor{
+            left: 55px;
+            background: url(~Img/home_link.png)no-repeat 0 0 /200% 300%;
+            &:hover{
+              background-position-x: -28px;
+            }
+          }
+          
+          &.delete{
+            left: 77px;
+            margin-left: 10px;
+            background: url(~Img/home_link.png)no-repeat 0 -56px /200% 300%;
+            &:hover{
+              background-position: -28px -56px;
+            }
+          }
+        }
+      }
+      .verification{
+        &.on{
+          color: #eb414f;
+        }
+      }
+    }
+  }
+  .product_page{
+    float: right;
+    margin-top: 10px;
+    margin-right: 20px;
+    .product_pageIn{
+      float: right;
+    }
+  }
+  .popup {
+    position: absolute!important;
+    top: 50px;
+    left: 219px;
+    width: 320px;
+    background-color: #fff;
+    box-shadow: rgba(31, 43, 61, .4) 0 0 7px 1px;
+    .editor_msg{
+      margin: 20px 0;
+    }
+    dl{
+      margin:5px 0 0 30px;
+      font-size: 14px;
+      height: 50px;
+      line-height: 50px;
+      dt{
+        float: left;
+        color: #575757;
+        width: 80px;
+      }
+      dd{
+  
+        float: left;
+        color: #1c1c1c;
+        &.name,&.tel{
+          input{
+            margin-top: 10px;
+            padding: 0 15px;
+            height: 28px;
+            line-height: 28px;
+            width: 138px;
+            border: 1px solid #D8DAE0;
+          }
+          
+        }
+        &.name{
+          p{
+            margin-top: 10px;
+            padding: 0 15px;
+            height: 28px;
+            line-height: 28px;
+            width: 138px;
+            border: 1px solid #D8DAE0;
+            background-color: #eee;
+          }
+        }
+        
+      }
+    }
+    .eitor_btn{
+      margin: 15px 0 15px 110px;
+      button{
+        cursor: pointer;
+        height: 30px;
+        line-height: 30px;
+        width: 100px;
+        margin: 0 auto;
+        &.eitor_btn_one{
+          color: #fff;
+          background-color: #3E7CD7;
+          text-align: center;
+        }
+      }
+    }
+  }
+}

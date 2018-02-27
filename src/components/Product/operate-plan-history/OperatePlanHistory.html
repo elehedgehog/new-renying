@@ -1,0 +1,15 @@
+<main id="OperatePlanHistory"
+      class="weather-product-window"
+      v-drag=""
+      :style="{width: minify ? '330px' : '1100px', height: minify ? '40px' : '740px'}">
+  <header>
+    <span>需求分析报告-历史文档</span>
+    <aside>
+      
+      <button class="close"
+              @click="changeArticleViewHolder_global({id: 'nsm11', action: 'history'})"></button>
+    </aside>
+  </header>
+
+    <components :is="OperateHistory" :word="word"></components>
+</main>

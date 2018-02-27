@@ -1,0 +1,122 @@
+<main id="GridRainfall"
+      class="weather-product-window"
+      v-drag=''
+      :style="{width: minify ? '330px' : '1220px', height: minify ? '440px' : '770px'}">
+  <header>
+  <span>省台指导预报10天雨量</span>
+  <aside>
+  <button class="close"
+          v-on:click="toggleProductView_global({id: productId, action: false})"></button>
+  </aside>
+  </header>
+  <main class="content-wrapper">
+    <figure v-loading="loading"
+            element-loading-text="正在载入图片">
+      <img :src="imgUrl"
+           height="672px"
+           width="790px"
+           alt="" />
+    </figure>
+    <menu>
+      <section class="date-time-forsee-wrapper">
+        <ul>
+          <li>
+            <aside class="left-label-wrapper">雨量累计</aside>
+            <select v-model="productSelected">
+              <option :value="item.value" v-for="(item,index) of optionData[0].sub">{{ item.name }}</option>
+
+            </select>
+          </li>
+          <li>
+            <aside class="left-label-wrapper">日期</aside>
+            <aside class="right-btn-wrapper">
+              <el-date-picker v-model="ecwmfDate"
+                              type="date"
+                              :clearable="false"
+                              placeholder="选择日期">
+              </el-date-picker>
+            </aside>
+          </li>
+          <li>
+            <aside class="left-label-wrapper">UTC</aside>
+            <aside class="right-btn-wrapper">
+              <div style="float: left; width: 50%">
+                <span class="utc_zero ecwmf_check"
+                      @click="toggleUtcTime(0)"
+                      :class="{'on' : 0 === utcSelected}">
+                  <i></i>
+                  <span>00时</span>
+                </span>
+              </div>
+              <div style="float: left; width: 50%">
+                <span class="utc_twelve ecwmf_check"
+                      @click="toggleUtcTime(12)"
+                      :class="{'on' : 12 === utcSelected}">
+                  <i></i>
+                  <span>12时</span>
+                </span>
+              </div>
+            </aside>
+          </li>
+          <li class="cf country pre_li"
+              v-if="'SingleStation' === scopeSelected">
+            <aside class="left-label-wrapper">城市</aside>
+            <aside class="right-btn-wrapper">
+              <select v-model="citySelected"
+                      class="select_one">
+                <option v-for="(item, key) in country"
+                        :value="key">
+                  {{key}}
+                </option>
+              </select>
+            </aside>
+          </li>
+          <li v-if="'SingleStation' === scopeSelected">
+            <aside class="left-label-wrapper">站点</aside>
+            <aside class="right-btn-wrapper">
+              <select v-model="stationSelected"
+                      class="select_two">
+                <option v-for="(opt, key) in country[citySelected]"
+                        :value="key">
+                  {{opt}}
+                </option>
+              </select>
+            </aside>
+          </li>
+          <li class="cf country pre_li"
+              v-if="'Rainnest' === scopeSelected">
+            <aside class="left-label-wrapper">城市</aside>
+            <aside class="right-btn-wrapper">
+              <select v-model="cityRainSelected"
+                      class="select_one">
+                <option v-for="(item, key) in countryRain"
+                        :value="key">
+                  {{key}}
+                </option>
+              </select>
+            </aside>
+          </li>
+          <li v-if="'Rainnest' === scopeSelected">
+            <aside class="left-label-wrapper">位置</aside>
+            <aside class="right-btn-wrapper">
+              <select v-model="stationRainSelected"
+                      class="select_two">
+                <option v-for="(opt, key) in countryRain[cityRainSelected]"
+                        :value="key">
+                  {{opt}}
+                </option>
+              </select>
+            </aside>
+          </li>
+          <li>
+            <aside class="left-label-wrapper">时效</aside>
+            <aside class="right-btn-wrapper">
+              <select-toggle :optionData="forecastOptionData" :selectionChange="forecastChange"></select-toggle>
+            </aside>
+          </li>
+        </ul>
+      </section>
+    </menu>
+  </main>
+
+</main>

@@ -1,0 +1,82 @@
+<main id="PublishDocument"
+      class="weather-product-window">
+  <header>
+    <span>发布文档</span>
+    <aside>
+      <button class="close"
+              @click="close"
+              @keyup.esc="close"></button>
+    </aside>
+  </header>
+  <main>
+    <ul>
+      <li class="cf"
+          v-show="!preOperateType"
+          v-if="!publishToAll">
+        <span>作业类型</span>
+        <div class="right-btn-wrapper">
+          <div @click="operateType = '#rk'"
+               class="work-type">
+            <em :state="operateType === '#rk' ? 'true' : 'false'"></em>
+            <span>火箭作业</span>
+          </div>
+          <div @click="operateType = '#pl'"
+               class="work-type">
+            <em :state="operateType === '#pl' ? 'true' : 'false'"></em>
+            <span>飞机作业</span>
+          </div>
+        </div>
+      </li>
+      <li class="cf"
+          v-show="operateType === '#rk'"
+          v-if="!publishToAll">
+        <span>选择作业点</span>
+        <section>
+          <div class="search-wrapper">
+            <em></em>
+            <input placeholder="搜索"
+                   v-model="workStationSearchText"
+                   type="text">
+          </div>
+          <menu class="radio-wrapper scrollbar cf">
+            <div v-for="item in workStationDataHolder"
+                 v-if="item.appUser"
+                 @click="workStationSelected = item.id">
+              <em :state="workStationSelected === item.id ? 'true' : 'false'"></em>
+              <span style="width: 200px">{{item.city}} {{item.county}} 指挥员:{{item.appUser.name}}</span>
+            </div>
+          </menu>
+        </section>
+      </li>
+      <li class="cf"
+          v-if="!publishToAll">
+        <span>选择分组</span>
+        <section>
+          <div class="search-wrapper">
+            <em></em>
+            <input placeholder="搜索"
+                   v-model="appGroupSearchText"
+                   type="text">
+          </div>
+          <menu class="checkbox-wrapper scrollbar cf">
+            <div v-for="item in appGroupDataHolder"
+                 @click="selectAppGroup(item.id)">
+              <em :state="appGroupSelected.indexOf(item.id) === -1 ? 'false' : 'true'"></em>
+              <span>{{item.groupname}}</span>
+            </div>
+          </menu>
+        </section>
+      </li>
+      <li class="cf">
+        <span>备注</span>
+        <textarea placeholder="请输入备注信息"
+                  cols="30"
+                  v-model="extraInfoText"
+                  rows="10"></textarea>
+      </li>
+    </ul>
+    <button id="publish"
+            @click="publish">发布</button>
+    <button id="upload">上报国家局</button>
+  </main>
+</main>

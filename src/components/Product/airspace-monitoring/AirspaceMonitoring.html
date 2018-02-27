@@ -1,0 +1,65 @@
+<main id="AirspaceMonitoring"
+      class="weather-product-window"
+      v-drag=''>
+  <header>
+  <span>作业空域申请监测</span>
+  <aside>
+  <button class="close"
+        v-on:click="toggleProductView_global({id: productId, action: false})"></button>
+  </aside>
+  </header>
+  <section class="airspace_con">
+    <div class="airspace_head">
+      <span>是否开启空域申报</span>
+      <i :class="['switch_btn',{'on':switchSelected}]" @click="toggleSwitch"></i>
+      <button class="add_btn" @click="toggleAddAirspace">新建空域</button>
+    </div>
+    <div class="airspace_content">
+        <ul class="head_list">
+          <li>城市名</li>
+          <li>飞行区域</li>
+          <li>电话</li>
+          <li>操作</li>
+        </ul>
+        <ul class="person_list scrollbar">
+          <li  v-for="(item, index) in airspaceList" 
+                :class="['person_list_list',{on: airspaceSelected === item.id}]">
+            <span :title="item.city">{{ item.city }}</span>
+            <span :title="item.area">{{ item.area }}</span>
+            <span :title="item.phone">{{ item.phone }}</span>
+            <span class="icon">
+                <i class="editor" @click="toggleModifyAirspace(item)"></i>
+                <i class="delete" @click="deleteAirspace(item)"></i>
+            </span>
+          </li>
+        </ul>
+    </div>
+  </section>
+
+  <div class="popup"
+      v-show="isPopupOn"
+      v-drag=''>
+    <header>
+    <span>{{ popupType === 'add' ? '添加空域' : '修改空域' }}</span>
+    <aside>
+      <button class="close"
+              @click="popupType = null; isPopupOn = false"></button>
+    </aside>
+    </header>
+    <section class="editor_msg cf">
+    <dl class="cf"
+        v-for="(el, key) in popupInfo"
+        v-if="key !== 'id'">
+      <dt>{{ el.name }}</dt>
+      <dd class="name">
+        <input type="text" v-model="el.value">
+      </dd>
+    </dl>
+    </section>
+    <section class="eitor_btn cf">
+    <button class="eitor_btn_one cf"
+            @click="savePoint">保存</button>
+    </section>
+</div>
+  
+</main>

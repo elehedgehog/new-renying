@@ -1,0 +1,78 @@
+<!-- 实况产品 -->
+<main id="ActualproductPopup"
+      class="weather-product-window"
+      v-drag="">
+  <header>
+    <span>实况产品</span>
+    <aside>
+      <button class="mini"
+              @click="minify = !minify"></button>
+      <button class="close"
+              v-on:click="close()"></button>
+    </aside>
+  </header>
+  <div class="nowcasting nowActual">
+    <div class="nowActual_con">
+      <div class="date">
+        <el-date-picker v-model="date"
+                        type="date"
+                        placeholder="选择日期">
+        </el-date-picker>
+        <span>日</span>
+        <select-toggle :optionData="hourData"
+                       :width="58"
+                       :preSelectedOption="hour"
+                       :style="{transform: `translateY(10px)`}"
+                       :selectionChange="hourChange"></select-toggle>
+        <!-- <select v-model="hour"
+                class="hour-min">
+          <option value="0">00</option>
+          <option v-for="i in 23"
+                  :value="i">{{ i >= 10 ? i : '0' + i }}</option>
+        </select> -->
+        <span>时</span>
+        <select-toggle :optionData="minutesArr"
+                       :width="58"
+                       :preSelectedOption="minute"
+                       :style="{transform: `translateY(10px)`}"
+                       :selectionChange="minuteChange"></select-toggle>
+        <!--         <select v-model="minute"
+                class="hour-min">
+          <option v-for="min of minutesArr"
+                  :value="min">{{ min >= 10 ? min : '0' + min }}</option>
+        </select> -->
+        <span>分</span>
+      </div>
+      <div class="nowActual_con_top"
+           v-show="!minify">
+        <div class="nowActual_con_topleft">
+          <p>站点类型</p>
+        </div>
+        <div class="nowActual_con_topright">
+          <ul class="nowActual_top_products">
+            <li :class="['iconProductO',{'on': stationType.gdAuto.show}]">
+              <i v-on:click="toggleStation('gdAuto')"></i>广东自动站</li>
+            <li :class="['iconProductO',{'on': stationType.gdArea.show}]">
+              <i v-on:click="toggleStation('gdArea')"></i>广东区域站</li>
+            <li :class="['iconProductO',{'on': stationType.gpsSteam.show}]">
+              <i v-on:click="toggleStation('gpsSteam')"></i>GPS水汽站</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cf nowActual_con_bottom"
+           v-show="!minify"
+           v-if="stationType.gdAuto.show || stationType.gpsSteam.show || stationType.gdArea.show">
+        <div class="cf nowActual_con_bottomleft">
+          <p>实况监测</p>
+        </div>
+        <div class="nowActual_con_bottomright">
+          <ul class="nowActual_bottom_products">
+            <li :class="['iconProductF',{'on': realType[key].show}]"
+                v-for="(item, key) in realType" v-if="!stationType['gpsSteam'].show^key=='mean31_pwv'">
+              <i v-on:click="toggleReal(key)"></i>{{item.cname}}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

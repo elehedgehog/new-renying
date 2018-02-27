@@ -1,0 +1,11 @@
+<figure>
+    <li title="清空"  @click="removeMeasure" 
+                      class="clears" 
+                      :style="{width: hidePop ? '0px' : '32px'}">
+                      <i></i>
+    </li>
+    <li title="测距" @click="measure" 
+                     :class="['measure',{'on': isMeasureOn}]" 
+                     :style="{width: hidePop ? '0px' : '32px'}"><i></i>
+    </li>
+</figure>

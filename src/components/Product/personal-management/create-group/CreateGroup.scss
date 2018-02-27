@@ -1,0 +1,151 @@
+#CreateGroup{
+  position: absolute!important;
+  top: 200px;
+  left: 432.5px;
+  width:400px;
+  height: 424px;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px #dde;
+  header{
+    height: 60px;
+    line-height: 60px;
+    font-size: 16px;
+    color: #1c1c1c;
+    background-color: #fff;
+    .close{
+      background-color: #fff;
+    }
+  }
+  .group_list{
+    width: 340px;
+    height: 240px;
+    border: 1px solid #DDDEE4;
+    margin-left: 30px;
+    overflow: auto;
+    ul.group_list_ul {
+      padding:0 0 50px 0;
+      li{
+        cursor: pointer;
+        position: relative;
+        height: 40px;
+        line-height: 40px;
+        font-size: 14px;
+        span.rename_btn{
+          float:right;
+          margin-right: 30px;
+          color:#3E7CD7!important;
+          font-size: 14px;
+          cursor: pointer;
+        }
+        &:hover{
+          background-color: #F0F1F4;
+          span{
+            color: #000;
+          }
+        }
+        i.group_check{
+          position: absolute;
+          top: 12px;
+          right: 90px;
+          display: inline-block;
+          width: 20px;
+          height: 20px;
+          background: url(~Img/home_choice.png) no-repeat;
+        }
+        span{
+          margin-left: 30px;
+          display: inline-block;
+          height: 30px;
+          color: #575757;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+          max-width: 190px;
+        }
+        input{
+          margin-top: 5px;
+          margin-left: 15px;
+          padding: 0 15px;
+          height: 28px;
+          line-height: 28px;
+          border: 1px solid #D8DAE0;
+        }
+        em{
+          position: absolute;
+          right: 30px;
+          top: 11px;
+          display: inline-block;
+          width: 18px;
+          height: 18px;
+          background: url(~Img/home_Popup.png) no-repeat 0 0/200% 100%;
+          font-style:normal;
+          cursor: pointer;
+          &.on{
+            background-position-x: -18px;
+          }
+        }
+      &.on{
+        span{
+          color: #000;
+        }
+
+      }
+      ul.rename_delete{
+        position: absolute;
+        z-index: 1020;
+        top: 18px;
+        right: 0px;
+        width: 60px;
+        text-align: center;
+        background-color: #fff;
+        box-shadow: 0px 0px 10px #dde;
+        li.rename_delete_li{
+          height: 28px;
+          line-height: 28px;
+          font-size: 13px;
+          cursor: pointer;
+        }
+      }
+      }
+    }
+
+  }
+  .group_name{
+    margin: 20px 0;
+    span.createGroup{
+      margin-left: 32px;
+      display: inline-block;
+      margin-right: 6px;
+      color: #1c1c1c;
+      font-size: 14px;
+    }
+    span.create{
+      color:#3E7CD7;
+      font-size: 14px;
+      margin-left: 6px;
+      cursor: pointer;
+    }
+    input{
+      height: 30px;
+      line-height: 30px;
+      width: 180px;
+      border: 1px solid #DDDEE4;
+      padding: 0 10px;
+    }
+  }
+
+  button.confirm{
+    cursor: pointer;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #fff;
+    background-color: #3E7CD7;
+    margin-left: 50%;
+    padding: 0 15px;
+    transform: translateX(-50%);
+    display: block;
+    text-align: center;
+  }
+}

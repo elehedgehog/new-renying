@@ -1,0 +1,128 @@
+<main id="NewTrajectory"
+      element-loading-text="正在加载航迹数据"
+      v-loading="loading">
+  <div class="nowActual_con_topright">
+    <div class="date">
+      <el-date-picker v-model="radarDate"
+                      type="date"
+                      :clearable="false"
+                      placeholder="选择日期">
+      </el-date-picker>
+      <span>日</span>
+      <select-toggle :optionData="hourData"
+                     :selectionChange="radarHourSelectedChange"
+                     class="select-toggle"
+                     :preSelectedOption="radarHour"
+                     :width="55"></select-toggle>
+      <span>时</span>
+      <select-toggle :optionData="minuteData"
+                     :selectionChange="radarMinuteSelectedChange"
+                     class="select-toggle"
+                     :preSelectedOption="radarMinute"
+                     :width="55"></select-toggle>
+      <span>分</span>
+    </div>
+    <ul class="radar_products nowActual_top_products">
+      <li :class="['iconProductO',{'on': key === radarProductSelected}]"
+          v-for="(item, key) in radarProduct">
+        <i @click="toggleRadarProduct(key)"></i>{{ item.text }}</li>
+    </ul>
+  </div>
+
+  <section class="new_msg">
+    <!-- <dl class="cf">
+      <dt>作业区域</dt>
+      <dd class="area">
+        <ul class="area_in scrollbar">
+          <li v-for="i in 9" :class="{on: areaSelected.indexOf(i+5000) !== -1}" v-on:click="toggleAreaSelected(i+5000)">{{i+5000}}</li>
+        </ul>
+      </dd>
+    </dl> -->
+    <!-- <dl class="cf">
+      <dt>最大回波</dt>
+      <dd class="big">
+        <input v-model="maxDbz" type="number" />
+      </dd>
+    </dl>
+    <dl class="cf">
+      <dt>最小回波</dt>
+      <dd class="mini">
+        <input v-model="minDbz" type="number" />
+      </dd>
+    </dl> -->
+    <dl class="cf">
+      <dt>作业机场</dt>
+      <dd class="worker">
+        <select v-model="airport">
+          <option v-for="(item, index) in airportData"
+                  :value="item.chinesename">{{item.chinesename}}</option>
+        </select>
+      </dd>
+    </dl>
+    <dl class="cf coordinate ">
+      <dt class="cf">设置坐标
+        <span class="unit_dfm">
+          <i :class="{'on': unitSelected === 'dfm'}"
+             @click="toggleUnit('dfm')"></i>度分秒</span>
+        <span class="unit_du">
+          <i :class="{'on': unitSelected === 'du'}"
+             @click="toggleUnit('du')"></i>度</span>
+      </dt>
+      <dd class="cf">
+        <ul class="coordinate_head cf">
+          <li>序号</li>
+          <li>经度</li>
+          <li>纬度</li>
+          <li>操作</li>
+        </ul>
+        <ul class="coordinate_con cf scrollbar">
+          <li :class="{'on': el.isPopupOn}"
+              v-for="(el, index) in points">
+            <span>{{ index + 1 }}</span>
+            <span>{{ unitSelected === 'dfm' ? changeUnit(el.lon) : el.lon }}</span>
+            <span>{{ unitSelected === 'dfm' ? changeUnit(el.lat) :el.lat }}</span>
+            <span class="editor_icon">
+              <i @click="openModifyPopup(el)"></i>
+              <ul class="move_ul"
+                  v-show="el.isPopupOn">
+                <li @click="shiftUp(el, index)">上移</li>
+                <li @click="shiftDown(el, index)">下移</li>
+                <li @click="deleteCoordinate(index)">删除</li>
+              </ul>
+            </span>
+          </li>
+          <li class="coordinate_add">
+            <span>{{ points.length + 1 }}</span>
+            <span>
+              <input type="text"
+                     v-model="lonInput">
+            </span>
+            <span>
+              <input type="text"
+                     v-model="latInput">
+            </span>
+            <span>
+              <button @click="addCoordinate">添加</button>
+            </span>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+    <dl class="cf">
+      <dt>航迹命名</dt>
+      <dd class="name">
+        <input v-model="name"
+               type="text" />
+      </dd>
+    </dl>
+    <!-- <button v-on:click="autoDesign"
+            class="design_btn_in design_btn_des">自动设计</button> -->
+    <button @click="savePlane"
+            class="design_btn_in">保存航迹</button>
+    <!-- <button class="design_btn_excel">导入Excel</button> -->
+
+  </section>
+  <!-- <section class="design_btn" v-show="convertedData.length > 0">
+    <button @click="savePlane" class="design_btn_in">保存航迹</button>
+  </section> -->
+</main>

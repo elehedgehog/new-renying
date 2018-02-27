@@ -1,0 +1,86 @@
+<main id="AccountManagement" 
+      v-drag="" 
+      class="weather-product-window">
+    <header>
+      <span>市局账号管理</span>
+      <aside>
+        <button class="close" @click="closeFn"></button>
+      </aside>
+  </header>
+  <section class="account_management_con">
+    <div class="account_management_top">
+      <p class="groups_top_search">
+        <span>搜索</span>
+        <i></i>
+        <input type="text"
+               v-model="keyString">
+      </p>
+      <p class="groups_top_add"
+         @click="toggleAddAccount">新增账号</p>
+    </div>
+    <div class="account_management_bottom">
+      <ul class="head_list">
+        <li>用户名</li>
+        <li>密码</li>
+        <li>所属</li>
+        <li>操作</li>
+      </ul>
+      <ul class="person_list scrollbar">
+        <li  v-for="(item, index) in currentPageList" 
+              :class="['person_list_list',{on: accountSelected === item.id}]">
+          <span :title="item.username">{{ item.username }}</span>
+          <span :title="item.password">{{ item.password }}</span>
+          <span :title="item.cityname">{{ item.cityname }}</span>
+          <span class="icon">
+              <i class="editor" @click="toggleModifyAirspace(item)"></i>
+              <i class="delete" @click="deleteAirspace(item)"></i>
+          </span>
+        </li>
+      </ul>
+  </div>
+  </section>
+  <section class="product_page cf">
+    <div class="product_pageIn">
+      <el-pagination small
+                     :page-size="pageSize"
+                     layout="prev, pager, next"
+                     @current-change="currentChange"
+                     :total="accountList.length">
+      </el-pagination>
+    </div>
+  </section>
+  <div class="popup"
+      v-show="isPopupOn"
+      v-drag=''>
+    <header>
+    <span>{{ popupType === 'add' ? '添加账号' : '修改账号' }}</span>
+    <aside>
+      <button class="close"
+              @click="popupType = null; isPopupOn = false"></button>
+    </aside>
+    </header>
+    <section class="editor_msg cf">
+    <dl class="cf"
+        v-for="(el, key) in popupInfo"
+        v-if="key !== 'id'">
+      <dt>{{ el.name }}</dt>
+      <dd class="name" v-if="popupType === 'add'">
+        <select v-model="el.value" v-if="key==='cityname'">
+          <option :value="item" v-for="item of allCities">{{ item }}</option>
+        </select>
+        <input v-else type="text" v-model="el.value">
+      </dd>
+      <dd class="name" v-if="popupType === 'modify'">
+        <p v-if="key === 'username'">{{ el.value }}</p>
+        <p v-else-if="key === 'cityname'">{{ el.value }}</p>
+        <input v-else type="text" v-model="el.value">
+      </dd>
+    </dl>
+    </section>
+    <section class="eitor_btn cf">
+    <button class="eitor_btn_one cf"
+            @click="savePoint">保存</button>
+    </section>
+  </div>
+      
+</main>

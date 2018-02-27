@@ -1,0 +1,47 @@
+<main id="ReviseProduct" 
+      v-drag='' 
+      class="weather-product-window">
+  <header>
+    <span>{{analyzeOptSelected.name}}-修改</span>
+    <aside>
+      <button class="close" @click="closeRevise"></button>
+    </aside>
+  </header>
+  <section>
+    <aside class="revise_left">
+      <img :src="'subMenus' in analyzeOptSelected ? secondMenuImageUrl[analyzeOptSelected.id] : thridMenuImageUrl[analyzeOptSelected.id]" 
+           v-if="analyzeOptSelected.default">
+      <img src="static/img/product/66.png" 
+           v-if="!analyzeOptSelected.default">
+    </aside>
+    <article class="revise_right">
+      <dl class="cf revise_name">
+        <dt>名称</dt>
+        <dd>
+          <input type="text" 
+                 v-if="isInputShow" 
+                 v-model="name">
+          <span v-if="!isInputShow" 
+                @click="isInputShow = !isInputShow">{{name}}</span>
+        </dd>
+        <i @click="isInputShow = !isInputShow"
+           :style="{backgroundPositionX: !isInputShow ? '0' : '-30px'}"></i>
+      </dl>
+      <dl class="cf revise_url">
+        <dt>外部链接</dt>
+        <dd>
+          <input type="text" 
+                 v-model="url" 
+                 v-if="isUrlShow">
+          <span v-if="!isUrlShow" 
+                @click="isUrlShow = !isUrlShow">{{url}}</span>
+        </dd>
+        <i @click="isUrlShow = !isUrlShow"
+            :style="{backgroundPositionX: !isUrlShow ? '0' : '-30px'}"></i>
+      </dl>
+    </article>
+    <section class="cf revise_button">
+        <button @click="modifyMenu">保存</button>
+    </section>
+  </section>
+</main>

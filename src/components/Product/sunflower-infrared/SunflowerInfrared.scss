@@ -1,0 +1,219 @@
+#SunflowerInfrared {
+  z-index: 1001;
+  position: absolute;
+  top: 130px;
+  left: 330px;
+  .popup_con_right{
+    ul li{
+      &:nth-child(2){
+        position: relative;
+        
+      }
+      dl{
+        font-size: 14px;
+        dt{
+          float: left;
+          width: 80px;
+          line-height: 30px;
+          color: #575757;
+        }
+        dd{
+          float: left;
+          color: #1c1c1c;
+          select.infrared_img,select.time_selected{
+            position: relative;
+            width: 140px;
+            height: 30px;
+            padding-left: 15px;
+            line-height: 30px;
+            background-color: #F0F1F4;
+            text-align: center;
+            cursor: pointer;
+            outline: none;
+            border: 0;
+            i{
+              position: absolute;
+              right: 20px;
+              top: 12px;
+              display: inline-block;
+              width: 8px;
+              height: 6px;
+              background: url('/static/img/home_dropdown.png')no-repeat 0 0/ 200% 100%;
+              }
+            &.on{
+              i{
+                background: url('/static/img/home_dropdown.png')no-repeat -8px 0/ 200% 100%;
+              }
+            }
+         
+        }
+        select.time_selected{
+          padding-left: 60px;
+        }
+        .time_unit{
+          position: absolute;
+          right: 13px;
+          top: 175px;
+        }
+      }
+     }
+    
+    } 
+    
+    .el-date-editor.el-input {
+      font-size: 12px;
+      margin-top: 20px;
+      width: 295px !important;
+    }
+    .progressBar_header{
+      height: 50px;
+      width: 90px;
+      background-color: #F0F1F4;
+      border-bottom: 1px solid #DADCE2;
+      font-size: 12px;
+      overflow: hidden;
+      p{
+        text-align: center;
+      }
+    }
+    .time_progressBar_left{
+      float: left;
+      height: 510px;
+      width: 90px;
+      border: 1px solid #DADCE2;
+      margin: 30px 16px 0 50px;
+      
+      .progressBar_cons{
+        height: 500px;
+        .progressBar_pro{
+          position: relative;
+          height: 395px;
+          .list-date {
+            position: absolute;
+            left: 10px;
+            margin-top: -8px;
+          }
+          .list-date-six { top: 0; }
+          .list-date-five { top: 76.63px; }
+          .list-date-four { top: 153.26px; }
+          .list-date-three { top: 229.89px; }
+          .list-date-two { top: 306.52px; }
+          .list-date-one { top: 383.15px }
+        }
+        i{
+          display: block;
+          width: 21px;
+          height: 21px;
+          margin-left: 55px;
+          cursor: pointer;
+          &.back_icon{
+            margin-top: 5px;
+            background: url(~Img/home_next.png)no-repeat 0 0/1200% 100%
+          }
+          &.back_icon:hover{
+            background: url(~Img/home_next.png)no-repeat -21px 0/1200% 100%
+          }
+          &.next_icon{
+            background: url(~Img/home_next.png)no-repeat -84px 0/1200% 100%
+          }
+          &.next_icon:hover{
+            background: url(~Img/home_next.png)no-repeat -105px 0/1200% 100%
+          }
+        }
+      }
+    }
+    .time_progressBar_right{
+      float: left;
+      margin-top: 30px;
+      height: 510px;
+      width: 90px;
+      border: 1px solid #DADCE2;
+      
+      .progressBar_header{
+        height: 50px;
+        width: 90px;
+        background-color: #F0F1F4;
+        border-bottom: 1px solid #DADCE2;
+        font-size: 12px;
+        overflow: hidden;
+        
+        p.progressBar_date{
+          margin-top: 6px;
+        }
+        p.progressBar_date,.progressBar_number{
+          font-size: 12px;
+          line-height: 10px;
+        }
+        
+      }
+      .progressBar_con{
+        margin: 5px 0 0 5px;
+        i{
+          display: inline-block;
+          width: 21px;
+          height: 21px;
+          cursor: pointer;
+          margin-right: 4px;
+          &.back{
+            background: url(~Img/home_next.png)no-repeat -126px 0/1200% 100%
+          }
+          &.back:hover{
+            background: url(~Img/home_next.png)no-repeat -147px 0/1200% 100%
+          }
+          &.suspend{
+            background: url(~Img/home_next.png)no-repeat -42px 0/1200% 100%
+          }
+          &.suspend:hover{
+            background: url(~Img/home_next.png)no-repeat -63px 0/1200% 100%
+          }
+          &.suspend.on{
+            background: url(~Img/home_next.png)no-repeat -210px 0/1200% 100%
+          }
+          &.suspend.on:hover{
+            background: url(~Img/home_next.png)no-repeat -231px 0/1200% 100%
+          }
+          &.next{
+            background: url(~Img/home_next.png)no-repeat -168px 0/1200% 100%
+          }
+          &.next:hover{
+            background: url(~Img/home_next.png)no-repeat -189px 0/1200% 100%
+          }
+        }
+        
+      }
+      .progress_bar{
+        width: 90px;
+        height: 420px;
+        overflow: auto;
+        ul.progress_bar_ul{
+          margin: 5px 0 0 39px;
+          padding-bottom: 10px;
+          li{
+            display: block;
+            width: 12px;
+            height: 12px;
+            margin-bottom: 2px;
+            background-color: #DEE0E5;
+            cursor: pointer;
+            &.on{
+              background-color: #20A0FF;
+            }
+          }
+        }
+      }
+      
+    }
+    
+  }
+  .popup_con_left{
+    img{
+      width: 900px;
+      height: 600px;
+      margin-top: 46px;
+    }
+  }
+}
+.el-slider.is-vertical {
+  height: 97%;
+  margin: 10px 48px;
+}

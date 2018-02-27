@@ -1,0 +1,200 @@
+ //侧栏弹框公共样式
+.popup_content {
+  position: absolute;
+  width: 1265px;
+  height: 782px;
+  z-index: 1001;
+  top: 130px;
+  left: 330px;
+  box-shadow: 0px 0px 10px #eee;
+  background-color: #fff;
+  ul{
+    list-style: none;
+    li{
+      a{ text-decoration: none; }
+    }
+  }
+  
+  
+}
+.popup_title{
+    height: 40px;
+    line-height: 40px;
+    font-size: 16px;
+    background-color: #F0F4FB;
+  }
+
+  .popup_titleIn{
+    margin-left: 30px;
+    color: #000;
+  }
+  
+  i.close_btn{
+      float: right; 
+      display: inline-block;
+      height: 16px;
+      width: 15px;
+      margin: 12px 30px 0 0;
+      cursor: pointer;
+      background: url(~Img/home_close.png)no-repeat -14px 0/ 300% 200%;
+      &:hover{ background: url(~Img/home_close.png)no-repeat -14px -16px/ 300% 200%; }
+  }
+  i.hide_btn{
+      float: right;
+      display: inline-block;
+      margin:12px 20px 0 0;
+      height: 16px;
+      width: 15px;
+      cursor: pointer;
+      background: url(~Img/home_close.png)no-repeat 0 0/ 300% 200%;
+      &:hover{ background: url(~Img/home_close.png)no-repeat 0 -16px/ 300% 200%; }
+  }
+  .popup_con{
+    margin-top: 20px;
+  }
+  .popup_con_left{
+    float: left;
+    margin-left: 30px;
+    width: 900px;
+    height: 695px;
+    border: 1px solid #D6D8DE;
+    margin-bottom: 25px
+  }
+
+  .popup_con_right{
+    float: left;
+    width: 280px;
+    margin-left: 20px;
+    ul{
+      li{
+        margin-bottom: 25px;
+      }
+    }
+  }
+
+  
+   //需求报告分析文档框
+   .popup_aricle{ 
+    position: relative;
+    .popup_aricleIn{
+      width: 80%;
+      height: 600px;
+      border: 1px solid #E4E5E9;
+    }
+    .popup_pageNumber{
+      position: absolute;
+      left: 50%;
+      margin-top: 10px;
+      transform: translateX(-50%);
+      font-size: 12px;
+      color: #989898;
+    }
+  }
+  
+
+
+header{
+  cursor: move;
+}
+// .nowActual_title{
+//   margin-left: 30px;
+//   color: #000;
+// }
+.nowActual_con_topleft{
+  width: 13px;
+  float: left;
+  word-wrap:break-word;
+  word-break:normal;
+  background-color: #f8cb00;
+  color: #fff;
+}
+ul.nowActual_top_products{
+  li.iconProductO{
+    float: left;
+    width: 49%;
+    i{
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      margin: 0 10px -4px 0;
+      background: url(~Img/home_chb.png)no-repeat 0 0/300% 100%;
+      cursor: pointer;
+    }
+  &.on{
+    i{ background: url(~Img/home_chb.png)no-repeat -36px 0/300% 100%; }
+  }
+  }
+}
+.nowActual_con_bottomleft{
+  position: relative;
+  float: left;
+  width: 30px;
+  background-color: #8061ef;
+  padding-top: 30px;
+  color: #fff;
+  span:nth-child(1){
+    position: absolute;
+    top: 30px;
+    left: -4px;
+    display: inline-block;
+    writing-mode: vertical-lr;
+    -ms-writing-mode: tb-rl;
+    margin-right: 7px;
+  }
+  span:nth-child(2){
+    position: absolute;
+    top: 90px;
+    left: -5px;
+    writing-mode: vertical-rl;
+    -ms-writing-mode: lr-tb;
+  }
+
+}
+.nowActual_con_topright{
+  width: 330px;
+  float: left;
+  margin-left: 20px;
+  font-size: 14px;
+  color: #575757;
+  
+}
+.nowActual_con_bottom{
+  width: 380px;
+  margin: 0px auto;
+  border: 1px solid #DDDEE4;
+  
+  .nowActual_con_bottomright{
+    float: left;
+    width: 330px;
+    margin-left: 20px;
+    font-size: 14px;
+    color: #575757;
+    ul.nowActual_bottom_products{
+      li{
+        float: left;
+        width: 49%;
+        i{
+          display: inline-block;
+          margin: 0 10px -4px 0;
+          cursor: pointer;
+        }
+     
+      }
+    }
+  }
+}
+.nowActual_con_top{
+  width: 380px;
+  margin: 20px auto 10px;
+  border: 1px solid #DDDEE4;
+}
+.nowActual_con{
+  background-color: #fff;
+  
+}
+.nowActual{
+  height: 40px;
+  line-height: 40px;
+  font-size: 16px;
+  background-color: #F0F4FB;
+}

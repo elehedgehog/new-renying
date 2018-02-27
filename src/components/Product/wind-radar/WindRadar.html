@@ -1,0 +1,98 @@
+<main id="WindRadar"
+      class="weather-product-window"
+      v-drag=""
+      :style="{width: !minify ? '1265px' : '502px', height: !minify ? '761px' : '110px'}">
+  <header>
+    <span>风廓线雷达</span>
+    <aside>
+      <button :style="{backgroundPositionX: minify ? '-44px' : '0'}"
+              v-on:click="minify = !minify"
+              class="mini"></button>
+      <button class="close"
+              v-on:click="toggleProductView_global({id: productId, action: false})"></button>
+    </aside>
+  </header>
+  <main class="minify-wrapper"
+        v-if="minify">
+    <div>
+      <span>日期</span>
+      <el-date-picker v-model="datetime"
+                      format="yyyy-MM-dd HH:mm"
+                      type="datetime"></el-date-picker>
+    </div>
+    <aside>
+      <span>高度</span>
+      <select name=""
+              v-model="heightSelected"
+              id="">
+        <option v-for="item in heightData"
+                :key="item"
+                :value="item">{{item + '米'}}</option>
+      </select>
+    </aside>
+  </main>
+  <main class="cf content-wrapper"
+        v-else="">
+    <figure>
+      <!-- <img src="http://10.148.8.228/files_home/win/yww/observ/fkx/59751/OOBS/fy/201709061000.png"
+           height="100%"
+           width="100%"
+           alt="" /> -->
+      <canvas height="695px"
+              id="WindRadarCanvas"
+              width="900px"></canvas>
+    </figure>
+    <menu>
+      <section class="date-time-forsee-wrapper">
+        <ul>
+          <li>
+            <aside class="left-label-wrapper">起报时间</aside>
+            <aside class="right-btn-wrapper">
+              <div class="datetime-wrapper">
+                <el-date-picker v-model="datetime"
+                                format="yyyy-MM-dd HH:mm"
+                                type="datetime"></el-date-picker>
+              </div>
+            </aside>
+          </li>
+          <li style="height: 90px;">
+            <aside class="left-label-wrapper">雷达类型</aside>
+            <aside class="right-btn-wrapper radio-wrapper">
+              <div v-on:click="radarType = 'ROBS'">
+                <em :state="radarType === 'ROBS' ? 'true' : 'false'"></em>
+                <a>ROBS</a>
+              </div>
+              <div v-on:click="radarType = 'HOBS'">
+                <em :state="radarType === 'HOBS' ? 'true' : 'false'"></em>
+                <a>HOBS</a>
+              </div>
+              <div v-on:click="radarType = 'OOBS'" >
+                <em :state="radarType === 'OOBS' ? 'true' : 'false'"></em>
+                <a>OOBS</a>
+              </div>
+            </aside>
+          </li>
+          <li >
+            <aside class="left-label-wrapper">选择雷达</aside>
+            <aside class="right-btn-wrapper">
+              <select placeholder="请选择雷达"
+                      id="forsee-time"
+                      v-model="radarSelected">
+                <option v-for="item in radar"
+                        :value="item.obtid">{{item.addr}}</option>
+              </select>
+            </aside>
+          </li>
+          <li>
+            <aside class="left-label-wrapper"></aside>
+            <aside class="right-btn-wrapper">
+              <button v-on:click.prevent="getRadarData"
+                      v-on:keyup.enter="getRadarData"
+                      class="control-btn">绘制</button>
+            </aside>
+          </li>
+        </ul>
+      </section>
+    </menu>
+  </main>
+</main>

@@ -1,0 +1,79 @@
+
+
+/*-------------------------*/
+
+
+
+#selecte{
+    position: absolute;
+    z-index: 1;
+    right: .5rem;
+    top: .5rem;
+    cursor: pointer;
+}
+
+.selecte-icon{
+    height: 3.2rem;
+    width: auto;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+#layerChangeWraper-t{
+    position: absolute;
+    top: 3.8rem;
+    right: .5rem;/* 调整靠右边距离 */
+}
+
+.layer-change-t{
+    float: left;
+    border-radius: 5px;
+    overflow: hidden;
+    height: 0px;
+    margin: 0;
+    padding: 0;
+    transition:all .5s ease-in-out;
+    -webkit-transition:all .5s ease-in-out;
+}
+
+
+.layer-change-t li{
+    color: white;
+    width: 3.2rem;
+    height: 3.2rem;
+    border-radius: 5px;
+    cursor: pointer;/*鼠标移动到此处的样式*/
+    margin-top: .3rem;/* li间的间隙 */
+    list-style-type: none;/*去掉前面的点*/
+}
+
+.layer-change-t li img{
+    height: 3.2rem;
+    width: auto;
+    -webkit-user-select: none;
+    user-select: none;
+}
+/*提示框的样式*/
+.hint-content{
+    display: none;
+    position: absolute;
+    /*opacity: 0;*/
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: 2.133333rem;
+    height: 0.96rem;
+    font-size: 0.266667rem;
+    line-height: 0.96rem;
+    border-radius: 3px;
+    text-align: center;
+    box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.2);
+    color: #161616;
+    background-color: rgba(255, 255, 255, 0.8);
+    transition:opacity 0.5s linear 2s;
+    -webkit-transition:opacity 0.5s linear 2s;
+    -moz-transition:opacity 0.5s linear 2s;
+    -o-transition:opacity 0.5s linear 2s;
+}

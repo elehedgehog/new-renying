@@ -1,0 +1,29 @@
+<main id="GlobalMessage" ><!-- :style="{transform: isSearchOperateStationWindowOn ? `translateY(-50px)` : ''}"-->
+  <section class="current-message-wrapper">
+    <div class="message-wrapper">
+      <span :class="[socketCurrentMessage_global.color]"
+            class="message-type">{{socketCurrentMessage_global.type ? `[ ${socketCurrentMessage_global.type} ]` : ''}}</span>
+      <span class="message-target">{{socketCurrentMessage_global.target}}</span>
+      <span :title="socketCurrentMessage_global.content"
+            class="message-content">{{socketCurrentMessage_global.content}}</span>
+      <span class="message-datetime">{{socketCurrentMessage_global.datetime}}</span>
+    </div>
+    <a class="toggleHistoryWrapper"
+       @click="isShowHistoryMessage = !isShowHistoryMessage">
+      <em :style="{transform: `rotateZ(${isShowHistoryMessage ? 0 : 180}deg)`}"></em>
+    </a>
+  </section>
+
+  <section class="scrollbar history-message-wrapper"
+           v-show="isShowHistoryMessage">
+    <div class="message-wrapper"
+         v-for="item in socketMessage">
+      <span :class="[socketCurrentMessage_global.color]"
+            class="message-type">{{item.type ? `[ ${item.type} ]` : ''}}</span>
+      <span class="message-target">{{item.target}}</span>
+      <span :title="item.content"
+            class="message-content">{{item.content}}</span>
+      <span class="message-datetime">{{item.datetime}}</span>
+    </div>
+  </section>
+</main>

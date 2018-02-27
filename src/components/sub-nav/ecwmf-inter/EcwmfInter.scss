@@ -1,0 +1,79 @@
+#EcwmfInter {
+  .popup_con_right{
+    ul li {
+      &:nth-child(3){
+        height: 90px;
+      }
+      dd{
+        width: 170px;
+        height: 30px;
+        span{
+          display: inline-block;
+          font-size: 14px;
+          color: #1c1c1c;
+          &:nth-child(1){
+            margin-right: 20px;
+          }
+         
+          &.ecwmf_check{
+
+            i{
+               display: inline-block;
+               margin-top: 5px;
+               width: 20px;
+               height: 20px;
+               background: url('/static/img/home_radio.png')no-repeat 0 0/ 200% 100%;
+               color: #282828;
+               margin-right: 10px;
+               
+            }
+            span{
+                  transform: translateY(-4px);
+            }
+            &.on{
+              i{
+                background: url('/static/img/home_radio.png')no-repeat -20px 0/ 200% 100%;
+               }
+              span{
+                color: #1c1c1c;
+               font-weight: bold;
+              }
+            }
+          }
+          
+
+        }
+      .forecase_product,.time_effect{
+        position: relative;
+        width: 168px;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        background-color: #F0F1F4;
+        span{
+          font-size: 14px;
+          color: #1c1c1c;
+        }
+        i{
+          position: absolute;
+          right: 20px;
+          top: 12px;
+          display: inline-block;
+          width: 8px;
+          height: 6px;
+          background: url('/static/img/home_dropdown.png')no-repeat 0 0/ 200% 100%;
+          }
+        &.on{
+          span{font-weight: bold;}
+          i{
+            background: url('/static/img/home_dropdown.png')no-repeat -8px 0/ 200% 100%;
+          }
+          
+        }
+        
+      }
+      
+      }
+    }
+  }
+}

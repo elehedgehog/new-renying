@@ -1,0 +1,120 @@
+<main id="EditorMessage"
+      class="weather-product-window"
+      v-drag=''>
+
+  <header>
+    <span>编辑信息</span>
+    <aside>
+      <button class="close" @click="closeFn"></button>
+    </aside>
+  </header>
+
+  <section class="editor_msg scrollbar">
+    <figure>
+      <img id="imageShow" :src="'http://10.148.16.217:11160/renyin5/appuser/'+userInfo.imageUrl" @click="selectImage" />
+      <input type="file" id="image" @change="imageChange" v-show="false"/>
+    </figure>
+    <dl class="cf">
+      <dt>姓名</dt>
+      <dd class="name">
+        <input v-model="userInfo.name" placeholder="无">
+      </dd>
+    </dl>
+    <dl class="cf">
+      <dt>性别</dt>
+      <dd class="name">
+        <input v-model="userInfo.sex" placeholder="无">
+      </dd>
+    </dl>
+    <dl class="cf">
+      <dt>生日</dt>
+      <dd class="name">
+        <input v-model="userInfo.birthday" placeholder="无">
+      </dd>
+    </dl>
+    <dl class="cf">
+      <dt>手机号</dt>
+      <dd class="name">
+        <input v-model="userInfo.phone" placeholder="无">
+      </dd>
+    </dl>
+    <dl class="cf">
+      <dt>专业</dt>
+      <dd class="name">
+        <input v-model="userInfo.major" placeholder="无">
+      </dd>
+    </dl>
+    <dl class="cf">
+      <dt>受教育水平</dt>
+      <dd class="name">
+        <input v-model="userInfo.education" placeholder="无">
+      </dd>
+    </dl>
+    <dl class="cf">
+      <dt>政治面貌</dt>
+      <dd class="name">
+        <input v-model="userInfo.political" placeholder="无">
+      </dd>
+    </dl>
+    <dl class="cf">
+      <dt>部门</dt>
+      <dd class="name">
+        <input v-model="userInfo.department" placeholder="无">
+      </dd>
+    </dl>
+    <dl class="cf">
+      <dt>职务</dt>
+      <dd class="name">
+        <input v-model="userInfo.position" placeholder="无">
+      </dd>
+    </dl>
+    <dl class="cf">
+      <dt>岗位</dt>
+      <dd class="name">
+        <input v-model="userInfo.post" placeholder="无">
+      </dd>
+    </dl>
+    <dl class="cf">
+      <dt>身体状况</dt>
+      <dd class="name">
+        <input v-model="userInfo.physicalstatus" placeholder="无">
+      </dd>
+    </dl>
+    <dl class="cf">
+      <dt>年审情况</dt>
+      <dd class="name">
+        <input v-model="userInfo.assessmentInfo" placeholder="无">
+      </dd>
+    </dl>
+    <dl class="cf">
+      <dt>考核情况</dt>
+      <dd class="name">
+        <input v-model="userInfo.trainingInfo" placeholder="无" disabled>
+      </dd>
+    </dl>
+    <dl class="cf">
+      <dt>工作证</dt>
+      <dd class="name">
+        <input v-model="userInfo.workCredential" placeholder="无" :disabled="!userInfo.isWorker">
+      </dd>
+    </dl>
+    <dl class="cf">
+      <dt>指挥证</dt>
+      <dd class="name">
+        <input v-model="userInfo.operateCredential" placeholder="无" :disabled="!userInfo.isOperator">
+      </dd>
+    </dl>
+    <!--<dl class="cf">-->
+      <!--<dt>所属作业点</dt>-->
+      <!--<dd class="name">-->
+        <!--<input v-model="userInfo.osid" placeholder="无">-->
+      <!--</dd>-->
+    <!--</dl>-->
+  </section>
+
+  <section class="editor_btn">
+    <button class="editor_btn_one" @click="save">保存</button>
+    <button class="editor_btn_two" @click="reset">还原</button>
+  </section>
+
+</main>

@@ -1,0 +1,24 @@
+<main id="DisasterManageImg">
+    <section class="img_content">
+       <img :src="imgSrc" alt=""  class="img_left">
+       <section class="img_right">
+         <p class="title">
+           <span>图片信息</span>
+           <button class="close" @click="closeDisasterMsg"></button>
+         </p>
+         <dl class="cf" v-for="(item, key) in imgMsg">
+           <dt>{{ item }}</dt>
+           <dd>{{ key==='uploadTime' ? moment(disasterMsg_global[key]).format('YYYY年MM月DD日') : disasterMsg_global[key] }}</dd>
+
+         </dl>
+         <ul>
+           <li v-for="el of 200"  
+               v-if="disasterMsg_global['image' + el]"
+               @click="changeImg(url + disasterMsg_global['image' + el])"
+              >
+             <img :src="url + disasterMsg_global['image' + el]" alt="">
+            </li>
+         </ul>
+      </section>
+    </section>
+</main>

@@ -1,0 +1,206 @@
+<main id="JobManagement"
+      class="weather-product-window"
+      v-drag=''>
+  <header>
+    <span>作业点管理</span>
+    <aside>
+      <!-- <button class="mini"
+            v-on:click="minify = !minify"
+            :style="{backgroundPositionX: minify ? '-44px' : '0'}"></button> -->
+      <button class="close"
+              v-on:click="toggleProductView_global({id: productId, action: false})"></button>
+    </aside>
+  </header>
+  <section class="job_management">
+    <div class="groups_top">
+      <span>请选择</span>
+      <!-- <select>
+      <option value="">省</option>
+    </select> -->
+      <select v-model="city">
+        <option value="all">市</option>
+        <option :value="key"
+                v-for="(opt, key) in cityList">{{ key }}</option>
+      </select>
+      <select v-model="county">
+        <option value="all">区/县</option>
+        <option :value="county"
+                v-for="county of allCounty">{{ county }}</option>
+      </select>
+      <p class="groups_top_search">
+        <span>搜索</span>
+        <i></i>
+        <input type="text"
+               v-model="keyString">
+      </p>
+      <p class="groups_top_download" @click="downLoadJob">下载Excel</p>
+      <p class="groups_top_add"
+         @click="toggleAddPopup">新建作业点</p>
+    </div>
+    <div class="groups_bottom">
+      <ul class="head_list">
+        <li>地名</li>
+        <li>所属城市</li>
+        <li>区县</li>
+        <li>经度</li>
+        <li>纬度</li>
+        <li>射向</li>
+        <li>半径</li>
+        <li>机场</li>
+        <li>编号</li>
+        <li>指挥员</li>
+        <li>评分</li>
+        <li>操作</li>
+      </ul>
+      <ul class="person_list">
+        <li v-for="(item, key) in currentPageList"
+            class="person_list_list">
+          <span class="address wid"
+                :title="item.address">{{ item.address }}</span>
+          <span class="city wid">{{ item.city }}</span>
+          <span class="county wid">{{ item.county }}</span>
+          <span class=" wid">{{ item.lon }}</span>
+          <span class=" wid">{{ item.lat }}</span>
+          <span class="fireDirection wid">{{ item.fireDirection ? item.fireDirection : '---'}}</span>
+          <span class="fireRadius wid">{{ item.fireRadius }}</span>
+          <span class="airport wid">{{ item.airport }}</span>
+          <span class="id wid">{{ item.opId }}</span>
+          <!-- <span class="appUser">{{ item.appUser ? item.appUser.username : '' }}</span> -->
+          <span class="appUser wid">
+            <div class="appusers">
+              <p :class="{'on': item.popup}"
+                 @click="toggleAppUserPanel(item)">{{ item.appUser ? item.appUser.name : '---' }}</p>
+              <div class="appuserPop appuserPop_out"
+                   v-if="item.popup">
+                <span class="">
+                  <i></i>
+                  <input type="text"
+                         class="search"
+                         placeholder="搜索"
+                         v-model="seachAppUser">
+                </span>
+                <ul class="scrollbar">
+                  <li :class="{'on': item.appUser && item.appUser.id === el.id, 'disabled': el.id in appUserListSelected}"
+                      v-for="el of AppUserList"
+                      @click="changeAppUser(item, el)">{{ el.name }}</li>
+                </ul>
+              </div>
+            </div>
+          </span>
+          <span class="wid">{{ item.level ? item.level + '级' : '未评级' }}</span>
+          <span class="icon">
+            <i class="score"
+               @click="toggleScorePopup(item.id)"></i>
+            <i class="editor"
+               @click="toggleModifyPopup(item)"></i>
+            <i class="delete"
+               @click="deldeteJobPoint(item.id)"></i>
+          </span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="product_page cf">
+    <div class="product_pageIn">
+      <el-pagination small
+                     :page-size="pageSize"
+                     layout="prev, pager, next"
+                     @current-change="currentChange"
+                     :total="jobPointLists.length">
+      </el-pagination>
+    </div>
+  </section>
+
+  <div class="popup"
+       v-show="isPopupOn"
+       v-drag=''>
+    <header>
+      <span>{{ popupType === 'add' ? '添加作业点' : '修改作业点' }}</span>
+      <aside>
+        <button class="close"
+                @click="popupType = null; isPopupOn = false"></button>
+      </aside>
+    </header>
+    <section class="editor_msg cf">
+      <dl class="cf"
+          v-for="(el, key) in popupInfo"
+          v-if="!(key === 'id' && popupType === 'modify')">
+        <dt>{{ el.name }}</dt>
+        <dd class="name">
+          <select name=""
+                  id=""
+                  v-model="el.value"
+                  v-if="key === 'city'">
+            <option :value="item.city"
+                    v-for="(item,index) of allCities">{{ item.city }}</option>
+          </select>
+          <input type="text"
+                 v-model="el.value"
+                 v-else-if="key !== 'appUser'">
+          <div class="appuser"
+               v-else>
+            <p :class="{'on': appUserPopup}"
+               @click="toggleAppUser">{{ el.value ? el.value.name : '' }}</p>
+            <div class="appuserPop"
+                 v-if="appUserPopup">
+              <span class="">
+                <i></i>
+                <input type="text"
+                       class="search"
+                       placeholder="搜索"
+                       v-model="seachAppUser">
+              </span>
+              <ul class="scrollbar">
+                <li :class="{'on': popupInfo.appUser.value && popupInfo.appUser.value.id === el.id, 'disabled': el.id in appUserListSelected}"
+                    v-for="el of AppUserList"
+                    @click="selectAppUser(el)">{{ el.name }}</li>
+              </ul>
+            </div>
+          </div>
+        </dd>
+      </dl>
+    </section>
+    <section class="eitor_btn cf">
+      <button class="eitor_btn_one cf"
+              @click="savePoint">保存</button>
+    </section>
+  </div>
+
+  <div class="score_popup"
+       v-drag=''
+       v-if="scorePopup">
+    <header>
+    <span>评分</span>
+    <aside>
+      <button class="close"
+              @click="scorePopup = false"></button>
+    </aside>
+    </header>
+    <section class="score_select">
+      <ul>
+        <li :class="[{'on': classSelected === '基本项'},'basic_class']" @click="toggleClass('基本项')">基本项</li>
+        <li  :class="[{'on':  classSelected === '提升项'},'promote_class']" @click="toggleClass('提升项')">提升项</li>
+      </ul>
+    </section>
+    <section class="score_select_con scrollbar">
+      <template v-if="basicPopup = true">
+        <ul class="basic_con">
+          <li v-for="(opt, name) in safetyItem[classSelected]">
+             <p>{{ stringSafety[name] }}、{{ name }}</p>
+             <div class="basic_con_div" v-for="(el, index) in opt">
+               <span class="basic_question">{{ (Number(index) + 1) + '、 ' + el.name }}</span>
+               <span class="basic_answer">
+                 <i :class="[{'on': el.selected},'yes']" @click="el.selected = true"></i><span class="yescon">是</span> 
+                 <i :class="[{'on': el.selected === false},'no']" @click="el.selected = false"></i><span class="nocon">否</span>
+               </span>
+             </div>
+          </li>
+        </ul>
+      </template>
+
+    </section>
+    <button class="comfirm_score" @click="submitItemLevel">确定</button>
+
+  </div>
+</main>

@@ -1,0 +1,45 @@
+<main id="OperateDemandSurveyPublish"
+      class="weather-product-window"
+      v-drag="">
+    <header>
+        <components :is="publishDocumentView"
+                    :stage="0"
+                    :publishFunction="publishDocument"
+                    :close="close"></components>
+        <span>需求调研-生成文档</span>
+        <aside>
+            <!--             <button class="mini"
+                    v-on:click="minify = !minify"
+                    :style="{backgroundPositionX: minify ? '-44px' : '0'}"></button> -->
+            <button class="close"
+                    v-on:click="changeArticleViewHolder_global({id: 'nsm2', action: 'create'})"></button>
+        </aside>
+    </header>
+    <div class="create_left popup_aricle">
+        <div id="editor">
+        </div>
+    </div>
+    <div class="create_right">
+        <ul>
+            <li class="create_downLoad"
+                @click="getHtmlString"
+                :title="'下载修改'">
+                <i></i>
+            </li>
+            <li class="create_update"
+                :title="'上传保存'"
+                @click="pickFile">
+                <input type="file"
+                       @change="uploadFileChange"
+                       id="uploadFile"
+                       class="upload-file">
+                <i></i>
+            </li>
+            <li class="create_editor"
+                :title="'发布'"
+                @click="openPublishDocumentPopup">
+                <i></i>
+            </li>
+        </ul>
+    </div>
+</main>

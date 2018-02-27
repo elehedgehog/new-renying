@@ -1,0 +1,64 @@
+<main id="ProductsClass" class="scrollbar">
+    <div class="require_analyze" v-for="(el, index) in menu">
+      <div class="require_analyze_left managecenter_left">
+          <p class="require_analyze_leftTitle">{{ el.name }}</p>
+      </div>
+      <div class="require_analyze_right cf scrollbar">
+        <div class="editor_delete" v-if="!el.default">
+            <i class="editor" @click="toggleUsedefined(el)"></i>
+            <i class="delete" @click="deleteFirstMenu(el.id)"></i>
+        </div>
+        <ul  class="require_analyze_ul cf">
+          <!-- 二级三级目录 -->
+          <template v-if="opt && opt.subMenus && opt.subMenus.length && !(opt.subMenus.length === 1 && !opt.subMenus[0])" 
+                    v-for="opt of el.subMenus" >
+            <li class="require_analyze_li cf" v-if="!opt.document">
+              <p class="add_rain_title">{{ opt.name }}：</p>
+              <ul class="add_rain_ul">
+                <li class="add_rain add_list" v-if="item"
+                    v-for="item in opt.subMenus">
+                  <span class="add_list_span"  
+                         v-if="item.isDefault" 
+                        :title="item.name"
+                        >{{ item.name }}</span>
+                  <span class="add_list_span on" 
+                        v-if="!item.isDefault" 
+                        :title="item.name" 
+                        @click="toggleRevisePopup(item)"
+                  >{{ item.name }}</span>
+                  <i v-if="item.default"></i>
+                  <i class="on" 
+                    v-if="!item.default" 
+                    @click="deleteMenu('third', opt, item.id)"></i>
+                </li>
+                <li class="add_rain_add add_btn" @click="toggleProductPopup('thrid', opt)">添加</li>
+              </ul>
+            </li>
+          </template>
+          <!-- 二级目录 -->
+          <template v-for="(opt, index) of el.subMenus" 
+                    v-if="opt && opt.subMenus && (!opt.subMenus.length || (opt.subMenus.length === 1 && !opt.subMenus[0]))">
+            <li class="add_list" v-if="!opt.document">
+              <span class="add_list_span"  
+                    v-if="opt.isDefault" 
+                    :title="opt.name">{{ opt.name }}</span>
+              <span class="add_list_span on"  
+                    v-if="!opt.isDefault" 
+                    :title="opt.name" 
+                    @click="toggleRevisePopup(opt)">{{ opt.name }}</span>
+              <i v-if="opt.default"></i>
+              <i class="on" 
+                 v-if="!opt.default" 
+                 @click="deleteMenu('second', el, opt.id)"></i>
+            </li>
+          </template>
+          <li class="add_btn" 
+             @click="toggleProductPopup('second', el)" 
+             v-if="index !== 0">添加</li>
+        </ul>
+      </div>
+    </div>
+  <component :is="addProductView" :closeFn="toggleProductPopup" :addProdType="addProdType" :addProdEl="addProdEl" :getMenu="getMenu"></component>
+  <component :is="reviseProductView" :closeRevise="toggleRevisePopup" :analyzeOptSelected="analyzeOptSelected" :getMenu="getMenu"></component>
+  <component :is="userDefinedView" :closeUsedefined="toggleUsedefined" :nameModify="nameModify" :getMenu="getMenu"></component>
+</main>

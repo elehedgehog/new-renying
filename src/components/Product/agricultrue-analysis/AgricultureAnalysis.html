@@ -1,0 +1,34 @@
+<main id="AgricultureAnalysis"
+      class="weather-product-window"
+      v-drag="">
+  <header>
+    <span>农情分析</span>
+    <aside>
+      <button class="close"
+              v-on:click="toggleProductView_global({id: productId, action: false})"></button>
+    </aside>
+  </header>
+  <main class="cf content-wrapper">
+    <menu style="transform: translateY(1px)">
+      <select-toggle :optionData="listDataForSelect"
+                     :selectionChange="listSelectChange"
+                     style="float:left"></select-toggle>
+      <!-- <ul class="item-list-wrapper" style="height: 679px">
+        <li v-for="item in listData"
+            v-on:click="fileName = item.fileName"
+            :state="fileName === item.fileName ? 'true' : 'false'">
+          <span>
+            <div>{{item.year}}年</div>
+            <div class="bold">{{item.month}}月</div>
+          </span>
+          <aside>
+            <div>{{item.name}}</div>
+            <div></div>
+          </aside>
+        </li>
+      </ul> -->
+    </menu>
+    <aside class="html-wrapper"
+           v-html="htmlString"></aside>
+  </main>
+</main>

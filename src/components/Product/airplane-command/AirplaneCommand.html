@@ -1,0 +1,24 @@
+<main id="AirplaneCommand" 
+      class="weather-product-window" 
+      v-drag="">
+  <header>
+      <span>飞机航迹设计</span>
+      <aside>
+        <button class="mini"></button>
+        <button class="close"
+                v-on:click="toggleProductView_global({id: productId, action: false})"></button>
+      </aside>
+  </header>
+  <section class="airplane_top">
+    <ul class="nav_design">
+      <li :class="[{'on': designSelected === 'new'},'new_design']" @click="toggleDesign('new')">设计航迹</li>
+      <li :class="[{'on': designSelected === 'history'},'history_design']" @click="toggleDesign('history')">历史设计航迹</li>
+    </ul>
+  </section>
+
+ 
+  <section class="airplane_con">
+    <component :selectOldTrajectory="selectOldTrajectory" :clearHistoryData="clearHistoryData"
+        :historyData="oldTrajectoryData" :is="currentView" :radarDatetime="radarDatetime" :layer="radarProductSelected"></component>
+  </section>
+</main>

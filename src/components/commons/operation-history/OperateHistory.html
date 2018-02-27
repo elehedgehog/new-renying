@@ -1,0 +1,47 @@
+<div class="OperateHistory">
+  <div class="popup_con">
+    <div class="history_left">
+      <el-date-picker v-model="date"
+                      type="date"
+                      placeholder="选择日期">
+      </el-date-picker>
+      <input id="file" type="file" @change="upload"/>
+      <!--<button id="uploadBtn" @click="open">上传</button>-->
+      <div class="history_article cf">
+        <div v-if="!data" class="nodata">没有数据</div>
+        <ul v-if="data">
+          <li class="history_article_list"
+              v-for="item,key in data"
+              @click="selected = key"
+              :class="[selected === key ? 'on' : '']">
+            <div class="panel">
+              <button class="download" @click.stop="download(key)"></button>
+              <button class="delete" @click.stop="deleteFile(key)"></button>
+            </div>
+            <div class="history_article_info">
+              <p class="history_article_date">{{item.datetime.slice(0,-2)}}</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <section class="product_page cf">
+        <div class="product_pageIn">
+          <el-pagination
+            small
+            :current="pageInfo.index"
+            :page-size="pageInfo.size"
+            layout="prev, pager, next"
+            @current-change="pageSelect"
+            :total=pageInfo.total>
+          </el-pagination>
+        </div>
+
+      </section>
+    </div>
+    <div class="history_right">
+      <div class="popup_aricle">
+        <div class="history_conIn popup_aricleIn" v-html="htmlString"></div>
+      </div>
+    </div>
+  </div>
+</div>

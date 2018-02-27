@@ -1,0 +1,14 @@
+<main id="SubNav">
+  <ul>
+    <li v-for="(subNavOpt,subNavKey) in subNavList"
+        :class="['cf',{'on': subNavKey === subNavSelected}]"
+        v-on:click="toggleSubNav(subNavKey)">
+      <div class="subNaveIcon">
+        <i></i>
+      </div>
+      <div class="subNaveTitle">{{ subNavOpt.text }}</div>
+    </li>
+  </ul>
+  <local-cloude />
+  <component :is="currentView"></component>
+</main>

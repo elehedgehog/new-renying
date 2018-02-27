@@ -1,0 +1,63 @@
+<!-- 工具栏 -->
+<main id="ToolBar">
+    <ul :style="{width: hidePop ? '52px' : '404px'}">
+    <li title="指令调度"
+            @click="toggleOrderDispatch" 
+            :class="['orderDispatch',{'on': orderDispatch}]"
+            :style="{width: hidePop ? '0px' : '32px'}">
+        <i></i>
+    </li>
+      <li title="雷达剖面"
+          @click="toggleCappiProfile" 
+          :class="['cappiProfile',{'on': cappiProfile}]"
+          :style="{width: hidePop ? '0px' : '32px'}">
+          <i></i>
+      </li>
+      <measure :hidePop="hidePop"/>
+      <li title="自动设备运输状态"
+          @click="toggleTransport" 
+          :class="['transport',{'on': transport}]"
+          :style="{width: hidePop ? '0px' : '32px'}">
+          <i></i>
+      </li>
+      <li title="搜索"  
+          @click="toggleSearch" 
+          :class="['searchs',{'on': search}]" 
+          :style="{width: hidePop ? '0px' : '32px'}">
+          <i></i>
+      </li>
+      <li title="地形"
+          @click="toggleTopography" 
+          :class="['topographys',{'on': topography}]" 
+          :style="{width: hidePop ? '0px' : '32px'}"><i></i></li>
+      <li title="经纬线" 
+          @click="toggleLatlon" 
+          :class="['latlons',{'on': latlon}]" 
+          :style="{width: hidePop ? '0px' : '32px'}"><i></i>
+      </li>
+      <li title="机场" 
+          @click="toggleAirdrome" 
+          :class="['airdromes',{'on': airdrome}]"  
+          :style="{width: hidePop ? '0px' : '32px'}">
+        <i></i>
+      </li>
+      <li title="飞行区域" 
+          @click="toggleAirspace" 
+          :class="['airspaces',{'on': airspace}]" 
+          :style="{width: hidePop ? '0px' : '32px'}">
+          <i></i>
+      </li>
+      <li title="炮点" 
+          @click="toggleShotpoint" 
+          :class="['shotpoints',{'on': shotpoint}]" 
+          :style="{width: hidePop ? '0px' : '32px'}"><i></i>
+      </li>
+      <li title="电台"
+          @click="toggleRadios" 
+          :class="['radioss',{'on': radios}]" 
+          :style="{width: hidePop ? '32px' : '32px'}"><i></i>
+      </li>
+      <em :class="{'on': hidePop }" @click="hidePop = !hidePop"></em>
+    </ul>
+    <component :is="searchView" ></component>
+</main>

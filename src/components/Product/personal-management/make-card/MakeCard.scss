@@ -1,0 +1,122 @@
+#MakeCard {
+  position: absolute !important;
+  top: 100px;
+  left: 307.5px;
+  width: 650px;
+  height: 480px;
+  .card_left {
+    float: left;
+    width: 350px;
+    height: 355px;
+    margin: 20px 0;
+    overflow: auto;
+  }
+  .card_right {
+    float: left;
+    margin: 35px 0 0 20px;
+    width: 260px;
+    height: 340px;
+    border: 1px solid #D8DAE0;
+    text-align: center;
+    #card {
+      width: 220px;
+      height: 340px;
+      &[src=""] {
+        visibility: hidden;
+      }
+    }
+  }
+  dl {
+    margin: 5px 0 12px 30px;
+    font-size: 14px;
+    height: 50px;
+    line-height: 50px;
+    dt {
+      float: left;
+      color: #575757;
+      width: 80px;
+    }
+    dd {
+
+      float: left;
+      color: #1c1c1c;
+      &.name, &.tel{
+        input {
+          margin-top: 10px;
+          padding: 0 15px;
+          height: 28px;
+          line-height: 28px;
+          width: 188px;
+          border: 1px solid #D8DAE0;
+        }
+      }
+
+      &.upload{
+        margin-top: 10px;
+        height: 28px;
+        line-height: 28px;
+        width: 218px;
+        border: 1px solid #D8DAE0;
+        #upload {
+          width: 70px;
+          height: 100%;
+          line-height: 100%;
+          background-color: #D8DAE0;
+        }
+        #path{
+          padding: 0 15px;
+          width: 148px;
+          overflow: hidden;
+          text-overflow:ellipsis;
+          white-space: nowrap;
+          line-height: 100%;
+          display: inline-block;
+          box-sizing: border-box;
+        }
+      }
+
+      &.upload>input {
+        display: none;
+      }
+
+      &.department, &.worker, &.group, &.area {
+        select {
+          width: 220px;
+        }
+      }
+    }
+  }
+  .card_btn {
+    float: left;
+    a {
+      text-decoration: none;
+      height: 30px;
+      line-height: 30px;
+      width: 120px;
+      border-radius: 5px;
+      font-size: 14px;
+      text-align: center;
+      margin: 15px 0 15px 20px;
+      color: #fff;
+      background-color: #f8cb00;
+      display: inline-block;
+    }
+    button {
+      cursor: pointer;
+      height: 30px;
+      line-height: 30px;
+      width: 120px;
+      border-radius: 5px;
+      font-size: 14px;
+      text-align: center;
+      margin: 15px 0 0 20px;
+      color: #fff;
+      background-color: #3E7CD7;
+    }
+  }
+}
+
+@font-face {
+  font-family: jy3;
+  src: url('/static/font/JY3.TTF');
+}

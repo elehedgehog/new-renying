@@ -1,0 +1,127 @@
+#ReviseProduct{
+  position: absolute!important;
+  top: 50px;
+  left: 150px;
+  width: 800px;
+  height: 490px;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px #dde;
+  .add_class_title{
+    background-color: #F0F4FB;
+    height: 40px;
+    line-height: 40px;
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  .revise_left{
+    float: left;
+    width: 400px;
+    height: 400px;
+    margin: 8px 20px 0 30px;
+    background-color: #F0F1F4;
+    img{
+      width: 400px;
+      height: 400px;
+    }
+  }
+  .revise_right{
+    float: left;
+    font-size: 16px;
+    display: block;
+    width: 350px;
+    margin-top: 90px;
+    dl{
+      height: 35px;
+      line-height: 35px;
+      width: 90%;
+      border-bottom: 1px solid #E1E3E7;
+      margin-bottom: 35px;
+      padding-bottom: 20px;
+      dt{
+        float: left;
+        color: #000;
+        width: 70px;
+      }
+    dd{
+        color: #575757;
+        input{
+          border:1px solid #E1E3E7;
+          width: 165px;
+          height: 35px;
+          padding: 0 15px;
+          text-align: right;
+         }
+         span{
+           display: inline-block;
+           width: 187px;
+           height: 35px;
+         }
+      }
+      &.revise_name{
+        
+         dd{
+           float: left;
+           
+         }
+         span{
+           display: inline-block;
+           text-align: right;
+           padding-right: 10px;
+           text-overflow: ellipsis;
+           overflow: hidden;
+           white-space: nowrap;
+         }
+         i{
+          display: inline-block;
+          margin: 2.5px 0 2.5px 6px;
+          width: 30px;
+          height: 30px;
+          background: url(~Img/home_link.png)no-repeat 0 0px /200% 300%;
+          cursor: pointer;
+          &:hover{
+            background-position-x: -30px;
+          }
+        }
+       }
+       &.revise_url{
+         dd{
+           float: left;
+         }
+         span{
+          display: inline-block;
+          text-align: right;
+          padding-right: 10px;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+         }
+         i{
+           display: inline-block;
+           margin: 2.5px 0 2.5px 6px;
+           width: 30px;
+           height: 30px;
+           background: url(~Img/home_link.png)no-repeat 0 -30px /200% 300%;
+           cursor: pointer;
+           &:hover{
+             background-position-x: -30px;
+           }
+         }
+       }
+    } 
+  } 
+  .revise_button{
+    button{
+      width: 110px;
+      height: 30px;
+      margin: 30px 0 0 120px;
+      line-height: 30px;
+      color: #fff;
+      background-color: #4484DE;
+      text-align: center;
+      cursor: pointer;
+      &:hover{
+        background-color: #3679D6;
+      }
+    }
+  }
+}

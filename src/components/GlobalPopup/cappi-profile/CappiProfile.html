@@ -1,0 +1,37 @@
+<main id="CappiProfile"
+      class="weather-product-window" 
+      v-drag="">
+  <header>
+    <span>雷达剖面</span>
+    <aside>
+      <button class="close" v-on:click="storeisCappiProfileOn_global(false)"></button>
+    </aside>
+  </header>
+  <div class="content">
+    <div class="opt">
+      日期：
+      <el-date-picker
+        v-model="date"
+        size="small"
+        :editable="false"
+        :clearable="false"
+        type="date">
+      </el-date-picker>
+      日
+      <select v-model="hour">
+        <option :value="0">00</option>
+        <option v-for="i in 23" :key="i" :value="i">{{ i >= 10 ? i : '0' + i }}</option>
+      </select>
+      时
+      <select v-model="minute">
+        <option :value="0">00</option>
+        <option v-for="i in 9" :key="i" :value="i*6">{{ i*6 >= 10 ? i*6 : '0' + i*6 }}</option>
+      </select>
+      分
+    </div>
+    <figure v-loading="loading" element-loading-text="正在加载图片">
+      <img v-show="isGetImage" :src="imageUrl">
+      <div v-show="!isGetImage" class="img-tip">暂无图片</div>
+    </figure>
+  </div>
+</main>

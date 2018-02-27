@@ -1,0 +1,74 @@
+<main id="FileManagement"
+      class="weather-product-window"
+      v-drag=''>
+<header>
+<span>规范文件管理</span>
+<aside>
+<button class="close"
+      v-on:click="toggleProductView_global({id: productId, action: false})"></button>
+</aside>
+</header>
+ <section class="fileManagement_top">
+    <button class="upload_btn" @click="file=null;uploadPop=true">上传</button>
+ </section>
+ <section class="fileManagement_con">
+   <ul class="file_title cf">
+     <li>文件名</li>
+     <li>上传日期</li>
+     <li>上传人</li>
+     <li>级别</li>
+     <li>操作</li>
+   </ul>
+   <ul class="file_con cf">
+     <li v-for="(item, key) in currentPageList">
+       <span class="file_name" :title="item.title">{{ item.title }}</span>
+       <span class="file_time" :title="item.time">{{ item.time }}</span>
+       <span class="file_uploader" :title="item.uploader">{{ item.uploader }}</span>
+       <span class="file_lever" :title="item.level">{{ item.level }}</span>
+       <span class="file_option">
+         <i class="download_icon" @click="downloadSpecification(item.id)"></i>
+         <i class="delete_icon" @click="deleteSpecification(item.id)"></i>
+       </span>
+     </li>
+   </ul>
+ </section>
+ <section class="file_page cf">
+    <div class="file_pageIn">
+      <el-pagination small
+                     :page-size="pageSize"
+                     :current-page="currentPage"
+                     layout="prev, pager, next"
+                     @current-change="currentChange"
+                     :total="specificationList.length">
+      </el-pagination>
+    </div>
+  </section> 
+
+  <div v-if="uploadPop" 
+       class="upload_file"
+       v-drag=''>
+      <header>
+      <span>上传文件</span>
+      <aside>
+      <button class="close"
+            v-on:click="uploadPop=false"></button>
+      </aside>
+      </header>
+      <section class="upload_file_con">
+        <dl class="cf">
+          <dt>上传文件</dt>
+          <dd>
+            <input type="file" @change="fileChanged">
+          </dd>
+        </dl>
+        <!-- <dl class="cf">
+          <dt>备注</dt>
+          <dd>
+            <textarea v-model="fileRemarks"></textarea>
+          </dd>
+        </dl> -->
+        <button class="upload_file_btn" @click="uploadFile">上传</button>
+      </section>
+
+  </div>
+</main>

@@ -1,0 +1,67 @@
+#ForecastPopup {
+  .forecast_con{
+    position: relative;
+    box-shadow: 0px 0px 10px #eee;
+    width: 530px;
+    background-color: #fff;
+    
+    ul{
+      padding:10px 0 5px 10px;
+      background-color: #fff;
+      border-bottom: 1px solid #D4D6DC;
+      li{
+        float: left;
+        width: 220px;
+        height: 40px;
+        margin: 10px 20px;
+        line-height: 40px;
+        background-color: #f0f1f4;
+        text-indent: 20px;
+        font-size: 14px;
+        cursor: pointer;
+        a{
+          color: #1c1c1c;
+        }
+        &.on{
+          background-color: #dfe4e8;
+        }
+        
+      }
+  }
+  .forecast_bot{
+    position: relative;
+    height: 80px;
+    line-height: 80px;
+    font-size: 14px;
+    p{
+      color: #B1B1B1;
+      margin-left: 30px;
+    }
+    button{
+      position: absolute;
+      right: 30px;
+      top: 25px;
+      height: 35px;
+      line-height: 35px;
+      width: 180px;
+      text-align: center;
+      color: #fff;
+      background-color: #4484de;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  }
+  .triangle{
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: -10px;
+    top: 20px;
+    border-top: 10px solid transparent;
+    border-right: 10px solid #fff;
+    border-bottom: 10px solid transparent;
+  }
+
+  }
+  
+}

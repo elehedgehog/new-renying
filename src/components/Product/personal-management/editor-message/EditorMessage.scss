@@ -1,0 +1,73 @@
+#EditorMessage{
+  position: absolute!important;
+  top: 100px;
+  left: 432.5px;
+  width: 400px;
+  height: 510px;
+  .editor_msg {
+    margin: 20px 0;
+    height: 385px;
+    overflow: scroll;
+  }
+
+  figure {
+    text-align: center;
+    #imageShow {
+      height: 270px;
+      cursor: pointer;
+    }
+  }
+
+  dl{
+    margin:5px 0 0 30px;
+    font-size: 14px;
+    height: 50px;
+    line-height: 50px;
+    dt{
+      float: left;
+      color: #575757;
+      width: 120px;
+    }
+    dd{
+      float: left;
+      color: #1c1c1c;
+      &.name,&.tel{
+        input{
+          margin-top: 10px;
+          padding: 0 15px;
+          height: 28px;
+          line-height: 28px;
+          width: 188px;
+          border: 1px solid #D8DAE0;
+        }
+
+      }
+      &.department,&.worker,&.group,&.area{
+        select{
+          width: 220px;
+        }
+      }
+    }
+  }
+  .editor_btn{
+    margin: 15px 0 0 140px;
+    button{
+      cursor: pointer;
+      height: 30px;
+      line-height: 30px;
+      width: 120px;
+      border-radius: 5px;
+      font-size: 14px;
+      text-align: center;
+      &.editor_btn_one{
+        color: #fff;
+        background-color: #3E7CD7;
+        margin-right: 10px;
+      }
+      &.editor_btn_two{
+        color: #fff;
+        background-color: #f8cb00;
+      }
+    }
+  }
+}

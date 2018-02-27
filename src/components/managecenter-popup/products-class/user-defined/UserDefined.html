@@ -1,0 +1,24 @@
+<main id="UserDefined" v-drag="" class="weather-product-window">
+    <header>
+      <span>自定义-名称修改</span>
+      <aside>
+        <button class="mini"></button>
+        <button class="close" @click="closeUsedefined"></button>
+      </aside>
+    </header>
+    <article class="userDefinded">
+        <dl class="cf userDefinded_name">
+          <dt>名称</dt>
+          <dd><span>{{ nameModify.name }}</span></dd>
+        </dl>
+        <dl class="cf userDefinded_revise">
+          <dt>修改</dt>
+          <dd>
+            <input type="text" v-model="firstMenu" >
+          </dd>
+        </dl>
+      </article>
+      <section class="cf userDefinded_button">
+          <button @click="modifyFirstMenu">保存</button>
+      </section>
+</main>

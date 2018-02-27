@@ -1,0 +1,15 @@
+#CityFire {
+    z-index: 1001;
+    background-color: white;
+    position: absolute;
+    left: 340px;
+    top: 120px;
+    main {
+        padding: 20px;
+        white-space: nowrap;
+        span {
+            font-size: 16px;
+            padding-right: 15px;
+        }
+    }
+}

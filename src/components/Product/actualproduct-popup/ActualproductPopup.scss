@@ -1,0 +1,111 @@
+#ActualproductPopup {
+  position: absolute;
+  z-index: 1000;
+  top: 130px;
+  left: 324px;
+  background-color: #fff;
+  // height: 403px;
+  padding-bottom: 15px;
+  width: 440px;
+  .date {
+    margin-top: 15px;
+    line-height: 36px;
+    .el-date-editor.el-input {
+      width: 138px !important;
+      margin-left: 55px;
+    }
+    .hour-min {
+      width: 60px;
+      height: 36px;
+      padding-left: 10px;
+      background: #f0f1f4;
+      border: none;
+      border-radius: 5px;
+      outline: none;
+      cursor: pointer;
+    }
+  }
+  .nowActual_con_top{
+    margin: 10px auto 10px;
+    height:118px;
+  }
+  .nowActual_con_topleft{
+    position: relative;
+    height: 118px;
+    width: 30px;
+    writing-mode: vertical-rl;
+    -ms-writing-mode: lr-tb;
+    letter-spacing: 5px;
+    p{
+      position: absolute;
+      top: 20px;
+      left: -7px;
+    }
+  }
+  .nowActual_con_bottomleft{
+    position: relative;
+    height: 180px;
+    width: 23px;
+    padding: 13px 0 0 7px;
+    writing-mode: vertical-rl;
+    -ms-writing-mode: lr-tb;
+    letter-spacing: 7px;
+    p{
+      position: absolute;
+      left: -7px;
+      top: 50px;
+    }
+  }
+  .nowActual_con_topright,.nowActual_con_bottomright {
+    margin-top: 15px;
+  }
+  ul.nowActual_bottom_products{
+    li.iconProductF{
+      float: left;
+      width: 49%;
+      i{
+        display: inline-block;
+        width: 18px;
+        height: 18px;
+        margin: 0 10px -4px 0;
+        cursor: pointer;
+        background: url(~Img/home_check.png)no-repeat 0 0/100% 800%;
+      }
+      &:nth-child(1).on{
+        i{
+          background: url(~Img/home_check.png)no-repeat 0 -18px/100% 800%;
+        }
+      }
+      &:nth-child(2).on{
+        i{
+          background: url(~Img/home_check.png)no-repeat 0 -36px/100% 800%;
+        }
+      }
+      &:nth-child(3).on{
+        i{
+          background: url(~Img/home_check.png)no-repeat 0 -54px/100% 800%;
+        }
+      }
+      &:nth-child(4).on{
+        i{
+          background: url(~Img/home_check.png)no-repeat 0 -72px/100% 800%;
+        }
+      }
+      &:nth-child(5).on{
+        i{
+          background: url(~Img/home_check.png)no-repeat 0 -90px/100% 800%;
+        }
+      }
+      &:nth-child(6).on{
+        i{
+          background: url(~Img/home_check.png)no-repeat 0 -108px/100% 800%;
+        }
+      }
+      &:nth-child(7).on{
+        i{
+          background: url(~Img/home_check.png)no-repeat 0 -126px/100% 800%;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,62 @@
+#TransportStatus{
+  position: absolute;
+  top: 130px;
+  left: 330px;
+  width: 600px;
+  z-index: 1000;
+  background-color: #ffffff;
+  white-space: nowrap;
+  .transport_con{
+    margin: 20px 30px;
+    border: 1px solid #E2E3E8;
+    ul.transport_con_title{
+      color: #1c1c1c;
+      font-size: 15px;
+      height: 45px;
+      >li{
+        float: left;
+        width: calc(100%/3);
+        height: 45px;
+        line-height: 45px;
+        text-align: center;
+        background-color: #F0F1F4;
+      }
+    }
+    ul.transport_con_detail{
+      color: #1c1c1c;
+      font-size: 15px;
+      max-height: 355px;
+      overflow: auto;
+      >li{
+        height: 40px;
+        >span{
+          float: left;
+          display: inline-block;
+          width: calc(100%/3 - 10px);
+          height: 40px;
+          line-height: 40px;
+          text-align: center;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          padding: 0 5px;
+          &:nth-child(3){
+            position: relative;
+            >p{
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%,-50%);
+              height: 28px;
+              width: 100px;
+              line-height: 28px;
+              color: #eb414f;
+              border: 1px solid #eb414f;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+    }
+  }
+}

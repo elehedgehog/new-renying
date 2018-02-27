@@ -1,0 +1,25 @@
+<main id="CityFire"
+      class="weather-product-window"
+      v-drag=""
+      v-loading="loading"
+      element-loading-text="正在加载河流数据">
+  <header>
+    <span>河流水位</span>
+    <aside>
+      <button v-on:click="minify = !minify"
+              class="mini"></button>
+      <button class="close"
+              v-on:click="toggleProductView_global({id: productId, action: false})"></button>
+    </aside>
+  </header>
+  <main>
+    <div>
+      <span>日期</span>
+      <el-date-picker v-model="datetime"
+                      format="yyyy-MM-dd HH:mm"
+                      type="datetime"></el-date-picker>
+      
+    </div>
+  </main>
+</main>
+

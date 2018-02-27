@@ -1,0 +1,46 @@
+#Typh {
+    z-index: 1001;
+    background-color: white;
+    position: absolute;
+    left: 340px;
+    top: 130px;
+    main {
+        padding: 20px;
+        white-space: nowrap;
+        span {
+            font-size: 16px;
+            padding-right: 15px;
+        }
+    }
+}
+
+table {
+    width: 390px;
+    text-align: center;
+    font-size: 12px;
+    border: solid 1px #d2d4db!important;
+    max-height: 300px;
+    min-height: 60px;
+    overflow-y: scroll;
+    border-collapse: collapse;
+    th{
+        background-color: #f0f1f4;
+    }
+    td{
+        color: #626262;
+    }
+    tr{
+        border-top: 1px solid #fff;
+        &:hover{ border: 1px solid #4786E1!important; }
+        &.on{ border: 1px solid #4786E1!important; }
+
+    }
+    
+    tr,
+    th {
+        height: 29px;
+        line-height: 29px;
+        cursor: pointer;
+    }
+    
+}

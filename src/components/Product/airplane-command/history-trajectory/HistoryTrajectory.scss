@@ -1,0 +1,54 @@
+#HistoryTrajectory {
+    height: 515px;
+    dl {
+        margin: 6px 0 0 30px;
+        font-size: 14px;
+        height: 50px;
+        line-height: 16px;
+        dt {
+            float: left;
+            color: #575757;
+            width: 60px;
+        }
+        dd {
+            margin-left: 20px;
+            float: left;
+            color: #1c1c1c;
+            ul {
+                width: 168px;    
+                max-height: 350px;
+                min-height: 100px;
+                border: 1px solid #D8DAE0;
+                overflow: auto;
+                li {
+                    padding: 0 15px;
+                    position: relative;
+                    height: 30px;
+                    line-height: 30px;
+                    &:hover,
+                    &.on {
+                        cursor: pointer;
+                        color: #fff;
+                        background-color: #4787E1;
+                    }
+                    i {
+                        position: absolute;
+                        top: 4px;
+                        right: 4px;
+                        cursor: pointer;
+                        width: 22px;
+                        height: 22px;
+                        display: inline-block;
+                        background-repeat: no-repeat;
+                        background-image: url(~Img/home_close.png);
+                        background-position-x: -22px;
+                        background-position-y: 0px;
+                        &:hover {
+                            background-position-y: -22px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

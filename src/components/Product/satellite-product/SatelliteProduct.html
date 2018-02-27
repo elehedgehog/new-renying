@@ -1,0 +1,55 @@
+<main id="SatelliteProduct"
+      class="weather-product-window"
+      v-drag="">
+  <header>
+    <span>卫星云反演</span>
+    <aside>
+      <button class="close"
+              v-on:click="toggleProductView_global({id: productId, action: false})"></button>
+    </aside>
+  </header>
+  <main class="content-wrapper">
+    <figure v-loading="loading" element-loading-text="正在载入图片">
+      <img :src="imgUrl"
+           height="695px"
+           width="auto"
+           alt="" />
+    </figure>
+    <menu>
+      <section class="date-time-forsee-wrapper">
+        <ul>
+          <li>
+            <aside class="left-label-wrapper">选择要素</aside>
+            <aside class="right-btn-wrapper">
+              <select id="element-selection"
+                      v-model="elementSelected">
+                <option v-for="item in elementData"
+                        :value="item.value">{{item.name}}</option>
+              </select>
+            </aside>
+          </li>
+          <li>
+            <aside class="left-label-wrapper">选择日期</aside>
+            <aside class="right-btn-wrapper">
+              <div class="datetime-wrapper">
+                <el-date-picker v-model="date"
+                                format="yyyy-MM-dd"
+                                type="date"></el-date-picker>
+              </div>
+            </aside>
+          </li>
+          <li>
+            <aside class="left-label-wrapper">选择时次</aside>
+            <aside class="right-btn-wrapper">
+              <select id="forsee-time"
+                      v-model="hourSelected">
+                <option v-for="item in hourData"
+                        :value="item.text">{{item.text}}</option>
+              </select>
+            </aside>
+          </li>
+        </ul>
+      </section>
+    </menu>
+  </main>
+</main>

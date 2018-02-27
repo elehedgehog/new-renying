@@ -1,0 +1,57 @@
+<main id="HeaderTitle">
+  <div class="header_left">
+    <p>广东人影综合业务系统</p>
+  </div>
+  <div class="header_right">
+    <span class="header_right_area"
+          :class="{'on': cityListPop }">
+      <template v-if="userInfo_global.power == 1">
+        <p @click="toggleCityList">
+          <a>{{ cityList[citySelected] }}</a>
+          <em v-if="userInfo_global.power"></em>
+        </p>
+        <ul style="z-index: 3000"
+            v-if="cityListPop && userInfo_global.power">
+          <li v-for="(cityname, cityid) in cityList"
+              :class="{'on': citySelected == cityid }"
+              @click="toggleCity(+cityid)">{{ cityname }}</li>
+        </ul>
+      </template>
+      <p v-else><a>{{ cityList[citySelected] }}</a></p>
+    </span>
+    <span class='header_right_download' :class="{'on': downLoadView}" @click.stop="toggleDownloaImg">
+      <i></i>
+    </span>
+    <!-- <span :class="['header_right_council',{'on':accountManagementView}]" @click="toggleAccountManagement" v-if="userInfo_global.power == 1"> -->
+    </span>
+    <span @click="productAccountPop=!productAccountPop" :class="['header_right_set',{'on': productAccountPop || managementView || accountManagementView}]">
+      <i></i>
+      <ul class="product_account" v-if="productAccountPop">
+        <li :class="[{'on': managementView},]"
+             @click="toggleManagement">产品管理中心</li>
+        <li :class="{'on':accountManagementView}" @click.stop="toggleAccountManagement" v-if="userInfo_global.power == 1">市局账号管理</li>
+      </ul>
+      <em></em>
+    </span>
+    <i class="vertical_line"></i>
+    <span class="header_right_per"
+          style="transform: translateY(0px)" :class="{'on': loginOutPop }">
+      <i v-if="!userInfo_global.username"></i>
+      <div v-else class="cf">
+        <p @click="loginOut">
+          <a>{{userInfo_global.username}}</a>
+          <em></em>
+        </p>
+        <p class="login_out" v-if="loginOutPop" @click="loginOutBtn">
+          <span class="login_out_in">退出登录</span>
+        </p>
+      </div>
+    </span>
+  </div>
+  <component :is="downLoadView"
+             :closeFn="toggleDownloaImg"></component>
+  <component :is="managementView"
+             :closeFn="toggleManagement"></component>
+  <component :is="accountManagementView"
+             :closeFn="toggleAccountManagement"></component>
+</main>

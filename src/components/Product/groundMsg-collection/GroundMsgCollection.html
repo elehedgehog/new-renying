@@ -1,0 +1,100 @@
+<main id="GroundMsgCollection"
+      class="weather-product-window"
+      v-drag=''>
+  <header>
+  <span>地面信息采集</span>
+  <aside>
+  <button class="close"
+          v-on:click="toggleProductView_global({id: productId, action: false})"></button>
+  </aside>
+  </header>
+  <section class="groundMsg_con">
+    <ul class="msgTtitle">
+      <li>作业名</li>
+      <li>作业站点编码</li>
+      <li>作业类型</li>
+      <li>上报人</li>
+      <li>上报时间</li>
+    </ul>
+    <ul class="scrollbar cf msgDetail">
+      <li v-for="(item, index) in currentPageList" :class="{'on': item.msgPopup}"
+          @click="toggleMsgDetail(item)">
+        <p class="msg_title">
+          <span class="title_det">---</span>
+          <span class="title_det">{{ item.fpRecord.id }}</span>
+          <span class="title_det">{{ item.operationtype }}</span>
+          <span class="title_det">{{ item.operator }}</span>
+          <span class="title_det">{{ item.operationtime }}</span>
+        </p>
+        <table class="msg_body" cellspacing="0" v-if="item.msgPopup">
+            <tr>
+              <td>作业站点编码</td>
+              <td>{{ item.fpRecord.id }}</td>
+              <td>高炮炮弹用量</td>
+              <td>{{ item.cnbulletusednum }}</td>
+            </tr>
+            <tr>
+              <td>作业日期</td>
+              <td>{{ item.operationtime }}</td>
+              <td>火箭弹用量</td>
+              <td>{{ item.rkbulletusednum }}</td>
+            </tr>
+            <tr>
+              <td>作业器具类型</td>
+              <td>{{ item.tooltype }}</td>
+              <td>烟条用量</td>
+              <td>{{item.ccnum}}</td>
+            </tr>
+            <tr>
+              <td>作业类型</td>
+              <td>{{ item.operationtype }}</td>
+              <td>其他用量</td>
+              <td>{{ item.other }}</td>
+            </tr>
+            <tr>
+              <td>作业开始时间</td>
+              <td>{{ item.starttime }}</td>
+              <td>作业结束时间</td>
+              <td>{{ item.endtime  }}</td>
+            </tr>
+            <tr>
+              <td>作业前天气状况</td>
+              <td>{{ item.frontweather }}</td>
+              <td>作业后天气状况</td>
+              <td>{{ item.afterweather }}</td>
+            </tr>
+            <tr>
+              <td>作业面积(平方公里)</td>
+              <td>{{ item.area}}</td>
+              <td>作业效果</td>
+              <td>{{ item.effect}}</td>
+            </tr>
+            <tr>
+              <td>填报人</td>
+              <td>{{ item.operator }}</td>
+              <td>填报单位</td>
+              <td>{{ item.operationunit }}</td>
+            </tr>
+            <tr>
+              <td>填写日期</td>
+              <td>{{ item.createtime }}</td>
+              <td></td>
+              <td></td>
+              
+            </tr>
+
+        </table>
+      </li>
+    </ul>
+    <section class="product_page cf">
+        <div class="product_pageIn">
+          <el-pagination small
+                         :page-size="pageSize"
+                         layout="prev, pager, next"
+                         @current-change="currentChange"
+                         :total="dataLength">
+          </el-pagination>
+        </div>
+      </section>
+  </section>
+</main>

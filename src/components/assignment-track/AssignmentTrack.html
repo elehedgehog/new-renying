@@ -1,0 +1,108 @@
+<main id="AssignmentTrack"
+      :style="{transform: !isLeftNavOpened_global ? `` : 'translateX(150px)'}">
+  <section class="warning-item"
+           @click="assignmentPop = true">
+    <a>五段流程</a>
+    <span :style="{color: operateData.length > 0 ? '#EB414F' : ''}">{{operateData.length}}</span>
+  </section>
+
+  <div class="assignment_content"
+       v-if="assignmentPop"
+       v-drag>
+    <header>
+      <span>任务跟踪</span>
+      <aside>
+        <button class="mini"></button>
+        <button class="close"
+                v-on:click="assignmentPop = false"></button>
+      </aside>
+    </header>
+    <section class="assignment_contentIn cf">
+      <div class="assignment_left">
+        <ul class="work_msg"
+            style="overflow-y: scroll; height: 100%;">
+          <li v-for="item in operateData"
+              :class="{'on': operateSelected === item}"
+              @click="operateSelected = item">
+            <div class="assignment_left_num">
+              <span>{{item.stage}}</span>
+            </div>
+            <div class="assignment_left_con">
+              <p class="work">{{item.type === 'pl' ? '飞机作业' : '火箭作业'}}</p>
+              <p class="message"
+                 v-if="item.wos.appUser && item.type === 'rk'">
+                <span>{{item.wos.appUser.name}}</span>
+                <span>{{item.wos.appUser.phone}}</span>
+                <span style="text-align: left;">
+                  {{item.wos.county}}
+                </span>
+                <span>{{item.state}}</span>
+              </p>
+              <p class="title">
+                <span>指挥员</span>
+                <span>电话</span>
+                <span>区域</span>
+                <span>状态</span>
+              </p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="assignment_right"
+           v-show="operateSelected.stage !== null && operateSelected.stage !== 0">
+        <ul class="progress_bar ">
+          <li :class="{'on': operateSelected.stage === 1}">
+            <span class="progress_num one_num">1
+              <i class="progress_lineB"></i>
+            </span>
+            <span class="progress_title">作业计划</span>
+          </li>
+          <li :class="{'on': operateSelected.stage === 2}">
+            <span class="progress_num two_num">
+              <i class="progress_lineB"></i>2
+              <i class="progress_lineT"></i>
+            </span>
+            <span class="progress_title">作业潜力</span>
+          </li>
+          <li :class="{'on': operateSelected.stage === 3}">
+            <span class="progress_num three_num">
+              <i class="progress_lineB"></i>3
+              <i class="progress_lineT"></i>
+            </span>
+            <span class="progress_title">作业预警</span>
+          </li>
+          <li :class="{'on': operateSelected.stage === 4}">
+            <span class="progress_num four_num">
+              <i class="progress_lineB"></i>4
+              <i class="progress_lineT"></i>
+            </span>
+            <span class="progress_title">实时指挥</span>
+          </li>
+          <li :class="{'on': operateSelected.stage === 5}">
+            <span class="progress_num five_num">
+              5
+              <i class="progress_lineT"></i>
+            </span>
+            <span class="progress_title">效果评估</span>
+          </li>
+          <div class="progress_btn"
+               :style="{transform: `translateY(${(operateSelected.stage - 1) * 118}px)`}">
+            <button @click="changeStage('previous')"
+                    v-show="operateSelected.stage !== 1"
+                    class="return"
+                    :style="{marginTop: operateSelected.stage == 5 ? '24px' : '0px'}">返回上阶段</button>
+            </button>
+            <button @click="changeStage('next')"
+                    v-show="operateSelected.stage !== 5"
+                    class="enter"
+                    :style="{marginTop: operateSelected.stage == 1 ? '24px' : '0px'}">进入下阶段</button>
+            <button @click="changeStage('stop')"
+                    class="stop">中止</button>
+          </div>
+        </ul>
+      </div>
+    </section>
+  </div>
+
+</main>

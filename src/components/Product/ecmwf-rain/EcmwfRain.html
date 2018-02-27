@@ -1,0 +1,62 @@
+<main id="EcmwfRain"
+      class="weather-product-window"
+      v-drag=''>
+  <header>
+  <span>雨量统计</span>
+  <aside>
+  <!--       <button class="mini"
+          v-on:click="minify = !minify"
+          :style="{backgroundPositionX: minify ? '-44px' : '0'}"></button> -->
+  <button class="close"
+          v-on:click="toggleProductView_global({id: productId, action: false})"></button>
+  </aside>
+  </header>
+  <figure v-loading="loading"
+          element-loading-text="正在载入图片">
+    <section>
+      <dl class="cf">
+        <dt>日期</dt>
+        <dd>
+          <el-date-picker v-model="ecwmfRainDate"
+                          type="date"
+                          :clearable="false"
+                          placeholder="选择日期">
+          </el-date-picker>
+        </dd>
+      </dl>
+      <dl class="cf">
+          <dt>UTC</dt>
+          <dd>
+            <span class="utc_zero ecwmf_check"
+                  @click="toggleUtcTime(0)"
+                  :class="{'on' : 0 === utcSelected}">
+              <i></i>
+              <span>00时</span>
+            </span>
+            <span class="utc_twelve ecwmf_check"
+                  @click="toggleUtcTime(12)"
+                  :class="{'on' : 12 === utcSelected}">
+              <i></i>
+              <span>12时</span>
+            </span>
+          </dd>
+        </dl>
+      <dl class="cf">
+        <dt>时效</dt>
+        <dd>
+          <select v-model="timeSelected">
+            <option  v-for="item of leadtime" :value="item">{{ item }}</option>
+          </select>
+        </dd>
+      </dl>
+      <dl class="cf">
+        <dt>累计雨量</dt>
+        <dd>
+          <select v-model="cumulateSelected">
+            <option  v-for="item in cumulate" :value="item">{{ item }}</option>
+          </select>
+        </dd>
+      </dl>
+    </section>
+  </figure>
+</main>

@@ -1,0 +1,18 @@
+<main id="RepoMonitor"
+      class="weather-product-window"
+      v-drag=''>
+  <header>
+    <span>弹药仓库状态检测</span>
+    <aside>
+      <button class="close"
+              v-on:click="toggleProductView_global({id: productId, action: false})"></button>
+    </aside>
+  </header>
+  <section class="airspace_con">
+    <div class="airspace_head">
+      <span>开启仓库状态检测</span>
+      <i :class="['switch_btn',{'on':isShow}]"
+         @click="toggleSwitch"></i>
+    </div>
+  </section>
+</main>

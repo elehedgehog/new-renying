@@ -1,0 +1,18 @@
+<main id="GroundControl"
+      class="weather-product-window"
+      v-drag=''>
+  <header>
+    <span>地面作业跟踪指挥</span>
+    <aside>
+      <button class="close"
+              v-on:click="toggleProductView_global({id: productId, action: false})"></button>
+    </aside>
+  </header>
+  <section class="airspace_con">
+    <div class="airspace_head">
+      <span>开启地面作业跟踪指挥</span>
+      <i :class="['switch_btn',{'on':isShowTransportLayer_global}]"
+         @click="toggleSwitch"></i>
+    </div>
+  </section>
+</main>
